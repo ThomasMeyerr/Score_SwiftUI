@@ -58,7 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				164F37B52C84D45500650152 /* ScoreApp.swift */,
-				164F37B72C84D45500650152 /* ContentView.swift */,
+				16F381752C84DD3A00569DF1 /* MainView */,
 				16F381722C84DCB700569DF1 /* CardGames */,
 				16F381732C84DCC300569DF1 /* DiceGames */,
 				16F381742C84DCD100569DF1 /* BasicGames */,
@@ -98,6 +98,14 @@
 				16F381702C84DA8400569DF1 /* BasicGamesView.swift */,
 			);
 			path = BasicGames;
+			sourceTree = "<group>";
+		};
+		16F381752C84DD3A00569DF1 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				164F37B72C84D45500650152 /* ContentView.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
