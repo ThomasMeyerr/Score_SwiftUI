@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var data = Data()
+
     var body: some View {
         TabView {
             CardGamesView()
@@ -24,7 +26,13 @@ struct ContentView: View {
                 .tabItem {
                     Label("Basic Games", systemImage: "number")
                 }
+            
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
+                }
         }
+        .environment(data)
     }
 }
 
