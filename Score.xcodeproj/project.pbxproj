@@ -59,9 +59,9 @@
 			children = (
 				164F37B52C84D45500650152 /* ScoreApp.swift */,
 				164F37B72C84D45500650152 /* ContentView.swift */,
-				164F37C32C84D8CF00650152 /* CardGamesView.swift */,
-				16F3816E2C84DA7600569DF1 /* DiceGamesView.swift */,
-				16F381702C84DA8400569DF1 /* BasicGamesView.swift */,
+				16F381722C84DCB700569DF1 /* CardGames */,
+				16F381732C84DCC300569DF1 /* DiceGames */,
+				16F381742C84DCD100569DF1 /* BasicGames */,
 				164F37B92C84D45700650152 /* Assets.xcassets */,
 				164F37BB2C84D45700650152 /* Preview Content */,
 			);
@@ -74,6 +74,30 @@
 				164F37BC2C84D45700650152 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		16F381722C84DCB700569DF1 /* CardGames */ = {
+			isa = PBXGroup;
+			children = (
+				164F37C32C84D8CF00650152 /* CardGamesView.swift */,
+			);
+			path = CardGames;
+			sourceTree = "<group>";
+		};
+		16F381732C84DCC300569DF1 /* DiceGames */ = {
+			isa = PBXGroup;
+			children = (
+				16F3816E2C84DA7600569DF1 /* DiceGamesView.swift */,
+			);
+			path = DiceGames;
+			sourceTree = "<group>";
+		};
+		16F381742C84DCD100569DF1 /* BasicGames */ = {
+			isa = PBXGroup;
+			children = (
+				16F381702C84DA8400569DF1 /* BasicGamesView.swift */,
+			);
+			path = BasicGames;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
