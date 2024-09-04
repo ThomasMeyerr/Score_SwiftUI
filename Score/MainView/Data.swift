@@ -24,7 +24,7 @@ class Data {
 
 
 struct LanguagesText {
-    func getText(for key: String, for language: Languages) -> String {
+    func getText(forKey key: String, forLanguage language: Languages) -> String {
         return texts[key]?[language] ?? (language == .en ? "No key available" : "Data indisponible")
     }
     

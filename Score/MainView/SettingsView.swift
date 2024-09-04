@@ -13,11 +13,12 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
-            Text(languagesText.settingsPicker[data.languages] ?? "N/A")
+            Text(languagesText.getText(forKey: "settingsPicker", forLanguage: data.languages))
         }
     }
 }
 
 #Preview {
     SettingsView()
+        .environment(Data())
 }
