@@ -17,7 +17,7 @@ struct UnoSettingsView: View {
                 RulesText(text: getRules(forKey: "Uno", forLanguage: data.languages), language: data.languages)
             }
         }
-        .navigationTitle(getText(forKey: "UnoSettingsTitle", forLanguage: data.languages))
+        .navigationTitle("Uno")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

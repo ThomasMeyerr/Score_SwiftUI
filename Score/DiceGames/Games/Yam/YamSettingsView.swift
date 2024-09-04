@@ -17,7 +17,7 @@ struct YamSettingsView: View {
                 RulesText(text: getRules(forKey: "Yam", forLanguage: data.languages), language: data.languages)
             }
         }
-        .navigationTitle(getText(forKey: "YamSettingsTitle", forLanguage: data.languages))
+        .navigationTitle("Yam")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
