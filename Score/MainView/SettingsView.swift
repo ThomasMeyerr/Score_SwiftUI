@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(Data.self) var data
+    @State private var languagesText = LanguagesText()
+
     var body: some View {
         Form {
-            
+            Text(languagesText.settingsPicker[data.languages] ?? "N/A")
         }
     }
 }
