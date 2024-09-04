@@ -53,9 +53,13 @@ struct LanguagesText {
         "settingsButtonAddsPrice": [
             .fr: "3,99€",
             .en: "3.99$"
-        ]
+        ],
         
         // CardGamesView
+        "CardGamesTitle": [
+            .fr: "Jeux de Cartes",
+            .en: "Card Games"
+        ]
         // DiceGamesView
         // BasicGamesView
     ]
