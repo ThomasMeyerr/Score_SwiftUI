@@ -32,6 +32,18 @@ struct LanguagesText {
         "settingsPicker": [
             .fr: "Choisissez votre langue",
             .en: "Choose your language"
+        ],
+        "settingsReset": [
+            .fr: "Restaurer les paramètres",
+            .en: "Reset settings"
+        ],
+        "settingsAlert": [
+            .fr: "Êtes-vous sûr ?",
+            .en: "Are you sure?"
+        ],
+        "settingsButtonCancel": [
+            .fr: "Annuler",
+            .en: "Cancel"
         ]
     ]
 }
