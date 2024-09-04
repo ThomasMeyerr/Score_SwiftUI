@@ -50,6 +50,12 @@ let texts: [String: [Languages: String]] = [
         .en: "3.99$"
     ],
     
+    // GameSettingsView
+    "Rules": [
+        .fr: "Règles",
+        .en: "Rules"
+    ],
+    
     // CardGamesView
     "CardGamesTitle": [
         .fr: "Jeux de Cartes",
