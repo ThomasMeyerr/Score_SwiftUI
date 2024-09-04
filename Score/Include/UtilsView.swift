@@ -20,3 +20,8 @@ func getGameView(for game: String) -> some View {
         Text("View not available")
     }
 }
+
+
+func getText(forKey key: String, forLanguage language: Languages) -> String {
+    return texts[key]?[language] ?? (language == .en ? "Data unavailable" : "Données indisponibles")
+}

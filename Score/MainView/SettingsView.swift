@@ -11,7 +11,6 @@ struct SettingsView: View {
     let languages: [String: Languages] = ["English": .en, "Français": .fr]
 
     @Environment(Data.self) var data
-    @State private var languagesText = LanguagesText()
     @State private var languageSelected = "English"
     @State private var isAlert = false
 
@@ -20,15 +19,15 @@ struct SettingsView: View {
             Section {
                 Button {} label: {
                     HStack {
-                        Text(languagesText.getText(forKey: "settingsButtonAdds", forLanguage: data.languages))
+                        Text(getText(forKey: "settingsButtonAdds", forLanguage: data.languages))
                         Spacer()
-                        Text(languagesText.getText(forKey: "settingsButtonAddsPrice", forLanguage: data.languages))
+                        Text(getText(forKey: "settingsButtonAddsPrice", forLanguage: data.languages))
                     }
                 }
             }
             
             Section {
-                Picker(languagesText.getText(forKey: "settingsPicker", forLanguage: data.languages), selection: $languageSelected) {
+                Picker(getText(forKey: "settingsPicker", forLanguage: data.languages), selection: $languageSelected) {
                     ForEach(Array(languages.keys), id: \.self) { key in
                         Text(key)
                             .tag(key)
@@ -42,14 +41,14 @@ struct SettingsView: View {
             }
             
             Section {
-                Button(languagesText.getText(forKey: "settingsReset", forLanguage: data.languages), role: .destructive) {
+                Button(getText(forKey: "settingsReset", forLanguage: data.languages), role: .destructive) {
                     isAlert = true
                 }
             }
         }
-        .alert(languagesText.getText(forKey: "settingsAlert", forLanguage: data.languages), isPresented: $isAlert) {
+        .alert(getText(forKey: "settingsAlert", forLanguage: data.languages), isPresented: $isAlert) {
             Button("Ok", action: resetData)
-            Button(languagesText.getText(forKey: "settingsButtonCancel", forLanguage: data.languages), role: .cancel) {}
+            Button(getText(forKey: "settingsButtonCancel", forLanguage: data.languages), role: .cancel) {}
         }
     }
     

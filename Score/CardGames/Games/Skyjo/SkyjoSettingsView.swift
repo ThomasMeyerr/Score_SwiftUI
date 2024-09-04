@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SkyjoSettingsView: View {
+    @Environment(Data.self) var data
+
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -15,4 +17,5 @@ struct SkyjoSettingsView: View {
 
 #Preview {
     SkyjoSettingsView()
+        .environment(Data())
 }

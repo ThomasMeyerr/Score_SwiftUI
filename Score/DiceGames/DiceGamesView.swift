@@ -9,12 +9,11 @@ import SwiftUI
 
 struct DiceGamesView: View {
     @Environment(Data.self) var data
-    @State private var languagesText = LanguagesText()
 
     var body: some View {
         NavigationStack {
             ScrollView {
-                ForEach(Data.diceGames, id: \.self) { game in
+                ForEach(diceGames, id: \.self) { game in
                     NavigationLink {
                         getGameView(for: game)
                     } label: {
@@ -33,7 +32,7 @@ struct DiceGamesView: View {
             }
             .padding()
         }
-        .navigationTitle(languagesText.getText(forKey: "DiceGamesTitle", forLanguage: data.languages))
+        .navigationTitle(getText(forKey: "DiceGamesTitle", forLanguage: data.languages))
     }
 }
 
