@@ -13,25 +13,21 @@ struct CardGamesView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color(red: 250/255, green: 246/255, blue: 232/255).ignoresSafeArea()
-                
-                ScrollView {
-                    ForEach(Data.cardGames, id: \.self) { game in
-                        NavigationLink {
-                            Text(String(game))
-                        } label: {
-                            Image( .example)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 275)
-                                .clipShape(.rect(cornerRadius: 30))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .stroke(.black, lineWidth: 2)
-                                )
-                                .padding()
-                        }
+            ScrollView {
+                ForEach(Data.cardGames, id: \.self) { game in
+                    NavigationLink {
+                        getGameView(for: game)
+                    } label: {
+                        Image(game)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 270, height: 150)
+                            .clipShape(.rect(cornerRadius: 30))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 30)
+                                    .stroke(.secondary, lineWidth: 2)
+                            )
+                            .padding()
                     }
                 }
                 .padding()

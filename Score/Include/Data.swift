@@ -15,9 +15,10 @@ enum Languages {
 
 @Observable
 class Data {
-    var languages: Languages
     static let cardGames = ["Skyjo", "Uno"]
     static let diceGames = ["Yam"]
+    
+    var languages: Languages
     
     init(languages: Languages = .en) {
         self.languages = languages
