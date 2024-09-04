@@ -55,12 +55,24 @@ let texts: [String: [Languages: String]] = [
         .fr: "Jeux de Cartes",
         .en: "Card Games"
     ],
+    "SkyjoSettingsTitle": [
+        .fr: "Paramètres du Skyjo",
+        .en: "Skyjo Settings"
+    ],
+    "UnoSettingsTitle": [
+        .fr: "Paramètres du Uno",
+        .en: "Uno Settings"
+    ],
     
     // DiceGamesView
     "DiceGamesTitle": [
         .fr: "Jeux de Dés",
         .en: "Dice Games"
-    ]
+    ],
+    "YamSettingsTitle": [
+        .fr: "Paramètres du Yam",
+        .en: "Yam Settings"
+    ],
     // BasicGamesView
 ]
 

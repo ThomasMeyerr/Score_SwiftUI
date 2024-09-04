@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct YamSettingsView: View {
+    @Environment(Data.self) var data
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            Section("Rules") {
+                Text(getRules(forKey: "Yam", forLanguage: data.languages))
+                    .font(.subheadline)
+            }
+        }
+        .navigationTitle(getText(forKey: "YamSettingsTitle", forLanguage: data.languages))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
     YamSettingsView()
+        .environment(Data())
 }

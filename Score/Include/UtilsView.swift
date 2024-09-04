@@ -25,3 +25,7 @@ func getGameView(for game: String) -> some View {
 func getText(forKey key: String, forLanguage language: Languages) -> String {
     return texts[key]?[language] ?? (language == .en ? "Data unavailable" : "Données indisponibles")
 }
+
+func getRules(forKey key: String, forLanguage language: Languages) -> String {
+    return rules[key]?[language] ?? (language == .en ? "Data unavailable" : "Données indisponibles")
+}

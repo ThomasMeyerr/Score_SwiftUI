@@ -11,7 +11,14 @@ struct SkyjoSettingsView: View {
     @Environment(Data.self) var data
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            Section("Rules") {
+                Text(getRules(forKey: "Skyjo", forLanguage: data.languages))
+                    .font(.subheadline)
+            }
+        }
+        .navigationTitle(getText(forKey: "SkyjoSettingsTitle", forLanguage: data.languages))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
