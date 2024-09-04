@@ -16,7 +16,7 @@ struct DiceGamesView: View {
             ScrollView {
                 ForEach(Data.diceGames, id: \.self) { game in
                     NavigationLink {
-                        Text(game)
+                        getGameView(for: game)
                     } label: {
                         Image(game)
                             .resizable()
