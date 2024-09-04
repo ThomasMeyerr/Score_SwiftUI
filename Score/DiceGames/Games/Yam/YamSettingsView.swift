@@ -13,8 +13,7 @@ struct YamSettingsView: View {
     var body: some View {
         Form {
             Section(getText(forKey: "Rules", forLanguage: data.languages)) {
-                Text(getRules(forKey: "Yam", forLanguage: data.languages))
-                    .font(.subheadline)
+                RulesText(text: getRules(forKey: "Yam", forLanguage: data.languages), language: data.languages)
             }
         }
         .navigationTitle(getText(forKey: "YamSettingsTitle", forLanguage: data.languages))

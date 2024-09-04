@@ -55,6 +55,10 @@ let texts: [String: [Languages: String]] = [
         .fr: "Règles",
         .en: "Rules"
     ],
+    "ShowMore": [
+        .fr: "Voir plus...",
+        .en: "Show more..."
+    ],
     
     // CardGamesView
     "CardGamesTitle": [

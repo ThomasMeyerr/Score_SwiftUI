@@ -13,8 +13,7 @@ struct SkyjoSettingsView: View {
     var body: some View {
         Form {
             Section(getText(forKey: "Rules", forLanguage: data.languages)) {
-                Text(getRules(forKey: "Skyjo", forLanguage: data.languages))
-                    .font(.subheadline)
+                RulesText(text: getRules(forKey: "Skyjo", forLanguage: data.languages), language: data.languages)
             }
         }
         .navigationTitle(getText(forKey: "SkyjoSettingsTitle", forLanguage: data.languages))

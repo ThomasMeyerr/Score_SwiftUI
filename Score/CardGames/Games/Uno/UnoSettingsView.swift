@@ -13,8 +13,7 @@ struct UnoSettingsView: View {
     var body: some View {
         Form {
             Section(getText(forKey: "Rules", forLanguage: data.languages)) {
-                Text(getRules(forKey: "Uno", forLanguage: data.languages))
-                    .font(.subheadline)
+                RulesText(text: getRules(forKey: "Uno", forLanguage: data.languages), language: data.languages)
             }
         }
         .navigationTitle(getText(forKey: "UnoSettingsTitle", forLanguage: data.languages))

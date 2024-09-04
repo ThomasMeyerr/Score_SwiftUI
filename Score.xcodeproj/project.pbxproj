@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		163F867A2C88C5C50057B639 /* SkyjoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */; };
-		163F867C2C88C65D0057B639 /* UtilsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867B2C88C65D0057B639 /* UtilsView.swift */; };
+		163F867C2C88C65D0057B639 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867B2C88C65D0057B639 /* Utils.swift */; };
 		163F867E2C88C6A20057B639 /* UnoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867D2C88C6A20057B639 /* UnoSettingsView.swift */; };
 		163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F86812C88C75A0057B639 /* YamSettingsView.swift */; };
 		164F37B62C84D45500650152 /* ScoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37B52C84D45500650152 /* ScoreApp.swift */; };
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyjoSettingsView.swift; sourceTree = "<group>"; };
-		163F867B2C88C65D0057B639 /* UtilsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsView.swift; sourceTree = "<group>"; };
+		163F867B2C88C65D0057B639 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		163F867D2C88C6A20057B639 /* UnoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoSettingsView.swift; sourceTree = "<group>"; };
 		163F86812C88C75A0057B639 /* YamSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamSettingsView.swift; sourceTree = "<group>"; };
 		164F37B22C84D45500650152 /* Score.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Score.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,7 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				16F381782C84E0B000569DF1 /* Data.swift */,
-				163F867B2C88C65D0057B639 /* UtilsView.swift */,
+				163F867B2C88C65D0057B639 /* Utils.swift */,
 			);
 			path = Include;
 			sourceTree = "<group>";
@@ -251,7 +251,7 @@
 				164F37B82C84D45500650152 /* ContentView.swift in Sources */,
 				16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */,
 				164F37B62C84D45500650152 /* ScoreApp.swift in Sources */,
-				163F867C2C88C65D0057B639 /* UtilsView.swift in Sources */,
+				163F867C2C88C65D0057B639 /* Utils.swift in Sources */,
 				163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */,
 				163F867A2C88C5C50057B639 /* SkyjoSettingsView.swift in Sources */,
 				16F3816F2C84DA7600569DF1 /* DiceGamesView.swift in Sources */,
