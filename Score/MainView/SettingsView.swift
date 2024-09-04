@@ -18,6 +18,16 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section {
+                Button {} label: {
+                    HStack {
+                        Text(languagesText.getText(forKey: "settingsButtonAdds", forLanguage: data.languages))
+                        Spacer()
+                        Text(languagesText.getText(forKey: "settingsButtonAddsPrice", forLanguage: data.languages))
+                    }
+                }
+            }
+            
+            Section {
                 Picker(languagesText.getText(forKey: "settingsPicker", forLanguage: data.languages), selection: $languageSelected) {
                     ForEach(Array(languages.keys), id: \.self) { key in
                         Text(key)

@@ -25,10 +25,11 @@ class Data {
 
 struct LanguagesText {
     func getText(forKey key: String, forLanguage language: Languages) -> String {
-        return texts[key]?[language] ?? (language == .en ? "No key available" : "Data indisponible")
+        return texts[key]?[language] ?? (language == .en ? "Data unavailable" : "Données indisponibles")
     }
     
     private let texts: [String: [Languages: String]] = [
+        // SettingsView
         "settingsPicker": [
             .fr: "Choisissez votre langue",
             .en: "Choose your language"
@@ -44,6 +45,18 @@ struct LanguagesText {
         "settingsButtonCancel": [
             .fr: "Annuler",
             .en: "Cancel"
+        ],
+        "settingsButtonAdds": [
+            .fr: "Enlever les publicités",
+            .en: "Remove adds"
+        ],
+        "settingsButtonAddsPrice": [
+            .fr: "3,99€",
+            .en: "3.99$"
         ]
+        
+        // CardGamesView
+        // DiceGamesView
+        // BasicGamesView
     ]
 }

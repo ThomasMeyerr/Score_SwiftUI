@@ -16,7 +16,6 @@
 		16F381712C84DA8400569DF1 /* BasicGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381702C84DA8400569DF1 /* BasicGamesView.swift */; };
 		16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381762C84DD6700569DF1 /* SettingsView.swift */; };
 		16F381792C84E0B000569DF1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381782C84E0B000569DF1 /* Data.swift */; };
-		16F3817B2C84E1EF00569DF1 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3817A2C84E1EF00569DF1 /* Languages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +29,6 @@
 		16F381702C84DA8400569DF1 /* BasicGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGamesView.swift; sourceTree = "<group>"; };
 		16F381762C84DD6700569DF1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		16F381782C84E0B000569DF1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		16F3817A2C84E1EF00569DF1 /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +110,6 @@
 				164F37B72C84D45500650152 /* ContentView.swift */,
 				16F381762C84DD6700569DF1 /* SettingsView.swift */,
 				16F381782C84E0B000569DF1 /* Data.swift */,
-				16F3817A2C84E1EF00569DF1 /* Languages.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -188,7 +185,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				16F381792C84E0B000569DF1 /* Data.swift in Sources */,
-				16F3817B2C84E1EF00569DF1 /* Languages.swift in Sources */,
 				164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */,
 				16F381712C84DA8400569DF1 /* BasicGamesView.swift in Sources */,
 				164F37B82C84D45500650152 /* ContentView.swift in Sources */,
