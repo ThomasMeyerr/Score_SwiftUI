@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct SettingsView: View {
     let languages: [String: Languages] = ["English": .en, "Français": .fr]
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct YamSettingsView: View {
     @Environment(Data.self) var data
 

@@ -95,6 +95,7 @@ let texts: [String: [Languages: String]] = [
 let cardGames = ["Skyjo", "Uno"]
 let diceGames = ["Yam"]
 
+
 // List of rules
 let rules: [String: [Languages: String]] = [
     // CardGamesView

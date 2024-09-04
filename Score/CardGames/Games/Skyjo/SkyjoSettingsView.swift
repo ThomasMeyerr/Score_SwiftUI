@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct SkyjoSettingsView: View {
     @Environment(Data.self) var data
 
