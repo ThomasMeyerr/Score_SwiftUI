@@ -14,12 +14,12 @@ struct CardGamesView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                LinearGradient(colors: [.blue, .black], startPoint: .top, endPoint: .bottom).ignoresSafeArea()
+                Color(red: 250/255, green: 246/255, blue: 232/255).ignoresSafeArea()
                 
                 ScrollView {
-                    ForEach(0...10, id: \.self) { _ in
+                    ForEach(Data.cardGames, id: \.self) { game in
                         NavigationLink {
-                            Text("omg")
+                            Text(String(game))
                         } label: {
                             Image( .example)
                                 .resizable()
@@ -28,12 +28,13 @@ struct CardGamesView: View {
                                 .clipShape(.rect(cornerRadius: 30))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 30)
-                                        .stroke(.white, lineWidth: 1)
+                                        .stroke(.black, lineWidth: 2)
                                 )
                                 .padding()
                         }
                     }
                 }
+                .padding()
             }
         }
         .navigationTitle(languagesText.getText(forKey: "CardGamesTitle", forLanguage: data.languages))

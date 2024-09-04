@@ -42,6 +42,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		163F86762C8890DF0057B639 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
 		164F37A92C84D45500650152 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				164F37C32C84D8CF00650152 /* CardGamesView.swift */,
+				163F86762C8890DF0057B639 /* Games */,
 			);
 			path = CardGames;
 			sourceTree = "<group>";

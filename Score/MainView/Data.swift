@@ -16,6 +16,8 @@ enum Languages {
 @Observable
 class Data {
     var languages: Languages
+    static let cardGames = ["Skyjo", "Uno"]
+    static let diceGames = ["Yam"]
     
     init(languages: Languages = .en) {
         self.languages = languages
@@ -59,8 +61,13 @@ struct LanguagesText {
         "CardGamesTitle": [
             .fr: "Jeux de Cartes",
             .en: "Card Games"
-        ]
+        ],
+        
         // DiceGamesView
+        "DiceGamesTitle": [
+            .fr: "Jeux de Dés",
+            .en: "Dice Games"
+        ]
         // BasicGamesView
     ]
 }
