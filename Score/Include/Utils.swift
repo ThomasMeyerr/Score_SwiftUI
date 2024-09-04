@@ -54,6 +54,15 @@ struct RulesText: View {
                         .font(.footnote)
                 }
             }
+            
+            if expanded && textIsTruncated() {
+                Button {
+                    expanded.toggle()
+                } label: {
+                    Text(getText(forKey: "ShowLess", forLanguage: language))
+                        .font(.footnote)
+                }
+            }
         }
     }
     
