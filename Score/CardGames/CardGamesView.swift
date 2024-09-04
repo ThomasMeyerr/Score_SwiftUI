@@ -14,7 +14,7 @@ struct CardGamesView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                LinearGradient(colors: [.blue, .gray], startPoint: .top, endPoint: .bottom).ignoresSafeArea()
+                LinearGradient(colors: [.blue, .black], startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                 
                 ScrollView {
                     ForEach(0...10, id: \.self) { _ in
@@ -26,6 +26,10 @@ struct CardGamesView: View {
                                 .scaledToFit()
                                 .frame(width: 275)
                                 .clipShape(.rect(cornerRadius: 30))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 30)
+                                        .stroke(.white, lineWidth: 1)
+                                )
                                 .padding()
                         }
                     }
