@@ -51,7 +51,7 @@ struct RulesText: View {
                 Button {
                     expanded.toggle()
                 } label: {
-                    Text(getText(forKey: "ShowMore", forLanguage: language))
+                    Text(getText(forKey: "showMore", forLanguage: language))
                         .font(.footnote)
                 }
             }
@@ -60,7 +60,7 @@ struct RulesText: View {
                 Button {
                     expanded.toggle()
                 } label: {
-                    Text(getText(forKey: "ShowLess", forLanguage: language))
+                    Text(getText(forKey: "showLess", forLanguage: language))
                         .font(.footnote)
                 }
             }

@@ -33,7 +33,7 @@ struct CardGamesView: View {
                 .padding()
             }
         }
-        .navigationTitle(getText(forKey: "CardGamesTitle", forLanguage: data.languages))
+        .navigationTitle(getText(forKey: "cardGamesTitle", forLanguage: data.languages))
     }
 }
 

@@ -16,44 +16,48 @@ struct SkyjoSettingsView: View {
 
     
     var body: some View {
-        VStack {
-            Form {
-                Section(getText(forKey: "Parameter", forLanguage: data.languages)) {
-                    Picker(getText(forKey: "NumberOfPlayers", forLanguage: data.languages), selection: $numberOfPlayer) {
-                        ForEach(2..<9, id: \.self) {
-                            Text(String($0))
+        NavigationStack {
+            VStack {
+                Form {
+                    Section(getText(forKey: "players", forLanguage: data.languages)) {
+                        Picker(getText(forKey: "numberOfPlayers", forLanguage: data.languages), selection: $numberOfPlayer) {
+                            ForEach(2..<9, id: \.self) {
+                                Text(String($0))
+                            }
+                        }
+                        .onChange(of: numberOfPlayer) { oldValue, newValue in
+                            if names.count < newValue {
+                                names.append(contentsOf: Array(repeating: "", count: newValue - names.count))
+                            } else if names.count > newValue {
+                                names.removeLast(names.count - newValue)
+                            }
+                        }
+                        
+                        ForEach(0..<numberOfPlayer, id: \.self) { index in
+                            TextField(getText(forKey: "pseudo", forLanguage: data.languages), text: $names[index])
                         }
                     }
-                    .onChange(of: numberOfPlayer) { oldValue, newValue in
-                        if names.count < newValue {
-                            names.append(contentsOf: Array(repeating: "", count: newValue - names.count))
-                        } else if names.count > newValue {
-                            names.removeLast(names.count - newValue)
+                    
+                    Section(getText(forKey: "score", forLanguage: data.languages)) {
+                        HStack {
+                            Text(String(Int(maxScore)))
+                            Slider(value: $maxScore, in: 80...120, step: 1)
                         }
                     }
-                                        
-                    ForEach(0..<numberOfPlayer, id: \.self) { index in
-                        TextField(getText(forKey: "Pseudo", forLanguage: data.languages), text: $names[index])
+                    
+                    Section(getText(forKey: "rules", forLanguage: data.languages)) {
+                        RulesText(text: getRules(forKey: "skyjo", forLanguage: data.languages), language: data.languages)
                     }
                 }
                 
-                Section("Max Score") {
-                    HStack {
-                        Text(String(Int(maxScore)))
-                        Slider(value: $maxScore, in: 80...120, step: 1)
-                    }
+                NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
+                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
                 }
-                
-                Section(getText(forKey: "Rules", forLanguage: data.languages)) {
-                    RulesText(text: getRules(forKey: "Skyjo", forLanguage: data.languages), language: data.languages)
-                }
-            }
-            
-            Button("Launch") {}
                 .buttonStyle(.borderedProminent)
                 .disabled(names.contains(where: { $0.isEmpty }))
+            }
         }
-        .navigationTitle("Skyjo")
+        .navigationTitle(getText(forKey: "settings", forLanguage: data.languages))
         .navigationBarTitleDisplayMode(.inline)
     }
 }
