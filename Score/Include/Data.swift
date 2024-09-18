@@ -8,17 +8,29 @@
 import Foundation
 
 
-enum Languages {
+enum Languages: Codable {
     case fr, en
 }
 
 
 @Observable
 class Data {
-    var languages: Languages
+    var languages: Languages {
+        didSet {
+            if let encodedLanguages = try? JSONEncoder().encode(languages) {
+                UserDefaults.standard.set(encodedLanguages, forKey: "Languages")
+            }
+        }
+    }
     
-    init(languages: Languages = .en) {
-        self.languages = languages
+    init() {
+        self.languages = .en
+
+        if let data = UserDefaults.standard.data(forKey: "Languages") {
+            if let decodedLanguages = try? JSONDecoder().decode(Languages.self, from: data) {
+                self.languages = decodedLanguages
+            }
+        }
     }
 }
 
