@@ -99,6 +99,14 @@ let texts: [String: [Languages: String]] = [
         .fr: "Score maximum",
         .en: "Max score"
     ],
+    "finishRound": [
+        .fr: "Finir le tour",
+        .en: "Finish round"
+    ],
+    "cancelGame": [
+        .fr: "Annuler la partie",
+        .en: "Cancel game"
+    ],
     
     // CardGamesView
     "cardGamesTitle": [
@@ -113,8 +121,6 @@ let texts: [String: [Languages: String]] = [
     ],
     
     // BasicGamesView
-    
-    // Skyjo
 ]
 
 

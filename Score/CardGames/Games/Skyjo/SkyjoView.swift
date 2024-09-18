@@ -48,7 +48,7 @@ struct SkyjoView: View {
                 }
             }
             
-            Section {
+            Section(getText(forKey: "players", forLanguage: data.languages)) {
                 ForEach(Array(partyScores.keys), id: \.self) { name in
                     HStack {
                         Text(name)
@@ -66,11 +66,16 @@ struct SkyjoView: View {
             }
             
             HStack {
-                Button("Finish round", action: endRound)
+                Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
+                    .buttonStyle(.borderedProminent)
+            
                 Spacer()
-                Button("Cancel game", role: .destructive) {
+
+                Button(getText(forKey: "cancelGame", forLanguage: data.languages), role: .destructive) {
                     dismiss()
                 }
+                .buttonStyle(.borderedProminent)
+
             }
         }
         .navigationTitle("Skyjo")
