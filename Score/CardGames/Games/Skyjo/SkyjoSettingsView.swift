@@ -38,7 +38,7 @@ struct SkyjoSettingsView: View {
                         }
                     }
                     
-                    Section(getText(forKey: "score", forLanguage: data.languages)) {
+                    Section(getText(forKey: "maxScore", forLanguage: data.languages)) {
                         HStack {
                             Text(String(Int(maxScore)))
                             Slider(value: $maxScore, in: 80...120, step: 1)

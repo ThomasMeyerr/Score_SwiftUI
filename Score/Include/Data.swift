@@ -83,7 +83,7 @@ let texts: [String: [Languages: String]] = [
         .fr: "Joueurs",
         .en: "Players"
     ],
-    "score": [
+    "maxScore": [
         .fr: "Score maximum",
         .en: "Max score"
     ],
@@ -101,6 +101,8 @@ let texts: [String: [Languages: String]] = [
     ],
     
     // BasicGamesView
+    
+    // Skyjo
 ]
 
 
