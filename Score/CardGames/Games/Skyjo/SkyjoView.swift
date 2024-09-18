@@ -34,33 +34,37 @@ struct SkyjoView: View {
     }
     
     var body: some View {
-        Form {
-            Section("Score") {
-                Grid {
-                    ForEach(sortedNameAndScore(), id: \.key) { name, score in
-                        GridRow {
-                            HStack(spacing: 0) {
-                                cellView(text: name)
-                                cellView(text: String(score))
+        VStack {
+            Form {
+                Section("Score") {
+                    Grid {
+                        ForEach(sortedNameAndScore(), id: \.key) { name, score in
+                            GridRow {
+                                HStack(spacing: 0) {
+                                    cellView(text: name)
+                                    cellView(text: String(score))
+                                }
                             }
                         }
                     }
                 }
-            }
-            
-            Section(getText(forKey: "players", forLanguage: data.languages)) {
-                ForEach(Array(partyScores.keys), id: \.self) { name in
-                    HStack {
-                        Text(name)
-                        Spacer()
-                        TextField(name, value: Binding(
-                            get: {
-                                partyScores[name] ?? 0
-                            },
-                            set: { newValue in
-                                partyScores[name] = newValue
-                            }
-                        ), formatter: NumberFormatter())
+                
+                Section(getText(forKey: "players", forLanguage: data.languages)) {
+                    ForEach(Array(partyScores.keys), id: \.self) { name in
+                        HStack {
+                            Text(name)
+                            
+                            Spacer()
+                            
+                            TextField(name, value: Binding(
+                                get: {
+                                    partyScores[name] ?? 0
+                                },
+                                set: { newValue in
+                                    partyScores[name] = newValue
+                                }
+                            ), formatter: NumberFormatter())
+                        }
                     }
                 }
             }
@@ -68,15 +72,15 @@ struct SkyjoView: View {
             HStack {
                 Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
                     .buttonStyle(.borderedProminent)
-            
+                
                 Spacer()
-
+                
                 Button(getText(forKey: "cancelGame", forLanguage: data.languages), role: .destructive) {
                     dismiss()
                 }
                 .buttonStyle(.borderedProminent)
-
             }
+            .padding()
         }
         .navigationTitle("Skyjo")
         .navigationBarTitleDisplayMode(.inline)
@@ -86,7 +90,6 @@ struct SkyjoView: View {
         Text(text)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
-            .background(.white)
             .border(.gray, width: 1)
     }
     
