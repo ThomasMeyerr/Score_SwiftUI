@@ -14,6 +14,7 @@ struct SkyjoSettingsView: View {
     @State private var maxScore: Double = 100
     @State private var names: [String] = Array(repeating: "", count: 2)
 
+    
     var body: some View {
         VStack {
             Form {
@@ -50,6 +51,7 @@ struct SkyjoSettingsView: View {
             
             Button("Launch") {}
                 .buttonStyle(.borderedProminent)
+                .disabled(names.contains(where: { $0.isEmpty }))
         }
         .navigationTitle("Skyjo")
         .navigationBarTitleDisplayMode(.inline)
