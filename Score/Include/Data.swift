@@ -37,6 +37,10 @@ class Data {
 
 let texts: [String: [Languages: String]] = [
     // SettingsView
+    "settingsTitle": [
+        .fr: "Paramètres",
+        .en: "Settings"
+    ],
     "settingsPicker": [
         .fr: "Choisissez votre langue",
         .en: "Choose your language"
@@ -121,6 +125,10 @@ let texts: [String: [Languages: String]] = [
     ],
     
     // BasicGamesView
+    "basicGamesTitle": [
+        .fr: "Jeux Normaux",
+        .en: "Basic Games"
+    ],
 ]
 
 

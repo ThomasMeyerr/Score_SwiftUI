@@ -15,22 +15,22 @@ struct ContentView: View {
         TabView {
             CardGamesView()
                 .tabItem {
-                    Label("Card Games", systemImage: "greetingcard.fill")
+                    Label(getText(forKey: "cardGamesTitle", forLanguage: data.languages), systemImage: "greetingcard.fill")
                 }
             
             DiceGamesView()
                 .tabItem {
-                    Label("Dice Games", systemImage: "dice.fill")
+                    Label(getText(forKey: "diceGamesTitle", forLanguage: data.languages), systemImage: "dice.fill")
                 }
             
             BasicGamesView()
                 .tabItem {
-                    Label("Basic Games", systemImage: "number")
+                    Label(getText(forKey: "basicGamesTitle", forLanguage: data.languages), systemImage: "number")
                 }
             
             SettingsView()
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
+                    Label(getText(forKey: "settingsTitle", forLanguage: data.languages), systemImage: "gearshape.fill")
                 }
         }
         .environment(data)
