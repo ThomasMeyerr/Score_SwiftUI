@@ -12,7 +12,7 @@ struct SettingsView: View {
     let languages: [String: Languages] = ["English": .en, "Français": .fr]
 
     @Environment(Data.self) var data
-    @State private var languageSelected = "English"
+    @State private var languageSelected = ""
     @State private var isAlert = false
 
     var body: some View {
@@ -50,6 +50,13 @@ struct SettingsView: View {
         .alert(getText(forKey: "settingsAlert", forLanguage: data.languages), isPresented: $isAlert) {
             Button("Ok", action: resetData)
             Button(getText(forKey: "settingsButtonCancel", forLanguage: data.languages), role: .cancel) {}
+        }
+        .onAppear {
+            if data.languages == .en {
+                languageSelected = "English"
+            } else {
+                languageSelected = "Français"
+            }
         }
     }
     
