@@ -17,6 +17,7 @@ struct SkyjoView: View {
     @Environment(\.dismiss) var dismiss
     @State private var nameAndScore: [String: Int]
     @State private var roundScores: [String: Int]
+    @State private var isShowingAlert = false
     
     init(numberOfPlayer: Int, maxScore: Double, names: [String]) {
         self.numberOfPlayer = numberOfPlayer
@@ -73,6 +74,13 @@ struct SkyjoView: View {
         }
         .navigationTitle("Skyjo")
         .navigationBarTitleDisplayMode(.inline)
+        .alert(isPresented: $isShowingAlert) {
+            Alert(
+                title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
+                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
     
     func buttons() -> some View {
@@ -111,12 +119,21 @@ struct SkyjoView: View {
         nameAndScore.min(by: { $0.value < $1.value })?.key
     }
     
+    func getLooserName() -> String? {
+        nameAndScore.max(by: { $0.value < $1.value })?.key
+    }
+    
     func endRound() {
         for name in nameAndScore.keys {
             if let roundScore = roundScores[name] {
                 nameAndScore[name, default: 0] += roundScore
             }
             roundScores[name] = 0
+        }
+        
+        let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
+        if possibleLooser! >= 100 {
+            isShowingAlert = true
         }
     }
 }

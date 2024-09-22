@@ -119,6 +119,14 @@ let texts: [String: [Languages: String]] = [
         .fr: "S'il vous plaît, entrez un nom unique pour chaque joueur",
         .en: "Please enter unique names for all players"
     ],
+    "alertWinner": [
+        .fr: "Le gagnant est ",
+        .en: "The winner is "
+    ],
+    "alertLooser": [
+        .fr: "Et le perdant est ",
+        .en: "And the looser is "
+    ],
     
     // CardGamesView
     "cardGamesTitle": [
