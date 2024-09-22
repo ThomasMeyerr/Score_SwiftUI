@@ -41,7 +41,7 @@ struct SkyjoView: View {
                         ForEach(sortedNameAndScore(), id: \.key) { name, score in
                             GridRow {
                                 HStack(spacing: 0) {
-                                    cellView(text: name)
+                                    cellView(text: name, isLeader: name == getLeaderName())
                                     cellView(text: String(score))
                                 }
                             }
@@ -86,15 +86,25 @@ struct SkyjoView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    func cellView(text: String) -> some View {
-        Text(text)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            .border(.gray, width: 1)
+    func cellView(text: String, isLeader: Bool = false) -> some View {
+        HStack {
+            if isLeader {
+                Image(systemName: "crown.fill")
+                    .foregroundStyle(.yellow)
+            }
+            Text(text)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
+        .border(.gray, width: 1)
     }
     
     func sortedNameAndScore() -> [(key: String, value: Int)] {
         nameAndScore.sorted { $0.value > $1.value }
+    }
+    
+    func getLeaderName() -> String? {
+        nameAndScore.min(by: { $0.value < $1.value })?.key
     }
     
     func endRound() {
