@@ -69,21 +69,25 @@ struct SkyjoView: View {
                 }
             }
             
-            HStack {
-                Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
-                    .buttonStyle(.borderedProminent)
-                
-                Spacer()
-                
-                Button(getText(forKey: "cancelGame", forLanguage: data.languages), role: .destructive) {
-                    dismiss()
-                }
-                .buttonStyle(.borderedProminent)
-            }
-            .padding()
+            buttons()
         }
         .navigationTitle("Skyjo")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func buttons() -> some View {
+        HStack {
+            Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
+                .buttonStyle(.borderedProminent)
+            
+            Spacer()
+            
+            Button(getText(forKey: "cancelGame", forLanguage: data.languages), role: .destructive) {
+                dismiss()
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding()
     }
     
     func cellView(text: String, isLeader: Bool = false) -> some View {

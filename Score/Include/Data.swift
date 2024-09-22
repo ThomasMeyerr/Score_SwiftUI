@@ -111,6 +111,14 @@ let texts: [String: [Languages: String]] = [
         .fr: "Annuler la partie",
         .en: "Cancel game"
     ],
+    "alertTitle": [
+        .fr: "Noms en double",
+        .en: "Duplicate names"
+    ],
+    "alertMessage": [
+        .fr: "S'il vous plaît, entrez un nom unique pour chaque joueur",
+        .en: "Please enter unique names for all players"
+    ],
     
     // CardGamesView
     "cardGamesTitle": [

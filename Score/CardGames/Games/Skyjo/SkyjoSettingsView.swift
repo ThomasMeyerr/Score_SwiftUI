@@ -13,7 +13,7 @@ struct SkyjoSettingsView: View {
     @State private var numberOfPlayer = 2
     @State private var maxScore: Double = 100
     @State private var names: [String] = Array(repeating: "", count: 2)
-
+    @State private var isShowingAlert = false
     
     var body: some View {
         NavigationStack {
@@ -51,10 +51,22 @@ struct SkyjoSettingsView: View {
                 }
                 
                 NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                        SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(names.contains(where: { $0.isEmpty }))
+                .disabled(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count)
+                .onTapGesture {
+                    if (names.count != Set(names).count) && !names.contains(where: { $0.isEmpty }) {
+                        isShowingAlert = true
+                    }
+                }
+                .alert(isPresented: $isShowingAlert) {
+                    Alert(
+                        title: Text(getText(forKey: "alertTitle", forLanguage: data.languages)),
+                        message: Text(getText(forKey: "alertMessage", forLanguage: data.languages)),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
             }
         }
         .navigationTitle(getText(forKey: "settings", forLanguage: data.languages))

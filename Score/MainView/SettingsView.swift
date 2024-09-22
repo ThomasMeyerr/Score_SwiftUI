@@ -12,7 +12,7 @@ struct SettingsView: View {
     let languages: [String: Languages] = ["English": .en, "Français": .fr]
 
     @Environment(Data.self) var data
-    @State private var languageSelected = ""
+    @State private var languageSelected = "English"
     @State private var isAlert = false
 
     var body: some View {
