@@ -50,6 +50,8 @@ struct SkyjoSettingsView: View {
                     }
                 }
                 
+                Button("Reprendre") {}
+                
                 NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
                         SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
                 }
