@@ -16,7 +16,7 @@ struct SkyjoView: View {
     @Environment(Data.self) var data
     @Environment(\.dismiss) var dismiss
     @State private var nameAndScore: [String: Int]
-    @State private var partyScores: [String: Int]
+    @State private var roundScores: [String: Int]
     
     init(numberOfPlayer: Int, maxScore: Double, names: [String]) {
         self.numberOfPlayer = numberOfPlayer
@@ -30,7 +30,7 @@ struct SkyjoView: View {
         }
         
         self._nameAndScore = State(initialValue: combinedDict)
-        self._partyScores = State(initialValue: combinedDict)
+        self._roundScores = State(initialValue: combinedDict)
     }
     
     var body: some View {
@@ -50,18 +50,18 @@ struct SkyjoView: View {
                 }
                 
                 Section(getText(forKey: "players", forLanguage: data.languages)) {
-                    ForEach(Array(partyScores.keys), id: \.self) { name in
+                    ForEach(Array(roundScores.keys), id: \.self) { name in
                         HStack {
                             Text(name)
                             
                             Spacer()
                             
-                            TextField(name, value: Binding(
+                            TextField("Score", value: Binding(
                                 get: {
-                                    partyScores[name] ?? 0
+                                    roundScores[name] ?? 0
                                 },
                                 set: { newValue in
-                                    partyScores[name] = newValue
+                                    roundScores[name] = newValue
                                 }
                             ), formatter: NumberFormatter())
                         }
@@ -100,7 +100,7 @@ struct SkyjoView: View {
     }
     
     func sortedNameAndScore() -> [(key: String, value: Int)] {
-        nameAndScore.sorted { $0.value > $1.value }
+        nameAndScore.sorted { $0.value < $1.value }
     }
     
     func getLeaderName() -> String? {
@@ -108,6 +108,12 @@ struct SkyjoView: View {
     }
     
     func endRound() {
+        for name in nameAndScore.keys {
+            if let roundScore = roundScores[name] {
+                nameAndScore[name, default: 0] += roundScore
+            }
+            roundScores[name] = 0
+        }
     }
 }
 
