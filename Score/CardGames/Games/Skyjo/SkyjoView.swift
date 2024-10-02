@@ -36,13 +36,10 @@ struct SkyjoView: View {
     @State private var roundScores: [String: Int] = [:]
     @State private var isShowingAlert = false
     
-    @Binding var isPartyOngoing: Bool
-    
-    init(numberOfPlayer: Int, maxScore: Double, names: [String], isPartyOngoing: Binding<Bool>) {
+    init(numberOfPlayer: Int, maxScore: Double, names: [String]) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
-        self._isPartyOngoing = isPartyOngoing
     }
     
     var body: some View {
@@ -152,7 +149,7 @@ struct SkyjoView: View {
     }
     
     func setupInitialScore() {
-        if isPartyOngoing {
+        if UserDefaults.standard.bool(forKey: "partyOngoing") {
             loadData()
         } else {
             let scores = [Int](repeating: 0, count: numberOfPlayer)
@@ -167,7 +164,7 @@ struct SkyjoView: View {
     }
     
     func saveData() {
-        isPartyOngoing = true
+        UserDefaults.standard.set(true, forKey: "partyOngoing")
         let data = GameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
@@ -195,12 +192,12 @@ struct SkyjoView: View {
     }
     
     func cleanData() {
-        isPartyOngoing = false
+        UserDefaults.standard.set(false, forKey: "partyOngoing")
         dismiss()
     }
 }
 
 #Preview {
-    SkyjoView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"], isPartyOngoing: .constant(false))
+    SkyjoView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"])
         .environment(Data())
 }
