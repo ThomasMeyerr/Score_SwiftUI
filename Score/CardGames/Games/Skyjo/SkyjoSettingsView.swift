@@ -52,7 +52,7 @@ struct SkyjoSettingsView: View {
                 }
                 
                 if isPartyOngoing {
-                    Button("Reprendre") {}
+                    Button(getText(forKey: "continue", forLanguage: data.languages)) {}
                         .buttonStyle(.borderedProminent)
                         .padding()
                 }

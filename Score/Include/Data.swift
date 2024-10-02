@@ -127,6 +127,10 @@ let texts: [String: [Languages: String]] = [
         .fr: "Et le perdant est ",
         .en: "And the looser is "
     ],
+    "continue": [
+        .fr: "Reprendre",
+        .en: "Continue"
+    ],
     
     // CardGamesView
     "cardGamesTitle": [

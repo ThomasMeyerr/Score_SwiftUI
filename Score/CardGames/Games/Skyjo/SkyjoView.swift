@@ -81,16 +81,16 @@ struct SkyjoView: View {
     
     func buttons() -> some View {
         HStack {
+            Spacer()
             Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
                 .buttonStyle(.borderedProminent)
-            
             Spacer()
-            
             Button(getText(forKey: "cancelGame", forLanguage: data.languages), role: .destructive) {
                 isPartyOngoing = false
                 dismiss()
             }
             .buttonStyle(.borderedProminent)
+            Spacer()
         }
         .padding()
     }
