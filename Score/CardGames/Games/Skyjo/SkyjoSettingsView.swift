@@ -14,7 +14,7 @@ struct SkyjoSettingsView: View {
     @State private var maxScore: Double = 100
     @State private var names: [String] = Array(repeating: "", count: 2)
     @State private var isShowingAlert = false
-    @State private var isOldPartyExist = false
+    @State private var isPartyOngoing = false
     
     var body: some View {
         NavigationStack {
@@ -30,7 +30,7 @@ struct SkyjoSettingsView: View {
                             if names.count < newValue {
                                 names.append(contentsOf: Array(repeating: "", count: newValue - names.count))
                             } else if names.count > newValue {
-                                names = Array(repeating: "", count: newValue)
+                                names.removeLast(names.count - newValue)
                             }
                         }
                         
@@ -51,14 +51,14 @@ struct SkyjoSettingsView: View {
                     }
                 }
                 
-                if isOldPartyExist {
+                if isPartyOngoing {
                     Button("Reprendre") {}
                         .buttonStyle(.borderedProminent)
                         .padding()
                 }
                 
                 NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                        SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isPartyOngoing: $isPartyOngoing)
                 }
                 .padding()
                 .buttonStyle(.borderedProminent)

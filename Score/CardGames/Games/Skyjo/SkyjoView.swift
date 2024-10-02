@@ -15,23 +15,16 @@ struct SkyjoView: View {
     
     @Environment(Data.self) var data
     @Environment(\.dismiss) var dismiss
-    @State private var nameAndScore: [String: Int]
-    @State private var roundScores: [String: Int]
+    @State private var nameAndScore: [String: Int] = [:]
+    @State private var roundScores: [String: Int] = [:]
     @State private var isShowingAlert = false
+    @Binding var isPartyOngoing: Bool
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String]) {
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], isPartyOngoing: Binding<Bool>) {
         self.numberOfPlayer = numberOfPlayer
         self.maxScore = maxScore
         self.names = names
-        
-        let scores = [Int](repeating: 0, count: self.numberOfPlayer)
-        var combinedDict: [String: Int] = [:]
-        for (index, name) in names.enumerated() {
-            combinedDict[name] = scores[index]
-        }
-        
-        self._nameAndScore = State(initialValue: combinedDict)
-        self._roundScores = State(initialValue: combinedDict)
+        self._isPartyOngoing = isPartyOngoing
     }
     
     var body: some View {
@@ -74,6 +67,9 @@ struct SkyjoView: View {
         }
         .navigationTitle("Skyjo")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            setupInitialScore()
+        }
         .alert(isPresented: $isShowingAlert) {
             Alert(
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
@@ -91,6 +87,7 @@ struct SkyjoView: View {
             Spacer()
             
             Button(getText(forKey: "cancelGame", forLanguage: data.languages), role: .destructive) {
+                isPartyOngoing = false
                 dismiss()
             }
             .buttonStyle(.borderedProminent)
@@ -124,6 +121,7 @@ struct SkyjoView: View {
     }
     
     func endRound() {
+        isPartyOngoing = true
         for name in nameAndScore.keys {
             if let roundScore = roundScores[name] {
                 nameAndScore[name, default: 0] += roundScore
@@ -136,9 +134,20 @@ struct SkyjoView: View {
             isShowingAlert = true
         }
     }
+    
+    func setupInitialScore() {
+        let scores = [Int](repeating: 0, count: numberOfPlayer)
+        var combinedDict: [String: Int] = [:]
+        for (index, name) in names.enumerated() {
+            combinedDict[name] = scores[index]
+        }
+        
+        nameAndScore = combinedDict
+        roundScores = combinedDict
+    }
 }
 
 #Preview {
-    SkyjoView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"])
+    SkyjoView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"], isPartyOngoing: .constant(true))
         .environment(Data())
 }
