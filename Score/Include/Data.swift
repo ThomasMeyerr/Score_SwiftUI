@@ -177,3 +177,21 @@ let rules: [String: [Languages: String]] = [
     
     // BasicGamesView
 ]
+
+
+// Card games data
+class GameSkyjoData: Codable {
+    let numberOfPlayer: Int
+    let maxScore: Double
+    let names: [String]
+    let nameAndScore: [String: Int]
+    let roundScores: [String: Int]
+    
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int]) {
+        self.numberOfPlayer = numberOfPlayer
+        self.maxScore = maxScore
+        self.names = names
+        self.nameAndScore = nameAndScore
+        self.roundScores = roundScores
+    }
+}

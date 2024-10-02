@@ -8,23 +8,6 @@
 import SwiftUI
 
 
-class GameData: Codable {
-    let numberOfPlayer: Int
-    let maxScore: Double
-    let names: [String]
-    let nameAndScore: [String: Int]
-    let roundScores: [String: Int]
-    
-    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int]) {
-        self.numberOfPlayer = numberOfPlayer
-        self.maxScore = maxScore
-        self.names = names
-        self.nameAndScore = nameAndScore
-        self.roundScores = roundScores
-    }
-}
-
-
 struct SkyjoView: View {
     @Environment(Data.self) var data
     @Environment(\.dismiss) var dismiss
@@ -173,7 +156,7 @@ struct SkyjoView: View {
     
     func saveData() {
         UserDefaults.standard.set(true, forKey: "partyOngoing")
-        let data = GameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores)
+        let data = GameSkyjoData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "GameData")
@@ -182,7 +165,7 @@ struct SkyjoView: View {
     
     func loadData() {
         if let data = UserDefaults.standard.data(forKey: "GameData") {
-            if let decodedGameData = try? JSONDecoder().decode(GameData.self, from: data) {
+            if let decodedGameData = try? JSONDecoder().decode(GameSkyjoData.self, from: data) {
                 numberOfPlayer = decodedGameData.numberOfPlayer
                 maxScore = decodedGameData.maxScore
                 names = decodedGameData.names
