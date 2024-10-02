@@ -89,7 +89,9 @@ struct SkyjoView: View {
             Alert(
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
                 message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!),
-                dismissButton: .default(Text("OK"))
+                dismissButton: .default(Text("OK")) {
+                    cleanData()
+                }
             )
         }
     }
@@ -192,7 +194,7 @@ struct SkyjoView: View {
     }
     
     func cleanData() {
-        UserDefaults.standard.set(false, forKey: "partyOngoing")
+        UserDefaults.standard.set(false, forKey: "partyOngoing") 
         dismiss()
     }
 }

@@ -14,6 +14,7 @@ struct SkyjoSettingsView: View {
     @State private var maxScore: Double = 100
     @State private var names: [String] = Array(repeating: "", count: 2)
     @State private var isShowingAlert = false
+    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyOngoing")
     
     var body: some View {
         NavigationStack {
@@ -50,7 +51,7 @@ struct SkyjoSettingsView: View {
                     }
                 }
                 
-                if UserDefaults.standard.bool(forKey: "partyOngoing") {
+                if isPartyOngoing {
                     NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
                         SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
                     }
@@ -76,6 +77,9 @@ struct SkyjoSettingsView: View {
                         dismissButton: .default(Text("OK"))
                     )
                 }
+            }
+            .onAppear {
+                isPartyOngoing = UserDefaults.standard.bool(forKey: "partyOngoing")
             }
         }
         .navigationTitle(getText(forKey: "settings", forLanguage: data.languages))
