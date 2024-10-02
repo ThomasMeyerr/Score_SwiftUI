@@ -85,97 +85,81 @@ struct CustomKeyboard: View {
     ]
 
     var body: some View {
-        VStack(spacing: 15) {
-            VStack {
-                Text("Score :")
-                    .font(.largeTitle)
-                    .foregroundStyle(.secondary)
-                
-                Text(inputString)
-                    .font(.largeTitle)
-                    .foregroundStyle(.secondary)
-            }
+        ZStack {
+            Color.black.ignoresSafeArea()
             
-            LazyVGrid(columns: columns, spacing: 15) {
-                ForEach(1..<10, id: \.self) { number in
+            VStack(spacing: 15) {
+                VStack {
+                    Text("Score :")
+                        .font(.largeTitle)
+                        .foregroundStyle(.white)
+                    
+                    Text(inputString)
+                        .font(.largeTitle)
+                        .foregroundStyle(.white)
+                }
+                
+                LazyVGrid(columns: columns, spacing: 15) {
+                    ForEach(1..<10, id: \.self) { number in
+                        Button(action: {
+                            inputString.append("\(number)")
+                        }) {
+                            Text("\(number)")
+                                .font(.largeTitle)
+                                .frame(width: 80, height: 80)
+                                .foregroundStyle(.white)
+                        }
+                    }
+                }
+                
+                HStack(spacing: 40) {
                     Button(action: {
-                        inputString.append("\(number)")
+                        if inputString.isEmpty {
+                            inputString.append("-")
+                        }
                     }) {
-                        Text("\(number)")
+                        Text("-")
                             .font(.largeTitle)
                             .frame(width: 80, height: 80)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.white)
                     }
-                }
-            }
-            
-            HStack(spacing: 40) {
-                Button(action: {
-                    if inputString.isEmpty {
-                        inputString.append("-")
+                    
+                    Button(action: {
+                        inputString.append("0")
+                    }) {
+                        Text("0")
+                            .font(.largeTitle)
+                            .frame(width: 80, height: 80)
+                            .foregroundStyle(.white)
                     }
-                }) {
-                    Text("-")
-                        .font(.largeTitle)
-                        .frame(width: 80, height: 80)
-                        .foregroundStyle(.secondary)
+                    
+                    Button(action: {
+                        if !inputString.isEmpty {
+                            inputString.removeLast()
+                        }
+                    }) {
+                        Image(systemName: "delete.left.fill")
+                            .font(.largeTitle)
+                            .frame(width: 80, height: 80)
+                            .foregroundStyle(.white)
+                    }
                 }
                 
                 Button(action: {
-                    inputString.append("0")
+                    input = Int(inputString) ?? 0
+                    inputString = ""
+                    dismiss()
                 }) {
-                    Text("0")
-                        .font(.largeTitle)
-                        .frame(width: 80, height: 80)
-                        .foregroundStyle(.secondary)
+                    Image(systemName: "arrow.up.circle.fill")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .foregroundStyle(.white)
                 }
-                
-                Button(action: {
-                    if !inputString.isEmpty {
-                        inputString.removeLast()
-                    }
-                }) {
-                    Image(systemName: "delete.left.fill")
-                        .font(.largeTitle)
-                        .frame(width: 80, height: 80)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            
-            Button(action: {
-                input = Int(inputString) ?? 0
-                inputString = ""
-                dismiss()
-            }) {
-                Image(systemName: "arrow.up.circle.fill")
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .foregroundStyle(.secondary)
             }
         }
-        .background(.primary)
     }
 }
 
-#Preview {
-    // Using a @State variable to simulate a @Binding in the preview
-    StatefulPreviewWrapper(0) { CustomKeyboard(input: $0) }
-}
-
-// Helper struct for stateful preview
-struct StatefulPreviewWrapper<T: View>: View {
-    @State var value: Int
-    var content: (Binding<Int>) -> T
-
-    init(_ initialValue: Int, @ViewBuilder content: @escaping (Binding<Int>) -> T) {
-        self._value = State(initialValue: initialValue)
-        self.content = content
-    }
-
-    var body: some View {
-        content($value)
-    }
-}
 
 class GameSkyjoData: Codable {
     let numberOfPlayer: Int

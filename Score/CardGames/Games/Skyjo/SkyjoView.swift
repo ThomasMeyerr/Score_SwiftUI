@@ -19,6 +19,8 @@ struct SkyjoView: View {
     @State private var roundScores: [String: Int] = [:]
     @State private var isShowingAlert = false
     @State private var roundNumber = 1
+    @State private var nameForCustomKeyboard = ""
+    @State private var isShowingKeyboard = false
     
     init(numberOfPlayer: Int, maxScore: Double, names: [String]) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
@@ -67,7 +69,10 @@ struct SkyjoView: View {
                                     roundScores[name] = newValue
                                 }
                             ), formatter: NumberFormatter())
-                            .keyboardType(.numbersAndPunctuation)
+                            .onTapGesture {
+                                nameForCustomKeyboard = name
+                                isShowingKeyboard = true
+                            }
                         }
                     }
                 }
@@ -88,6 +93,12 @@ struct SkyjoView: View {
                     cleanData()
                 }
             )
+        }
+        .sheet(isPresented: $isShowingKeyboard) {
+            CustomKeyboard(input: Binding(
+                get: { roundScores[nameForCustomKeyboard] ?? 0 },
+                set: { newValue in roundScores[nameForCustomKeyboard] = newValue }
+            ))
         }
     }
     
