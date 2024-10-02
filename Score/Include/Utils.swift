@@ -144,9 +144,8 @@ struct CustomKeyboard: View {
             
             Button(action: {
                 input = Int(inputString) ?? 0
-                print(inputString)
-                print(input)
-//                dismiss()
+                inputString = ""
+                dismiss()
             }) {
                 Image(systemName: "arrow.up.circle.fill")
                     .resizable()
