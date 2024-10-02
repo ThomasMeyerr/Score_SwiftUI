@@ -72,6 +72,11 @@ struct SkyjoView: View {
                     }
                 }
             }
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius:40)
+                    .fill(Color.secondary.opacity(0.1))
+            )
             
             loadButtons()
         }

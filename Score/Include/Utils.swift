@@ -71,3 +71,22 @@ struct RulesText: View {
         text.count > lineLimit * 30
     }
 }
+
+
+class GameSkyjoData: Codable {
+    let numberOfPlayer: Int
+    let maxScore: Double
+    let names: [String]
+    let nameAndScore: [String: Int]
+    let roundScores: [String: Int]
+    let roundNumber: Int
+    
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int) {
+        self.numberOfPlayer = numberOfPlayer
+        self.maxScore = maxScore
+        self.names = names
+        self.nameAndScore = nameAndScore
+        self.roundScores = roundScores
+        self.roundNumber = roundNumber
+    }
+}
