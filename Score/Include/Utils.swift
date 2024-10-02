@@ -73,6 +73,111 @@ struct RulesText: View {
 }
 
 
+struct CustomKeyboard: View {
+    @Environment(\.dismiss) var dismiss
+    @Binding var input: Int
+    @State private var inputString = ""
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+
+    var body: some View {
+        VStack(spacing: 15) {
+            VStack {
+                Text("Score :")
+                    .font(.largeTitle)
+                    .foregroundStyle(.secondary)
+                
+                Text(inputString)
+                    .font(.largeTitle)
+                    .foregroundStyle(.secondary)
+            }
+            
+            LazyVGrid(columns: columns, spacing: 15) {
+                ForEach(1..<10, id: \.self) { number in
+                    Button(action: {
+                        inputString.append("\(number)")
+                    }) {
+                        Text("\(number)")
+                            .font(.largeTitle)
+                            .frame(width: 80, height: 80)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+            
+            HStack(spacing: 40) {
+                Button(action: {
+                    if inputString.isEmpty {
+                        inputString.append("-")
+                    }
+                }) {
+                    Text("-")
+                        .font(.largeTitle)
+                        .frame(width: 80, height: 80)
+                        .foregroundStyle(.secondary)
+                }
+                
+                Button(action: {
+                    inputString.append("0")
+                }) {
+                    Text("0")
+                        .font(.largeTitle)
+                        .frame(width: 80, height: 80)
+                        .foregroundStyle(.secondary)
+                }
+                
+                Button(action: {
+                    if !inputString.isEmpty {
+                        inputString.removeLast()
+                    }
+                }) {
+                    Image(systemName: "delete.left.fill")
+                        .font(.largeTitle)
+                        .frame(width: 80, height: 80)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            
+            Button(action: {
+                input = Int(inputString) ?? 0
+                print(inputString)
+                print(input)
+//                dismiss()
+            }) {
+                Image(systemName: "arrow.up.circle.fill")
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .background(.primary)
+    }
+}
+
+#Preview {
+    // Using a @State variable to simulate a @Binding in the preview
+    StatefulPreviewWrapper(0) { CustomKeyboard(input: $0) }
+}
+
+// Helper struct for stateful preview
+struct StatefulPreviewWrapper<T: View>: View {
+    @State var value: Int
+    var content: (Binding<Int>) -> T
+
+    init(_ initialValue: Int, @ViewBuilder content: @escaping (Binding<Int>) -> T) {
+        self._value = State(initialValue: initialValue)
+        self.content = content
+    }
+
+    var body: some View {
+        content($value)
+    }
+}
+
 class GameSkyjoData: Codable {
     let numberOfPlayer: Int
     let maxScore: Double
