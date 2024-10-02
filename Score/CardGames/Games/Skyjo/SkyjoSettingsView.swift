@@ -54,7 +54,7 @@ struct SkyjoSettingsView: View {
                 loadButtons()
             }
             .onAppear {
-                isPartyOngoing = UserDefaults.standard.bool(forKey: "partyOngoing")
+                resetData()
             }
             .alert(isPresented: $isShowingAlert) {
                 Alert(
@@ -97,6 +97,13 @@ struct SkyjoSettingsView: View {
             Spacer()
         }
         .padding()
+    }
+    
+    func resetData() {
+        isPartyOngoing = UserDefaults.standard.bool(forKey: "partyOngoing")
+        numberOfPlayer = 2
+        maxScore = 100
+        names = Array(repeating: "", count: 2)
     }
 }
 
