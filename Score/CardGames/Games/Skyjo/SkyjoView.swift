@@ -8,10 +8,25 @@
 import SwiftUI
 
 
-struct SkyjoView: View {
-    let numberOfPlayer: Int
+class GameData: Codable {
     let maxScore: Double
     let names: [String]
+    let nameAndScore: [String: Int]
+    let roundScores: [String: Int]
+    
+    init(maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int]) {
+        self.maxScore = maxScore
+        self.names = names
+        self.nameAndScore = nameAndScore
+        self.roundScores = roundScores
+    }
+}
+
+
+struct SkyjoView: View {
+    var numberOfPlayer: Int
+    var maxScore: Double
+    var names: [String]
     
     @Environment(Data.self) var data
     @Environment(\.dismiss) var dismiss
@@ -85,10 +100,7 @@ struct SkyjoView: View {
             Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
                 .buttonStyle(.borderedProminent)
             Spacer()
-            Button(getText(forKey: "cancelGame", forLanguage: data.languages), role: .destructive) {
-                isPartyOngoing = false
-                dismiss()
-            }
+            Button(getText(forKey: "cancelGame", forLanguage: data.languages), role: .destructive, action: cleanData)
             .buttonStyle(.borderedProminent)
             Spacer()
         }
@@ -121,7 +133,8 @@ struct SkyjoView: View {
     }
     
     func endRound() {
-        isPartyOngoing = true
+        saveData()
+        
         for name in nameAndScore.keys {
             if let roundScore = roundScores[name] {
                 nameAndScore[name, default: 0] += roundScore
@@ -130,24 +143,52 @@ struct SkyjoView: View {
         }
         
         let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
-        if possibleLooser! >= 100 {
+        if possibleLooser! >= Int(maxScore) {
             isShowingAlert = true
         }
     }
     
     func setupInitialScore() {
-        let scores = [Int](repeating: 0, count: numberOfPlayer)
-        var combinedDict: [String: Int] = [:]
-        for (index, name) in names.enumerated() {
-            combinedDict[name] = scores[index]
+        if isPartyOngoing {
+            loadData()
+        } else {
+            let scores = [Int](repeating: 0, count: numberOfPlayer)
+            var combinedDict: [String: Int] = [:]
+            for (index, name) in names.enumerated() {
+                combinedDict[name] = scores[index]
+            }
+            
+            nameAndScore = combinedDict
+            roundScores = combinedDict
         }
+    }
+    
+    func saveData() {
+        isPartyOngoing = true
+        let data = GameData(maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores)
         
-        nameAndScore = combinedDict
-        roundScores = combinedDict
+        if let encodedGameData = try? JSONEncoder().encode(data) {
+            UserDefaults.standard.set(encodedGameData, forKey: "GameData")
+        }
+    }
+    
+    func loadData() {
+        if let data = UserDefaults.standard.data(forKey: "GameData") {
+            if let decodedGameData = try? JSONDecoder().decode(GameData.self, from: data) {
+                nameAndScore = decodedGameData.nameAndScore
+                roundScores = decodedGameData.roundScores
+                endRound()
+            }
+        }
+    }
+    
+    func cleanData() {
+        isPartyOngoing = false
+        dismiss()
     }
 }
 
 #Preview {
-    SkyjoView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"], isPartyOngoing: .constant(true))
+    SkyjoView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"], isPartyOngoing: .constant(false))
         .environment(Data())
 }

@@ -52,9 +52,11 @@ struct SkyjoSettingsView: View {
                 }
                 
                 if isPartyOngoing {
-                    Button(getText(forKey: "continue", forLanguage: data.languages)) {}
-                        .buttonStyle(.borderedProminent)
-                        .padding()
+                    NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
+                        SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isPartyOngoing: $isPartyOngoing)
+                    }
+                    .padding()
+                    .buttonStyle(.borderedProminent)
                 }
                 
                 NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
