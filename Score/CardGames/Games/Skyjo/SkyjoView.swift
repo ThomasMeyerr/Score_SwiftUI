@@ -67,16 +67,11 @@ struct SkyjoView: View {
                                     roundScores[name] = newValue
                                 }
                             ), formatter: NumberFormatter())
-                            .keyboardType(.numberPad)
+                            .keyboardType(.numbersAndPunctuation)
                         }
                     }
                 }
             }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius:40)
-                    .fill(Color.secondary.opacity(0.1))
-            )
             
             loadButtons()
         }

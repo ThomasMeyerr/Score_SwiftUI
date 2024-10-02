@@ -50,11 +50,6 @@ struct SkyjoSettingsView: View {
                         RulesText(text: getRules(forKey: "skyjo", forLanguage: data.languages), language: data.languages)
                     }
                 }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius:40)
-                        .fill(Color.secondary.opacity(0.1))
-                )
                 
                 loadButtons()
             }

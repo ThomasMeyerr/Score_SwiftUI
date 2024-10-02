@@ -17,11 +17,6 @@ struct YamSettingsView: View {
                 RulesText(text: getRules(forKey: "yam", forLanguage: data.languages), language: data.languages)
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius:40)
-                .fill(Color.secondary.opacity(0.1))
-        )
         .navigationTitle("Yam")
         .navigationBarTitleDisplayMode(.inline)
     }

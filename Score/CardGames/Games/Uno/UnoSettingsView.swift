@@ -17,11 +17,6 @@ struct UnoSettingsView: View {
                 RulesText(text: getRules(forKey: "uno", forLanguage: data.languages), language: data.languages)
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius:40)
-                .fill(Color.secondary.opacity(0.1))
-        )
         .navigationTitle(getText(forKey: "settings", forLanguage: data.languages))
         .navigationBarTitleDisplayMode(.inline)
     }
