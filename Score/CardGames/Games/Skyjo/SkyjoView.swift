@@ -78,7 +78,7 @@ struct SkyjoView: View {
                 }
             }
             
-            buttons()
+            loadButtons()
         }
         .navigationTitle("Skyjo")
         .navigationBarTitleDisplayMode(.inline)
@@ -96,14 +96,20 @@ struct SkyjoView: View {
         }
     }
     
-    func buttons() -> some View {
+    func loadButtons() -> some View {
         HStack {
             Spacer()
             Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
-                .buttonStyle(.borderedProminent)
+                .padding()
+                .foregroundStyle(.white)
+                .background(.green)
+                .cornerRadius(10)
             Spacer()
-            Button(getText(forKey: "cancelGame", forLanguage: data.languages), role: .destructive, action: cleanData)
-            .buttonStyle(.borderedProminent)
+            Button(getText(forKey: "cancelGame", forLanguage: data.languages), action: cleanData)
+                .padding()
+                .foregroundStyle(.white)
+                .background(.red)
+                .cornerRadius(10)
             Spacer()
         }
         .padding()
@@ -194,7 +200,7 @@ struct SkyjoView: View {
     }
     
     func cleanData() {
-        UserDefaults.standard.set(false, forKey: "partyOngoing") 
+        UserDefaults.standard.set(false, forKey: "partyOngoing")
         dismiss()
     }
 }

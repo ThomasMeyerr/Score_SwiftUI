@@ -51,39 +51,52 @@ struct SkyjoSettingsView: View {
                     }
                 }
                 
-                if isPartyOngoing {
-                    NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                        SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
-                    }
-                    .padding()
-                    .buttonStyle(.borderedProminent)
-                }
-                
-                NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
-                }
-                .padding()
-                .buttonStyle(.borderedProminent)
-                .disabled(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count)
-                .onTapGesture {
-                    if (names.count != Set(names).count) && !names.contains(where: { $0.isEmpty }) {
-                        isShowingAlert = true
-                    }
-                }
-                .alert(isPresented: $isShowingAlert) {
-                    Alert(
-                        title: Text(getText(forKey: "alertTitle", forLanguage: data.languages)),
-                        message: Text(getText(forKey: "alertMessage", forLanguage: data.languages)),
-                        dismissButton: .default(Text("OK"))
-                    )
-                }
+                loadButtons()
             }
             .onAppear {
                 isPartyOngoing = UserDefaults.standard.bool(forKey: "partyOngoing")
             }
+            .alert(isPresented: $isShowingAlert) {
+                Alert(
+                    title: Text(getText(forKey: "alertTitle", forLanguage: data.languages)),
+                    message: Text(getText(forKey: "alertMessage", forLanguage: data.languages)),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
         .navigationTitle(getText(forKey: "settings", forLanguage: data.languages))
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func loadButtons() -> some View {
+        HStack {
+            if isPartyOngoing {
+                Spacer()
+                NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
+                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                }
+                .padding()
+                .foregroundStyle(.white)
+                .background(.green)
+                .cornerRadius(10)
+            }
+            Spacer()
+            NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
+                SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+            }
+            .padding()
+            .foregroundStyle(.white)
+            .background(.blue)
+            .cornerRadius(10)
+            .disabled(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count)
+            .onTapGesture {
+                if (names.count != Set(names).count) && !names.contains(where: { $0.isEmpty }) {
+                    isShowingAlert = true
+                }
+            }
+            Spacer()
+        }
+        .padding()
     }
 }
 
