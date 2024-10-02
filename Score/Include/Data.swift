@@ -131,6 +131,10 @@ let texts: [String: [Languages: String]] = [
         .fr: "Reprendre",
         .en: "Continue"
     ],
+    "round": [
+        .fr: "Tour ",
+        .en: "Round "
+    ],
     
     // CardGamesView
     "cardGamesTitle": [
@@ -186,12 +190,14 @@ class GameSkyjoData: Codable {
     let names: [String]
     let nameAndScore: [String: Int]
     let roundScores: [String: Int]
+    let roundNumber: Int
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int]) {
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int) {
         self.numberOfPlayer = numberOfPlayer
         self.maxScore = maxScore
         self.names = names
         self.nameAndScore = nameAndScore
         self.roundScores = roundScores
+        self.roundNumber = roundNumber
     }
 }

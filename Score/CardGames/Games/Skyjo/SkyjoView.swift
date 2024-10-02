@@ -18,6 +18,7 @@ struct SkyjoView: View {
     @State private var nameAndScore: [String: Int] = [:]
     @State private var roundScores: [String: Int] = [:]
     @State private var isShowingAlert = false
+    @State private var roundNumber = 1
     
     init(numberOfPlayer: Int, maxScore: Double, names: [String]) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
@@ -27,6 +28,16 @@ struct SkyjoView: View {
     
     var body: some View {
         VStack {
+            Group {
+                Text(getText(forKey: "round", forLanguage: data.languages)) +
+                Text("\(roundNumber)")
+            }
+            .font(.title)
+            .padding()
+            .foregroundStyle(.white)
+            .background(.secondary)
+            .clipShape(.rect(cornerRadius: 30))
+            
             Form {
                 Section("Score") {
                     Grid {
@@ -56,6 +67,7 @@ struct SkyjoView: View {
                                     roundScores[name] = newValue
                                 }
                             ), formatter: NumberFormatter())
+                            .keyboardType(.numberPad)
                         }
                     }
                 }
@@ -82,17 +94,21 @@ struct SkyjoView: View {
     func loadButtons() -> some View {
         HStack {
             Spacer()
+            
             Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
                 .padding()
                 .foregroundStyle(.white)
                 .background(.green)
                 .cornerRadius(10)
+            
             Spacer()
+            
             Button(getText(forKey: "cancelGame", forLanguage: data.languages), action: cleanData)
                 .padding()
                 .foregroundStyle(.white)
                 .background(.red)
                 .cornerRadius(10)
+            
             Spacer()
         }
         .padding()
@@ -124,6 +140,7 @@ struct SkyjoView: View {
     }
     
     func endRound() {
+        roundNumber += 1
         saveData()
         
         for name in nameAndScore.keys {
@@ -156,7 +173,7 @@ struct SkyjoView: View {
     
     func saveData() {
         UserDefaults.standard.set(true, forKey: "partyOngoing")
-        let data = GameSkyjoData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores)
+        let data = GameSkyjoData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "GameData")
@@ -171,6 +188,7 @@ struct SkyjoView: View {
                 names = decodedGameData.names
                 nameAndScore = decodedGameData.nameAndScore
                 roundScores = decodedGameData.roundScores
+                roundNumber = decodedGameData.roundNumber
                 
                 for name in nameAndScore.keys {
                     if let roundScore = roundScores[name] {
