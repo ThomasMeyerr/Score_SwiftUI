@@ -135,6 +135,18 @@ let texts: [String: [Languages: String]] = [
         .fr: "Tour ",
         .en: "Round "
     ],
+    "cancelSure": [
+        .fr: "Êtes-vous sûrs ?",
+        .en: "Are you sure?"
+    ],
+    "yes": [
+        .fr: "Oui",
+        .en: "Yes"
+    ],
+    "no": [
+        .fr: "Non",
+        .en: "No"
+    ],
     
     // CardGamesView
     "cardGamesTitle": [

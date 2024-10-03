@@ -17,7 +17,8 @@ struct SkyjoView: View {
     @State private var names: [String]
     @State private var nameAndScore: [String: Int] = [:]
     @State private var roundScores: [String: Int] = [:]
-    @State private var isShowingAlert = false
+    @State private var isPartyFinished = false
+    @State private var isCancelSure = false
     @State private var roundNumber = 1
     @State private var nameForCustomKeyboard = ""
     @State private var isShowingKeyboard = false
@@ -88,7 +89,7 @@ struct SkyjoView: View {
         .onAppear {
             setupInitialScore()
         }
-        .alert(isPresented: $isShowingAlert) {
+        .alert(isPresented: $isPartyFinished) {
             Alert(
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
                 message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!),
@@ -115,22 +116,28 @@ struct SkyjoView: View {
             Spacer()
             
             Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
-                .padding()
-                .foregroundStyle(.white)
-                .background(.green)
-                .cornerRadius(10)
+            .padding()
+            .foregroundStyle(.white)
+            .background(.green)
+            .cornerRadius(10)
             
             Spacer()
             
-            Button(getText(forKey: "cancelGame", forLanguage: data.languages), action: cleanData)
-                .padding()
-                .foregroundStyle(.white)
-                .background(.red)
-                .cornerRadius(10)
+            Button(getText(forKey: "cancelGame", forLanguage: data.languages)) {
+                isCancelSure = true
+            }
+            .padding()
+            .foregroundStyle(.white)
+            .background(.red)
+            .cornerRadius(10)
             
             Spacer()
         }
         .padding()
+        .alert(getText(forKey: "cancelSure", forLanguage: data.languages), isPresented: $isCancelSure) {
+            Button(getText(forKey: "yes", forLanguage: data.languages), role: .destructive, action: cleanData)
+            Button(getText(forKey: "no", forLanguage: data.languages), role: .cancel) {}
+        }
     }
     
     func cellView(text: String, isLeader: Bool = false) -> some View {
@@ -171,7 +178,7 @@ struct SkyjoView: View {
         
         let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
         if possibleLooser! >= Int(maxScore) {
-            isShowingAlert = true
+            isPartyFinished = true
         }
     }
     
