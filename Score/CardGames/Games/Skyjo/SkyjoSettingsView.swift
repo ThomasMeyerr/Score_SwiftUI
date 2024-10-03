@@ -35,7 +35,14 @@ struct SkyjoSettingsView: View {
                         }
                         
                         ForEach(0..<numberOfPlayer, id: \.self) { index in
-                            TextField(getText(forKey: "pseudo", forLanguage: data.languages), text: $names[index])
+                            TextField(getText(forKey: "pseudo", forLanguage: data.languages), text: Binding(
+                                get: { names.indices.contains(index) ? names[index] : "" },
+                                set: { newValue in
+                                    if names.indices.contains(index) {
+                                        names[index] = newValue
+                                    }
+                                }
+                            ))
                         }
                     }
                     
