@@ -183,7 +183,7 @@ struct SkyjoView: View {
     }
     
     func setupInitialScore() {
-        if UserDefaults.standard.bool(forKey: "partyOngoing") {
+        if UserDefaults.standard.bool(forKey: "partySkyjoOngoing") {
             loadData()
         } else {
             let scores = [Int](repeating: 0, count: numberOfPlayer)
@@ -198,17 +198,17 @@ struct SkyjoView: View {
     }
     
     func saveData() {
-        UserDefaults.standard.set(true, forKey: "partyOngoing")
-        let data = GameSkyjoData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
+        UserDefaults.standard.set(true, forKey: "partySkyjoOngoing")
+        let data = CardGameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
-            UserDefaults.standard.set(encodedGameData, forKey: "GameData")
+            UserDefaults.standard.set(encodedGameData, forKey: "SkyjoGameData")
         }
     }
     
     func loadData() {
-        if let data = UserDefaults.standard.data(forKey: "GameData") {
-            if let decodedGameData = try? JSONDecoder().decode(GameSkyjoData.self, from: data) {
+        if let data = UserDefaults.standard.data(forKey: "SkyjoGameData") {
+            if let decodedGameData = try? JSONDecoder().decode(CardGameData.self, from: data) {
                 numberOfPlayer = decodedGameData.numberOfPlayer
                 maxScore = decodedGameData.maxScore
                 names = decodedGameData.names
@@ -227,7 +227,7 @@ struct SkyjoView: View {
     }
     
     func cleanData() {
-        UserDefaults.standard.set(false, forKey: "partyOngoing")
+        UserDefaults.standard.set(false, forKey: "partySkyjoOngoing")
         dismiss()
     }
 }

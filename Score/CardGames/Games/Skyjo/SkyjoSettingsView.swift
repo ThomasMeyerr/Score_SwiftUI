@@ -14,7 +14,7 @@ struct SkyjoSettingsView: View {
     @State private var maxScore: Double = 100
     @State private var names: [String] = Array(repeating: "", count: 2)
     @State private var isShowingAlert = false
-    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyOngoing")
+    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partySkyjoOngoing")
     
     var body: some View {
         NavigationStack {
@@ -71,7 +71,7 @@ struct SkyjoSettingsView: View {
                 )
             }
         }
-        .navigationTitle(getText(forKey: "settings", forLanguage: data.languages))
+        .navigationTitle(getText(forKey: "settings", forLanguage: data.languages) + "Skyjo")
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -107,7 +107,7 @@ struct SkyjoSettingsView: View {
     }
     
     func resetData() {
-        isPartyOngoing = UserDefaults.standard.bool(forKey: "partyOngoing")
+        isPartyOngoing = UserDefaults.standard.bool(forKey: "partySkyjoOngoing")
         numberOfPlayer = 2
         maxScore = 100
         names = Array(repeating: "", count: 2)

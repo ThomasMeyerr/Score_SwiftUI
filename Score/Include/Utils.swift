@@ -161,7 +161,8 @@ struct CustomKeyboard: View {
 }
 
 
-class GameSkyjoData: Codable {
+// Card Games data
+class CardGameData: Codable {
     let numberOfPlayer: Int
     let maxScore: Double
     let names: [String]

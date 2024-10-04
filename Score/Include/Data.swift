@@ -72,8 +72,8 @@ let texts: [String: [Languages: String]] = [
         .en: "Rules"
     ],
     "settings": [
-        .fr: "Paramètres de la Partie",
-        .en: "Game Settings"
+        .fr: "Paramètres de la partie de ",
+        .en: "Game settings of "
     ],
     "showMore": [
         .fr: "Voir plus...",
