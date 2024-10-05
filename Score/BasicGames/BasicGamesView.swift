@@ -14,6 +14,7 @@ struct BasicGamesView: View {
     @State private var names: [String] = Array(repeating: "", count: 2)
     @State private var isShowingAlert = false
     @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBasicOngoing")
+    @State private var isToggle = false
     
     var body: some View {
         NavigationStack {
@@ -53,6 +54,16 @@ struct BasicGamesView: View {
                         HStack {
                             Text(String(Int(maxScore)))
                             Slider(value: $maxScore, in: 80...120, step: 1)
+                        }
+                    }
+                    
+                    Section(getText(forKey: "countdown", forLanguage: data.languages)) {
+                        Toggle(isOn: $isToggle) {
+                            Text(getText(forKey: "countdownEnable", forLanguage: data.languages))
+                        }
+                        
+                        if isToggle {
+                            
                         }
                     }
                 }

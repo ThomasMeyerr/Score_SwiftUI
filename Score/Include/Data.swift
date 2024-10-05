@@ -169,6 +169,14 @@ let texts: [String: [Languages: String]] = [
         .fr: "Jeux Normaux",
         .en: "Basic Games"
     ],
+    "countdown": [
+        .fr: "Compte à rebours",
+        .en: "Countdown"
+    ],
+    "countdownEnable": [
+        .fr: "Voulez-vous un compte à rebours ?",
+        .en: "Did you want a countdown ?"
+    ],
 ]
 
 
