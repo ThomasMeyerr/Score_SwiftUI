@@ -15,6 +15,7 @@ struct BasicGamesView: View {
     @State private var isShowingAlert = false
     @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBasicOngoing")
     @State private var isToggle = false
+    @State private var countdown: Double = 120
     
     var body: some View {
         NavigationStack {
@@ -63,7 +64,10 @@ struct BasicGamesView: View {
                         }
                         
                         if isToggle {
-                            
+                            HStack {
+                                Text(String(Int(countdown)))
+                                Slider(value: $countdown, in: 10...300, step: 10)
+                            }
                         }
                     }
                 }

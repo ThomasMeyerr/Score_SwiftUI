@@ -174,8 +174,8 @@ let texts: [String: [Languages: String]] = [
         .en: "Countdown"
     ],
     "countdownEnable": [
-        .fr: "Voulez-vous un compte à rebours ?",
-        .en: "Did you want a countdown ?"
+        .fr: "Voulez-vous un compte à rebours ? (en secondes)",
+        .en: "Did you want a countdown ? (in seconds)"
     ],
 ]
 
