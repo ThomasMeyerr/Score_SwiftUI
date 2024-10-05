@@ -92,7 +92,7 @@ struct SkyjoView: View {
         .alert(isPresented: $isPartyFinished) {
             Alert(
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
-                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!),
+                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(nameAndScore[getLooserName()!] ?? 0))"),
                 dismissButton: .default(Text("OK")) {
                     cleanData()
                 }
