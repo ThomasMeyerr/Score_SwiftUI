@@ -19,6 +19,10 @@ struct BasicGamesView: View {
         NavigationStack {
             VStack {
                 Form {
+                    Section(getText(forKey: "rules", forLanguage: data.languages)) {
+                        RulesText(text: getRules(forKey: "basicGames", forLanguage: data.languages), language: data.languages)
+                    }
+                    
                     Section(getText(forKey: "players", forLanguage: data.languages)) {
                         Picker(getText(forKey: "numberOfPlayers", forLanguage: data.languages), selection: $numberOfPlayer) {
                             ForEach(2..<9, id: \.self) {
@@ -50,10 +54,6 @@ struct BasicGamesView: View {
                             Text(String(Int(maxScore)))
                             Slider(value: $maxScore, in: 80...120, step: 1)
                         }
-                    }
-                    
-                    Section(getText(forKey: "rules", forLanguage: data.languages)) {
-                        RulesText(text: getRules(forKey: "skyjo", forLanguage: data.languages), language: data.languages)
                     }
                 }
                 
