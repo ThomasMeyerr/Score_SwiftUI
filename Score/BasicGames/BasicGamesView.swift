@@ -9,9 +9,9 @@ import SwiftUI
 
 struct BasicGamesView: View {
     @Environment(Data.self) var data
-    @State private var numberOfPlayer = 2
+    @State private var numberOfPlayer = 1
     @State private var maxScore: Double = 100
-    @State private var names: [String] = Array(repeating: "", count: 2)
+    @State private var names: [String] = Array(repeating: "", count: 1)
     @State private var isShowingAlert = false
     @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBasicOngoing")
     @State private var isToggle = false
@@ -27,7 +27,7 @@ struct BasicGamesView: View {
                     
                     Section(getText(forKey: "players", forLanguage: data.languages)) {
                         Picker(getText(forKey: "numberOfPlayers", forLanguage: data.languages), selection: $numberOfPlayer) {
-                            ForEach(2..<9, id: \.self) {
+                            ForEach(1..<13, id: \.self) {
                                 Text(String($0))
                             }
                         }
@@ -54,7 +54,7 @@ struct BasicGamesView: View {
                     Section(getText(forKey: "maxScore", forLanguage: data.languages)) {
                         HStack {
                             Text(String(Int(maxScore)))
-                            Slider(value: $maxScore, in: 80...120, step: 1)
+                            Slider(value: $maxScore, in: 50...500, step: 10)
                         }
                     }
                     
@@ -122,9 +122,9 @@ struct BasicGamesView: View {
     
     func resetData() {
         isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBasicOngoing")
-        numberOfPlayer = 2
+        numberOfPlayer = 1
         maxScore = 100
-        names = Array(repeating: "", count: 2)
+        names = Array(repeating: "", count: 1)
     }
 }
 
