@@ -161,7 +161,6 @@ struct CustomKeyboard: View {
 }
 
 
-// Card Games data
 class CardGameData: Codable {
     let numberOfPlayer: Int
     let maxScore: Double
@@ -177,5 +176,12 @@ class CardGameData: Codable {
         self.nameAndScore = nameAndScore
         self.roundScores = roundScores
         self.roundNumber = roundNumber
+    }
+}
+
+
+struct CountdownView: View {
+    var body: some View {
+        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
     }
 }
