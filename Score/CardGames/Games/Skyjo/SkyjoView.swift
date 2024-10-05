@@ -36,7 +36,7 @@ struct SkyjoView: View {
                 Text(getText(forKey: "round", forLanguage: data.languages)) +
                 Text("\(roundNumber)")
             }
-            .font(.title)
+            .font(.title2)
             .padding()
             .foregroundStyle(.white)
             .background(.secondary)
