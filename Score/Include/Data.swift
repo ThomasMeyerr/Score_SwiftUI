@@ -75,7 +75,7 @@ let texts: [String: [Languages: String]] = [
         .fr: "Paramètres de la partie de ",
         .en: "Game settings of "
     ],
-    "basicSettings": [
+    "cutomSettings": [
         .fr: "Paramètres de la partie",
         .en: "Game settings"
     ],
@@ -164,10 +164,10 @@ let texts: [String: [Languages: String]] = [
         .en: "Dice Games"
     ],
     
-    // BasicGamesView
-    "basicGamesTitle": [
-        .fr: "Jeux Normaux",
-        .en: "Basic Games"
+    // CustomGamesView
+    "customGamesTitle": [
+        .fr: "Paramètres personnalisés",
+        .en: "Custom Parameters"
     ],
     "countdown": [
         .fr: "Compte à rebours",
@@ -203,8 +203,8 @@ let rules: [String: [Languages: String]] = [
         .en: "Objective: Score the most points by rolling dice to achieve specific combinations.\n\nSetup: Each player gets a score sheet with different categories. The game uses 5 dice.\n\nTurn: On each turn, a player can roll the dice up to three times. After each roll, they can choose to keep certain dice and re-roll the others to try for a desired combination.\n\nCombinations: Possible combinations include:\n\tThree of a Kind: Three identical dice\n\tFour of a Kind: Four identical dice\n\tFull House: Three of a kind and a pair\n\tSmall Straight: Four consecutive dice\n\tLarge Straight: Five consecutive dice\n\tYahtzee: Five identical dice\n\nEnd of Game: After 13 rounds, each player has filled out all categories on their score sheet. Points are totaled, and the player with the highest score wins."
     ],
     
-    // BasicGamesView
-    "basicGames": [
+    // CustomGamesView
+    "customGames": [
         .fr: "A venir",
         .en: "Placeholder"
     ]

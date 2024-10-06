@@ -19,7 +19,7 @@
 		16C700B52CAFF284005C6752 /* UnoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C700B42CAFF284005C6752 /* UnoView.swift */; };
 		16DE323A2C9AFEB5000678AC /* SkyjoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE32392C9AFEB5000678AC /* SkyjoView.swift */; };
 		16F3816F2C84DA7600569DF1 /* DiceGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3816E2C84DA7600569DF1 /* DiceGamesView.swift */; };
-		16F381712C84DA8400569DF1 /* BasicGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381702C84DA8400569DF1 /* BasicGamesView.swift */; };
+		16F381712C84DA8400569DF1 /* CustomGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381702C84DA8400569DF1 /* CustomGamesView.swift */; };
 		16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381762C84DD6700569DF1 /* SettingsView.swift */; };
 		16F381792C84E0B000569DF1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381782C84E0B000569DF1 /* Data.swift */; };
 /* End PBXBuildFile section */
@@ -38,7 +38,7 @@
 		16C700B42CAFF284005C6752 /* UnoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoView.swift; sourceTree = "<group>"; };
 		16DE32392C9AFEB5000678AC /* SkyjoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyjoView.swift; sourceTree = "<group>"; };
 		16F3816E2C84DA7600569DF1 /* DiceGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceGamesView.swift; sourceTree = "<group>"; };
-		16F381702C84DA8400569DF1 /* BasicGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGamesView.swift; sourceTree = "<group>"; };
+		16F381702C84DA8400569DF1 /* CustomGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGamesView.swift; sourceTree = "<group>"; };
 		16F381762C84DD6700569DF1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		16F381782C84E0B000569DF1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,7 +130,7 @@
 				16F381752C84DD3A00569DF1 /* MainView */,
 				16F381722C84DCB700569DF1 /* CardGames */,
 				16F381732C84DCC300569DF1 /* DiceGames */,
-				16F381742C84DCD100569DF1 /* BasicGames */,
+				16F381742C84DCD100569DF1 /* CustomGames */,
 				164F37B92C84D45700650152 /* Assets.xcassets */,
 				164F37BB2C84D45700650152 /* Preview Content */,
 			);
@@ -163,12 +163,12 @@
 			path = DiceGames;
 			sourceTree = "<group>";
 		};
-		16F381742C84DCD100569DF1 /* BasicGames */ = {
+		16F381742C84DCD100569DF1 /* CustomGames */ = {
 			isa = PBXGroup;
 			children = (
-				16F381702C84DA8400569DF1 /* BasicGamesView.swift */,
+				16F381702C84DA8400569DF1 /* CustomGamesView.swift */,
 			);
-			path = BasicGames;
+			path = CustomGames;
 			sourceTree = "<group>";
 		};
 		16F381752C84DD3A00569DF1 /* MainView */ = {
@@ -255,7 +255,7 @@
 				164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */,
 				163F867E2C88C6A20057B639 /* UnoSettingsView.swift in Sources */,
 				16C700B52CAFF284005C6752 /* UnoView.swift in Sources */,
-				16F381712C84DA8400569DF1 /* BasicGamesView.swift in Sources */,
+				16F381712C84DA8400569DF1 /* CustomGamesView.swift in Sources */,
 				164F37B82C84D45500650152 /* ContentView.swift in Sources */,
 				16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */,
 				164F37B62C84D45500650152 /* ScoreApp.swift in Sources */,

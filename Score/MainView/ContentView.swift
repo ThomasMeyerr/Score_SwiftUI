@@ -23,9 +23,9 @@ struct ContentView: View {
                     Label(getText(forKey: "diceGamesTitle", forLanguage: data.languages), systemImage: "dice.fill")
                 }
             
-            BasicGamesView()
+            CustomGamesView()
                 .tabItem {
-                    Label(getText(forKey: "basicGamesTitle", forLanguage: data.languages), systemImage: "number")
+                    Label(getText(forKey: "customGamesTitle", forLanguage: data.languages), systemImage: "number")
                 }
             
             SettingsView()

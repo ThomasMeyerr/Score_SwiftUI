@@ -1,5 +1,5 @@
 //
-//  BasicGamesView.swift
+//  CustomGamesView.swift
 //  Score
 //
 //  Created by Thomas Meyer on 01/09/2024.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct BasicGamesView: View {
+struct CustomGamesView: View {
     @Environment(Data.self) var data
     @State private var numberOfPlayer = 1
     @State private var maxScore: Double = 100
     @State private var names: [String] = Array(repeating: "", count: 1)
     @State private var isShowingAlert = false
-    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBasicOngoing")
+    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyCustomOngoing")
     @State private var isToggle = false
     @State private var countdown: Double = 120
     
@@ -22,7 +22,7 @@ struct BasicGamesView: View {
             VStack {
                 Form {
                     Section(getText(forKey: "rules", forLanguage: data.languages)) {
-                        RulesText(text: getRules(forKey: "basicGames", forLanguage: data.languages), language: data.languages)
+                        RulesText(text: getRules(forKey: "customGames", forLanguage: data.languages), language: data.languages)
                     }
                     
                     Section(getText(forKey: "players", forLanguage: data.languages)) {
@@ -85,7 +85,7 @@ struct BasicGamesView: View {
                 )
             }
         }
-        .navigationTitle(getText(forKey: "basicSettings", forLanguage: data.languages))
+        .navigationTitle(getText(forKey: "customSettings", forLanguage: data.languages))
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -121,7 +121,7 @@ struct BasicGamesView: View {
     }
     
     func resetData() {
-        isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBasicOngoing")
+        isPartyOngoing = UserDefaults.standard.bool(forKey: "partyCustomOngoing")
         numberOfPlayer = 1
         maxScore = 100
         names = Array(repeating: "", count: 1)
@@ -129,6 +129,6 @@ struct BasicGamesView: View {
 }
 
 #Preview {
-    BasicGamesView()
+    CustomGamesView()
         .environment(Data())
 }
