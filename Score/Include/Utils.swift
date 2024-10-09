@@ -180,8 +180,58 @@ class CardGameData: Codable {
 }
 
 
+class CustomGameData: Codable {
+    let numberOfPlayer: Int
+    let maxScore: Double
+    let names: [String]
+    let nameAndScore: [String: Int]
+    let roundScores: [String: Int]
+    let roundNumber: Int
+    let countdown: Int
+    
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, countdown: Int) {
+        self.numberOfPlayer = numberOfPlayer
+        self.maxScore = maxScore
+        self.names = names
+        self.nameAndScore = nameAndScore
+        self.roundScores = roundScores
+        self.roundNumber = roundNumber
+        self.countdown = countdown
+    }
+}
+
+
 struct CountdownView: View {
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    @Environment(\.scenePhase) var scenePhase
+    @State private var timeRemaining: Int
+    @State private var isActive = true
+    
+    init(timeRemaining: Int) {
+        self._timeRemaining = State(initialValue: timeRemaining)
+    }
+    
     var body: some View {
-        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
+        Text("\(timeRemaining)")
+            .font(.title2)
+            .padding()
+            .foregroundStyle(.white)
+            .background(.secondary)
+            .clipShape(.rect(cornerRadius: 30))
+            .onChange(of: scenePhase) {
+                if scenePhase == .active {
+                    isActive = true
+                } else {
+                    isActive = false
+                }
+            }
+            .onReceive(timer) { time in
+                guard isActive else { return }
+                
+                if timeRemaining > 0 {
+                    timeRemaining -= 1
+                }
+            }
     }
 }

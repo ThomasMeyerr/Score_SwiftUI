@@ -15,6 +15,7 @@ struct CustomGamesView: View {
     @State private var numberOfPlayer: Int
     @State private var maxScore: Double
     @State private var names: [String]
+    @State private var countdown: Int
     @State private var nameAndScore: [String: Int] = [:]
     @State private var roundScores: [String: Int] = [:]
     @State private var isPartyFinished = false
@@ -24,23 +25,35 @@ struct CustomGamesView: View {
     @State private var isShowingKeyboard = false
     @State private var isDisabled = false
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String]) {
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], countdown: Int) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
+        self._countdown = State(initialValue: countdown)
     }
     
     var body: some View {
         VStack {
-            Group {
-                Text(getText(forKey: "round", forLanguage: data.languages)) +
-                Text("\(roundNumber)")
+            HStack {
+                Spacer()
+
+                Group {
+                    Text(getText(forKey: "round", forLanguage: data.languages)) +
+                    Text("\(roundNumber)")
+                }
+                .font(.title2)
+                .padding()
+                .foregroundStyle(.white)
+                .background(.secondary)
+                .clipShape(.rect(cornerRadius: 30))
+                                
+                if countdown != -1 {
+                    Spacer()
+                    CountdownView(timeRemaining: countdown)
+                }
+                
+                Spacer()
             }
-            .font(.title2)
-            .padding()
-            .foregroundStyle(.white)
-            .background(.secondary)
-            .clipShape(.rect(cornerRadius: 30))
             
             Form {
                 Section("Score") {
@@ -199,7 +212,7 @@ struct CustomGamesView: View {
     
     func saveData() {
         UserDefaults.standard.set(true, forKey: "partyCustomOngoing")
-        let data = CardGameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
+        let data = CustomGameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, countdown: countdown)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "CustomGameData")
@@ -208,13 +221,14 @@ struct CustomGamesView: View {
     
     func loadData() {
         if let data = UserDefaults.standard.data(forKey: "CustomGameData") {
-            if let decodedGameData = try? JSONDecoder().decode(CardGameData.self, from: data) {
+            if let decodedGameData = try? JSONDecoder().decode(CustomGameData.self, from: data) {
                 numberOfPlayer = decodedGameData.numberOfPlayer
                 maxScore = decodedGameData.maxScore
                 names = decodedGameData.names
                 nameAndScore = decodedGameData.nameAndScore
                 roundScores = decodedGameData.roundScores
                 roundNumber = decodedGameData.roundNumber
+                countdown = decodedGameData.countdown
                 
                 for name in nameAndScore.keys {
                     if let roundScore = roundScores[name] {
@@ -233,6 +247,6 @@ struct CustomGamesView: View {
 }
 
 #Preview {
-    CustomGamesView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"])
+    CustomGamesView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"], countdown: 120)
         .environment(Data())
 }

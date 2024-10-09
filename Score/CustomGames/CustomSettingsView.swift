@@ -100,7 +100,7 @@ struct CustomSettingsView: View {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                    CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, countdown: Int(countdown))
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -109,7 +109,11 @@ struct CustomSettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                if isToggle {
+                    CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, countdown: Int(countdown))
+                } else {
+                    CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, countdown: -1)
+                }
             }
             .padding()
             .foregroundStyle(.white)
