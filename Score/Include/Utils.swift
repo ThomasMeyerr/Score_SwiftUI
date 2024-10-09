@@ -216,30 +216,33 @@ struct CountdownView: View {
     }
     
     var body: some View {
-        Text("\(timeRemaining)")
-            .font(.title2)
-            .padding()
-            .foregroundStyle(.white)
-            .background(.secondary)
-            .clipShape(.rect(cornerRadius: 30))
-            .onChange(of: scenePhase) {
-                if scenePhase == .active {
-                    isActive = true
-                } else {
-                    isActive = false
-                }
+        HStack {
+            Image(systemName: "timer")
+            Text("\(timeRemaining)")
+        }
+        .font(.title2)
+        .padding()
+        .foregroundStyle(.white)
+        .background(.secondary)
+        .clipShape(.rect(cornerRadius: 30))
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                isActive = true
+            } else {
+                isActive = false
             }
-            .onReceive(timer) { time in
-                guard isActive else { return }
-                
-                if timeRemaining > 0 {
-                    timeRemaining -= 1
-                }
-                
-                if timeRemaining == 0 && !stopAlert {
-                    isAlert = true
-                    stopAlert = true
-                }
+        }
+        .onReceive(timer) { time in
+            guard isActive else { return }
+            
+            if timeRemaining > 0 {
+                timeRemaining -= 1
             }
+            
+            if timeRemaining == 0 && !stopAlert {
+                isAlert = true
+                stopAlert = true
+            }
+        }
     }
 }
