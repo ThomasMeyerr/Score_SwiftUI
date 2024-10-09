@@ -24,6 +24,7 @@ struct CustomGamesView: View {
     @State private var nameForCustomKeyboard = ""
     @State private var isShowingKeyboard = false
     @State private var isDisabled = false
+    @State private var isAlert = false
     
     init(numberOfPlayer: Int, maxScore: Double, names: [String], countdown: Int) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
@@ -34,26 +35,7 @@ struct CustomGamesView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-
-                Group {
-                    Text(getText(forKey: "round", forLanguage: data.languages)) +
-                    Text("\(roundNumber)")
-                }
-                .font(.title2)
-                .padding()
-                .foregroundStyle(.white)
-                .background(.secondary)
-                .clipShape(.rect(cornerRadius: 30))
-                                
-                if countdown != -1 {
-                    Spacer()
-                    CountdownView(timeRemaining: countdown)
-                }
-                
-                Spacer()
-            }
+            loadHeader()
             
             Form {
                 Section("Score") {
@@ -121,6 +103,30 @@ struct CustomGamesView: View {
             if !newValue {
                 isDisabled = false
             }
+        }
+    }
+    
+    func loadHeader() -> some View {
+        HStack {
+            Spacer()
+
+            Group {
+                Text(getText(forKey: "round", forLanguage: data.languages)) +
+                Text("\(roundNumber)")
+            }
+            .font(.title2)
+            .padding()
+            .foregroundStyle(.white)
+            .background(.secondary)
+            .clipShape(.rect(cornerRadius: 30))
+                            
+            if countdown != -1 {
+                Spacer()
+                CountdownView(timeRemaining: countdown, isAlert: $isAlert)
+                    .alert("omg", isPresented: $isAlert) {}
+            }
+            
+            Spacer()
         }
     }
     

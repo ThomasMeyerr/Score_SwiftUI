@@ -207,9 +207,12 @@ struct CountdownView: View {
     @Environment(\.scenePhase) var scenePhase
     @State private var timeRemaining: Int
     @State private var isActive = true
+    @State private var stopAlert = false
+    @Binding var isAlert: Bool
     
-    init(timeRemaining: Int) {
+    init(timeRemaining: Int, isAlert: Binding<Bool>) {
         self._timeRemaining = State(initialValue: timeRemaining)
+        self._isAlert = isAlert
     }
     
     var body: some View {
@@ -231,6 +234,11 @@ struct CountdownView: View {
                 
                 if timeRemaining > 0 {
                     timeRemaining -= 1
+                }
+                
+                if timeRemaining == 0 && !stopAlert {
+                    isAlert = true
+                    stopAlert = true
                 }
             }
     }
