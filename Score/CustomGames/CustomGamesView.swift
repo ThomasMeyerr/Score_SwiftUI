@@ -176,15 +176,15 @@ struct CustomGamesView: View {
     }
     
     func sortedNameAndScore() -> [(key: String, value: Int)] {
-        nameAndScore.sorted { $0.value < $1.value }
+        nameAndScore.sorted { $0.value > $1.value }
     }
     
     func getLeaderName() -> String? {
-        nameAndScore.min(by: { $0.value < $1.value })?.key
+        nameAndScore.max(by: { $0.value < $1.value })?.key
     }
     
     func getLooserName() -> String? {
-        nameAndScore.max(by: { $0.value < $1.value })?.key
+        nameAndScore.min(by: { $0.value < $1.value })?.key
     }
     
     func endRound() {
@@ -198,11 +198,11 @@ struct CustomGamesView: View {
             roundScores[name] = 0
         }
         
-        let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
-        if possibleLooser! >= Int(maxScore) {
+        let possibleWinner = nameAndScore.max(by: { $0.value < $1.value })?.value
+        if possibleWinner! >= Int(maxScore) {
             isPartyFinished = true
             return
-        }        
+        }
     }
     
     func setupInitialScore() {
