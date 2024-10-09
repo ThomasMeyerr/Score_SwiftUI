@@ -32,7 +32,6 @@ struct CustomGamesView: View {
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
         self._countdown = State(initialValue: countdown)
-        
     }
     
     var body: some View {
@@ -125,7 +124,9 @@ struct CustomGamesView: View {
             if countdown != -1 {
                 Spacer()
                 CountdownView(timeRemaining: countdown, isAlert: $isAlert)
-                    .alert(getText(forKey: "timeUp", forLanguage: data.languages), isPresented: $isAlert) {}
+                    .alert(getText(forKey: "timeUp", forLanguage: data.languages), isPresented: $isAlert) {
+                        Button("Ok", role: .cancel) {}
+                    }
             }
             
             Spacer()
@@ -201,7 +202,7 @@ struct CustomGamesView: View {
         if possibleLooser! >= Int(maxScore) {
             isPartyFinished = true
             return
-        }
+        }        
     }
     
     func setupInitialScore() {
