@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct CustomGamesView: View {
+    
     @Environment(Data.self) var data
     @Environment(\.dismiss) var dismiss
     
@@ -31,6 +32,7 @@ struct CustomGamesView: View {
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
         self._countdown = State(initialValue: countdown)
+        
     }
     
     var body: some View {
@@ -123,7 +125,7 @@ struct CustomGamesView: View {
             if countdown != -1 {
                 Spacer()
                 CountdownView(timeRemaining: countdown, isAlert: $isAlert)
-                    .alert("omg", isPresented: $isAlert) {}
+                    .alert(getText(forKey: "timeUp", forLanguage: data.languages), isPresented: $isAlert) {}
             }
             
             Spacer()
@@ -198,6 +200,7 @@ struct CustomGamesView: View {
         let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
         if possibleLooser! >= Int(maxScore) {
             isPartyFinished = true
+            return
         }
     }
     

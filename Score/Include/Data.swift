@@ -177,6 +177,10 @@ let texts: [String: [Languages: String]] = [
         .fr: "Voulez-vous un compte à rebours ? (en secondes)",
         .en: "Did you want a countdown ? (in seconds)"
     ],
+    "timeUp": [
+        .fr: "Le temps est écoulé",
+        .en: "Time's up"
+    ],
 ]
 
 
