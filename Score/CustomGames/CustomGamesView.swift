@@ -88,9 +88,9 @@ struct CustomGamesView: View {
         .alert(isPresented: $isPartyFinished) {
             Alert(
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
-                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(nameAndScore[getLooserName()!] ?? 0))"),
+                message: nameAndScore.count > 1 ? Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(nameAndScore[getLooserName()!] ?? 0))") : nil,
                 dismissButton: .default(Text("OK")) {
-                    cleanData()
+                    cleanData() 
                 }
             )
         }
