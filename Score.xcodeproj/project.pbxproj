@@ -16,10 +16,11 @@
 		164F37BA2C84D45700650152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37B92C84D45700650152 /* Assets.xcassets */; };
 		164F37BD2C84D45700650152 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37BC2C84D45700650152 /* Preview Assets.xcassets */; };
 		164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37C32C84D8CF00650152 /* CardGamesView.swift */; };
+		16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */; };
 		16C700B52CAFF284005C6752 /* UnoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C700B42CAFF284005C6752 /* UnoView.swift */; };
 		16DE323A2C9AFEB5000678AC /* SkyjoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE32392C9AFEB5000678AC /* SkyjoView.swift */; };
 		16F3816F2C84DA7600569DF1 /* DiceGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3816E2C84DA7600569DF1 /* DiceGamesView.swift */; };
-		16F381712C84DA8400569DF1 /* CustomGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381702C84DA8400569DF1 /* CustomGamesView.swift */; };
+		16F381712C84DA8400569DF1 /* CustomSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381702C84DA8400569DF1 /* CustomSettingsView.swift */; };
 		16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381762C84DD6700569DF1 /* SettingsView.swift */; };
 		16F381792C84E0B000569DF1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381782C84E0B000569DF1 /* Data.swift */; };
 /* End PBXBuildFile section */
@@ -35,10 +36,11 @@
 		164F37B92C84D45700650152 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		164F37BC2C84D45700650152 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		164F37C32C84D8CF00650152 /* CardGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGamesView.swift; sourceTree = "<group>"; };
+		16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGamesView.swift; sourceTree = "<group>"; };
 		16C700B42CAFF284005C6752 /* UnoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoView.swift; sourceTree = "<group>"; };
 		16DE32392C9AFEB5000678AC /* SkyjoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyjoView.swift; sourceTree = "<group>"; };
 		16F3816E2C84DA7600569DF1 /* DiceGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceGamesView.swift; sourceTree = "<group>"; };
-		16F381702C84DA8400569DF1 /* CustomGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGamesView.swift; sourceTree = "<group>"; };
+		16F381702C84DA8400569DF1 /* CustomSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSettingsView.swift; sourceTree = "<group>"; };
 		16F381762C84DD6700569DF1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		16F381782C84E0B000569DF1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,7 +168,8 @@
 		16F381742C84DCD100569DF1 /* CustomGames */ = {
 			isa = PBXGroup;
 			children = (
-				16F381702C84DA8400569DF1 /* CustomGamesView.swift */,
+				16F381702C84DA8400569DF1 /* CustomSettingsView.swift */,
+				16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */,
 			);
 			path = CustomGames;
 			sourceTree = "<group>";
@@ -255,10 +258,11 @@
 				164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */,
 				163F867E2C88C6A20057B639 /* UnoSettingsView.swift in Sources */,
 				16C700B52CAFF284005C6752 /* UnoView.swift in Sources */,
-				16F381712C84DA8400569DF1 /* CustomGamesView.swift in Sources */,
+				16F381712C84DA8400569DF1 /* CustomSettingsView.swift in Sources */,
 				164F37B82C84D45500650152 /* ContentView.swift in Sources */,
 				16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */,
 				164F37B62C84D45500650152 /* ScoreApp.swift in Sources */,
+				16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */,
 				163F867C2C88C65D0057B639 /* Utils.swift in Sources */,
 				163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */,
 				163F867A2C88C5C50057B639 /* SkyjoSettingsView.swift in Sources */,
