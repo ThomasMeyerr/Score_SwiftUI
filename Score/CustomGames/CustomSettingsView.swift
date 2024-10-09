@@ -26,29 +26,7 @@ struct CustomSettingsView: View {
                     }
                     
                     Section(getText(forKey: "players", forLanguage: data.languages)) {
-                        Picker(getText(forKey: "numberOfPlayers", forLanguage: data.languages), selection: $numberOfPlayer) {
-                            ForEach(1..<13, id: \.self) {
-                                Text(String($0))
-                            }
-                        }
-                        .onChange(of: numberOfPlayer) { oldValue, newValue in
-                            if names.count < newValue {
-                                names.append(contentsOf: Array(repeating: "", count: newValue - names.count))
-                            } else if names.count > newValue {
-                                names.removeLast(names.count - newValue)
-                            }
-                        }
-                        
-                        ForEach(0..<numberOfPlayer, id: \.self) { index in
-                            TextField(getText(forKey: "pseudo", forLanguage: data.languages), text: Binding(
-                                get: { names.indices.contains(index) ? names[index] : "" },
-                                set: { newValue in
-                                    if names.indices.contains(index) {
-                                        names[index] = newValue
-                                    }
-                                }
-                            ))
-                        }
+                        loadPlayersList()
                     }
                     
                     Section(getText(forKey: "maxScore", forLanguage: data.languages)) {
@@ -89,12 +67,40 @@ struct CustomSettingsView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
+    func loadPlayersList() -> some View {
+        Section {
+            Picker(getText(forKey: "numberOfPlayers", forLanguage: data.languages), selection: $numberOfPlayer) {
+                ForEach(1..<13, id: \.self) {
+                    Text(String($0))
+                }
+            }
+            .onChange(of: numberOfPlayer) { oldValue, newValue in
+                if names.count < newValue {
+                    names.append(contentsOf: Array(repeating: "", count: newValue - names.count))
+                } else if names.count > newValue {
+                    names.removeLast(names.count - newValue)
+                }
+            }
+            
+            ForEach(0..<numberOfPlayer, id: \.self) { index in
+                TextField(getText(forKey: "pseudo", forLanguage: data.languages), text: Binding(
+                    get: { names.indices.contains(index) ? names[index] : "" },
+                    set: { newValue in
+                        if names.indices.contains(index) {
+                            names[index] = newValue
+                        }
+                    }
+                ))
+            }
+        }
+    }
+    
     func loadButtons() -> some View {
         HStack {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                    CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -103,7 +109,7 @@ struct CustomSettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
             }
             .padding()
             .foregroundStyle(.white)
