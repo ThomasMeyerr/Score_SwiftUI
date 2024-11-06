@@ -5,6 +5,7 @@
 //  Created by Thomas Meyer on 04/09/2024.
 //
 
+import Combine
 import SwiftUI
 
 
@@ -197,6 +198,36 @@ class CustomGameData: Codable {
         self.roundScores = roundScores
         self.roundNumber = roundNumber
         self.countdown = countdown
+    }
+}
+
+
+class CountdownTimer: ObservableObject {
+    @Published var remainingSeconds: Int
+    var timer: AnyCancellable?
+    
+    init(seconds: Int) {
+        self.remainingSeconds = seconds
+    }
+    
+    func startCountdown() {
+        timer?.cancel()
+        timer = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                if self.remainingSeconds > 0 {
+                    self.remainingSeconds -= 1
+                } else {
+                    self.timer?.cancel()
+                }
+            }
+    }
+    
+    func resetCountdown(to seconds: Int) {
+        timer?.cancel()
+        self.remainingSeconds = seconds
+        startCountdown()
     }
 }
 
