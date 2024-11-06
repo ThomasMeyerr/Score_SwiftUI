@@ -238,7 +238,6 @@ struct CountdownView: View {
     @ObservedObject var countdownTimer: CountdownTimer
     
     @State private var isActive = true
-    @State private var stopAlert = false
     
     @Binding var isAlert: Bool
 
@@ -253,9 +252,8 @@ struct CountdownView: View {
         .background(.secondary)
         .clipShape(.rect(cornerRadius: 30))
         .onChange(of: countdownTimer.remainingSeconds) {
-            if countdownTimer.remainingSeconds == 0 && !stopAlert {
+            if countdownTimer.remainingSeconds == 0 {
                 isAlert = true
-                stopAlert = true
             }
         }
         .onAppear {

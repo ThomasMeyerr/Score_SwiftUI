@@ -85,6 +85,7 @@ struct CustomGamesView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             setupInitialScore()
+            countdownTimer.resetCountdown(to: countdown)
         }
         .alert(isPresented: $isPartyFinished) {
             Alert(
