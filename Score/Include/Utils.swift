@@ -204,6 +204,8 @@ class CustomGameData: Codable {
 
 class CountdownTimer: ObservableObject {
     @Published var remainingSeconds: Int
+    @Environment(\.scenePhase) var scenePhase
+    
     var timer: AnyCancellable?
     
     init(seconds: Int) {
@@ -233,47 +235,31 @@ class CountdownTimer: ObservableObject {
 
 
 struct CountdownView: View {
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @ObservedObject var countdownTimer: CountdownTimer
     
-    @Environment(\.scenePhase) var scenePhase
-    @State private var timeRemaining: Int
     @State private var isActive = true
     @State private var stopAlert = false
+    
     @Binding var isAlert: Bool
-    
-    init(timeRemaining: Int, isAlert: Binding<Bool>) {
-        self._timeRemaining = State(initialValue: timeRemaining)
-        self._isAlert = isAlert
-    }
-    
+
     var body: some View {
         HStack {
             Image(systemName: "timer")
-            Text("\(timeRemaining)")
+            Text("\(countdownTimer.remainingSeconds)")
         }
         .font(.title2)
         .padding()
         .foregroundStyle(.white)
         .background(.secondary)
         .clipShape(.rect(cornerRadius: 30))
-        .onChange(of: scenePhase) {
-            if scenePhase == .active {
-                isActive = true
-            } else {
-                isActive = false
-            }
-        }
-        .onReceive(timer) { time in
-            guard isActive else { return }
-            
-            if timeRemaining > 0 {
-                timeRemaining -= 1
-            }
-            
-            if timeRemaining == 0 && !stopAlert {
+        .onChange(of: countdownTimer.remainingSeconds) {
+            if countdownTimer.remainingSeconds == 0 && !stopAlert {
                 isAlert = true
                 stopAlert = true
             }
+        }
+        .onAppear {
+            countdownTimer.startCountdown()
         }
     }
 }

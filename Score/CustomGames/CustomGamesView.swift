@@ -9,9 +9,10 @@ import SwiftUI
 
 
 struct CustomGamesView: View {
-    
     @Environment(Data.self) var data
     @Environment(\.dismiss) var dismiss
+    
+    @StateObject private var countdownTimer = CountdownTimer(seconds: 120)
     
     @State private var numberOfPlayer: Int
     @State private var maxScore: Double
@@ -123,10 +124,7 @@ struct CustomGamesView: View {
                             
             if countdown != -1 {
                 Spacer()
-                CountdownView(timeRemaining: countdown, isAlert: $isAlert)
-                    .alert(getText(forKey: "timeUp", forLanguage: data.languages), isPresented: $isAlert) {
-                        Button("Ok", role: .cancel) {}
-                    }
+                CountdownView(countdownTimer: countdownTimer, isAlert: $isAlert)
             }
             
             Spacer()
@@ -188,6 +186,7 @@ struct CustomGamesView: View {
     }
     
     func endRound() {
+        countdownTimer.resetCountdown(to: countdown)
         roundNumber += 1
         saveData()
         
