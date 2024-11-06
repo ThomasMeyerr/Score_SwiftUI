@@ -222,3 +222,10 @@ let rules: [String: [Languages: String]] = [
     ]
 
 ]
+
+
+// Scores array for Yahtzee
+let scoresString: [String: [String]] = [
+    "fr": ["As", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sous-Total", "Bonus (35 pts)", "Total I", "Max", "Min", "Total II", "Suite (20 pts)", "Full (30 pts)", "Carré (40 pts)", "Yam (50 pts)", "Total III", "Total"],
+    "en": ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes", "Subtotal", "Bonus (35 pts)", "Total I", "Max", "Min", "Total II", "Straight (20 pts)", "Full House (30 pts)", "Four of a Kind (40 pts)", "Yahtzee (50 pts)", "Total III", "Grand Total"]
+]

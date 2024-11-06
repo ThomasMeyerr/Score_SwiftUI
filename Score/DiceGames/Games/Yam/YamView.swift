@@ -5,7 +5,9 @@
 //  Created by Thomas Meyer on 06/11/2024.
 //
 
+
 import SwiftUI
+
 
 struct YamView: View {
     @Environment(Data.self) var data
@@ -13,6 +15,7 @@ struct YamView: View {
     
     @State private var numberOfPlayer: Int
     @State private var names: [String]
+    @State private var scores = scoresString
     @State private var isPartyFinished = false
     @State private var isCancelSure = false
     @State private var roundNumber = 1
@@ -37,20 +40,10 @@ struct YamView: View {
             .background(.secondary)
             .clipShape(.rect(cornerRadius: 30))
             
-//            Form {
-//                Section("Score") {
-//                    Grid {
-//                        ForEach(sortedNameAndScore(), id: \.key) { name, score in
-//                            GridRow {
-//                                HStack(spacing: 0) {
-//                                    cellView(text: name, isLeader: name == getLeaderName())
-//                                    cellView(text: String(score))
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+            Form {
+                Section("Score") {
+                }
+            }
             
             loadButtons()
         }
