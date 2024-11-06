@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SkyjoSettingsView: View {
     @Environment(Data.self) var data
+    
     @State private var numberOfPlayer = 2
     @State private var maxScore: Double = 100
     @State private var names: [String] = Array(repeating: "", count: 2)

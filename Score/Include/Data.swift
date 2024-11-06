@@ -163,6 +163,10 @@ let texts: [String: [Languages: String]] = [
         .fr: "Jeux de Dés",
         .en: "Dice Games"
     ],
+    "yamTitle": [
+        .fr: "Yam",
+        .en: "Yahtzee"
+    ],
     
     // CustomGamesView
     "customGamesTitle": [
@@ -207,8 +211,8 @@ let rules: [String: [Languages: String]] = [
     
     // DiceGamesView
     "yam": [
-        .fr: "Objectif : Obtenir le plus de points possible en lançant des dés pour réaliser des combinaisons spécifiques.\n\nMise en place : Chaque joueur reçoit un tableau de score avec différentes catégories. Le jeu se joue avec 5 dés.\n\nTour de jeu : À chaque tour, le joueur peut lancer les dés jusqu'à trois fois. Après chaque lancer, il peut choisir de garder certains dés et de relancer les autres pour essayer d’obtenir une combinaison souhaitée.\n\nCombinaisons : Les combinaisons possibles incluent :\n\tBrelan : Trois dés identiques\n\tCarré : Quatre dés identiques\n\tFull : Un brelan et une paire\n\tPetite suite : Quatre dés consécutifs\n\tGrande suite : Cinq dés consécutifs\n\tYam : Cinq dés identiques\n\nFin de partie : Après 13 tours, chaque joueur a rempli toutes les catégories de son tableau de score. Les points sont comptés selon les combinaisons obtenues et le joueur avec le total le plus élevé gagne.",
-        .en: "Objective: Score the most points by rolling dice to achieve specific combinations.\n\nSetup: Each player gets a score sheet with different categories. The game uses 5 dice.\n\nTurn: On each turn, a player can roll the dice up to three times. After each roll, they can choose to keep certain dice and re-roll the others to try for a desired combination.\n\nCombinations: Possible combinations include:\n\tThree of a Kind: Three identical dice\n\tFour of a Kind: Four identical dice\n\tFull House: Three of a kind and a pair\n\tSmall Straight: Four consecutive dice\n\tLarge Straight: Five consecutive dice\n\tYahtzee: Five identical dice\n\nEnd of Game: After 13 rounds, each player has filled out all categories on their score sheet. Points are totaled, and the player with the highest score wins."
+        .fr: "Objectif : Obtenir le plus de points possible en lançant des dés pour réaliser des combinaisons spécifiques.\n\nMise en place : Chaque joueur reçoit un tableau de score avec différentes catégories. Le jeu se joue avec 5 dés.\n\nTour de jeu : À chaque tour, le joueur peut lancer les dés jusqu'à trois fois. Après chaque lancer, il peut choisir de garder certains dés et de relancer les autres pour essayer d’obtenir une combinaison souhaitée.\n\nCombinaisons : Les combinaisons possibles incluent :\nBrelan : Trois dés identiques\nCarré : Quatre dés identiques\nFull : Un brelan et une paire\nGrande suite : Cinq dés consécutifs\nYam : Cinq dés identiques\n\nFin de partie : Après 13 tours, chaque joueur a rempli toutes les catégories de son tableau de score. Les points sont comptés selon les combinaisons obtenues et le joueur avec le total le plus élevé gagne.",
+        .en: "Objective: Score the most points by rolling dice to achieve specific combinations.\n\nSetup: Each player gets a score sheet with different categories. The game uses 5 dice.\n\nTurn: On each turn, a player can roll the dice up to three times. After each roll, they can choose to keep certain dice and re-roll the others to try for a desired combination.\n\nCombinations: Possible combinations include:\nThree of a Kind: Three identical dice\nFour of a Kind: Four identical dice\nFull House: Three of a kind and a pair\nLarge Straight: Five consecutive dice\nYahtzee: Five identical dice\n\nEnd of Game: After 13 rounds, each player has filled out all categories on their score sheet. Points are totaled, and the player with the highest score wins."
     ],
     
     // CustomGamesView
