@@ -22,10 +22,6 @@ struct CustomSettingsView: View {
         NavigationStack {
             VStack {
                 Form {
-                    Section(getText(forKey: "rules", forLanguage: data.languages)) {
-                        RulesText(text: getRules(forKey: "customGames", forLanguage: data.languages), language: data.languages)
-                    }
-                    
                     Section(getText(forKey: "players", forLanguage: data.languages)) {
                         loadPlayersList()
                     }
@@ -48,6 +44,10 @@ struct CustomSettingsView: View {
                                 Slider(value: $countdown, in: 10...300, step: 10)
                             }
                         }
+                    }
+                    
+                    Section(getText(forKey: "rules", forLanguage: data.languages)) {
+                        RulesText(text: getRules(forKey: "customGames", forLanguage: data.languages), language: data.languages)
                     }
                 }
                 
@@ -118,7 +118,7 @@ struct CustomSettingsView: View {
             }
             .padding()
             .foregroundStyle(.white)
-            .background(.blue)
+            .background(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count ? .gray : .blue)
             .cornerRadius(10)
             .disabled(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count)
             .onTapGesture {

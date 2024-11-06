@@ -12,8 +12,7 @@ struct YamSettingsView: View {
     @Environment(Data.self) var data
     
     @State private var numberOfPlayer = 2
-    @State private var maxScore: Double = 100
-    @State private var names: [String] = Array(repeating: "", count: 2)
+    @State private var names: [String] = Array(repeating: "", count: 1)
     @State private var isShowingAlert = false
     @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyYamOngoing")
     
@@ -23,13 +22,6 @@ struct YamSettingsView: View {
                 Form {
                     Section(getText(forKey: "players", forLanguage: data.languages)) {
                         loadPlayersList()
-                    }
-                    
-                    Section(getText(forKey: "maxScore", forLanguage: data.languages)) {
-                        HStack {
-                            Text(String(Int(maxScore)))
-                            Slider(value: $maxScore, in: 80...120, step: 1)
-                        }
                     }
                     
                     Section(getText(forKey: "rules", forLanguage: data.languages)) {
@@ -87,7 +79,7 @@ struct YamSettingsView: View {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+//                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -96,11 +88,11 @@ struct YamSettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+//                SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
             }
             .padding()
             .foregroundStyle(.white)
-            .background(.blue)
+            .background(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count ? .gray : .blue)
             .cornerRadius(10)
             .disabled(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count)
             .onTapGesture {
@@ -118,7 +110,6 @@ struct YamSettingsView: View {
     func resetData() {
         isPartyOngoing = UserDefaults.standard.bool(forKey: "partyYamOngoing")
         numberOfPlayer = 1
-        maxScore = 100
         names = Array(repeating: "", count: 1)
     }
 }

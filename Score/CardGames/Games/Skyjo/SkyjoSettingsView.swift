@@ -100,7 +100,7 @@ struct SkyjoSettingsView: View {
             }
             .padding()
             .foregroundStyle(.white)
-            .background(.blue)
+            .background(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count ? .gray : .blue)
             .cornerRadius(10)
             .disabled(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count)
             .onTapGesture {
