@@ -181,6 +181,10 @@ let texts: [String: [Languages: String]] = [
         .fr: "Le temps est écoulé",
         .en: "Time's up"
     ],
+    "timeUpMessage": [
+        .fr: "Entrez votre score s'il vous plaît",
+        .en: "Please enter your score"
+    ],
 ]
 
 

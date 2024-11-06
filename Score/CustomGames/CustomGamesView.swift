@@ -85,7 +85,7 @@ struct CustomGamesView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             setupInitialScore()
-            countdownTimer.resetCountdown(to: countdown)
+//            countdownTimer.resetCountdown(to: countdown)
         }
         .alert(isPresented: $isPartyFinished) {
             Alert(
@@ -94,6 +94,13 @@ struct CustomGamesView: View {
                 dismissButton: .default(Text("OK")) {
                     cleanData() 
                 }
+            )
+        }
+        .alert(isPresented: $isAlert) {
+            Alert(
+                title: Text(getText(forKey: "timeUp", forLanguage: data.languages)),
+                message: Text(getText(forKey: "timeUpMessage", forLanguage: data.languages)),
+                dismissButton: .default(Text("OK")) {}
             )
         }
         .sheet(isPresented: $isShowingKeyboard) {
