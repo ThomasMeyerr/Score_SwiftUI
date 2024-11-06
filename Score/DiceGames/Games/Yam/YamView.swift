@@ -15,7 +15,7 @@ struct YamView: View {
     
     @State private var numberOfPlayer: Int
     @State private var names: [String]
-    @State private var scores = scoresString
+    @State private var scores: [String]
     @State private var isPartyFinished = false
     @State private var isCancelSure = false
     @State private var roundNumber = 1
@@ -23,9 +23,10 @@ struct YamView: View {
     @State private var isShowingKeyboard = false
     @State private var isDisabled = false
     
-    init(numberOfPlayer: Int, names: [String]) {
+    init(numberOfPlayer: Int, names: [String], language: Languages) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._names = State(initialValue: names)
+        self._scores = State(initialValue: getScoresString(forLanguage: language))
     }
     
     var body: some View {
@@ -196,6 +197,6 @@ struct YamView: View {
 }
 
 #Preview {
-    YamView(numberOfPlayer: 2, names: ["Thomas", "Zoé"])
+    YamView(numberOfPlayer: 2, names: ["Thomas", "Zoé"], language: .fr)
         .environment(Data())
 }

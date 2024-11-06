@@ -80,7 +80,7 @@ struct YamSettingsView: View {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    YamView(numberOfPlayer: numberOfPlayer, names: names)
+                    YamView(numberOfPlayer: numberOfPlayer, names: names, language: data.languages)
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -89,7 +89,7 @@ struct YamSettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                YamView(numberOfPlayer: numberOfPlayer, names: names)
+                YamView(numberOfPlayer: numberOfPlayer, names: names, language: data.languages)
             }
             .padding()
             .foregroundStyle(.white)

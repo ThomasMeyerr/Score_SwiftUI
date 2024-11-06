@@ -34,8 +34,8 @@ func getRules(forKey key: String, forLanguage language: Languages) -> String {
 }
 
 
-func getScoresString(forKey key: String, forLanguage language: Languages) -> [String] {
-    return scoresString[key] ?? scoresString["en"]!
+func getScoresString(forLanguage language: Languages) -> [String] {
+    return scoresString[language] ?? scoresString[.en] ?? []
 }
 
 
