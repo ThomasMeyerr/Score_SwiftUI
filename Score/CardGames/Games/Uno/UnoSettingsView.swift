@@ -56,7 +56,7 @@ struct UnoSettingsView: View {
     func loadPlayersList() -> some View {
         Section {
             Picker(getText(forKey: "numberOfPlayers", forLanguage: data.languages), selection: $numberOfPlayer) {
-                ForEach(1..<13, id: \.self) {
+                ForEach(2..<11, id: \.self) {
                     Text(String($0))
                 }
             }
