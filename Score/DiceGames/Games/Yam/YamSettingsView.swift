@@ -79,7 +79,7 @@ struct YamSettingsView: View {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-//                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                    YamView(numberOfPlayer: numberOfPlayer, names: names)
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -88,7 +88,7 @@ struct YamSettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-//                SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                YamView(numberOfPlayer: numberOfPlayer, names: names)
             }
             .padding()
             .foregroundStyle(.white)
