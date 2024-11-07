@@ -87,7 +87,7 @@ struct UnoSettingsView: View {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                    UnoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -96,7 +96,7 @@ struct UnoSettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                UnoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
             }
             .padding()
             .foregroundStyle(.white)

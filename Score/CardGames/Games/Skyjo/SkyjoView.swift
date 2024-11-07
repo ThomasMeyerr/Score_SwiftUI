@@ -23,11 +23,13 @@ struct SkyjoView: View {
     @State private var nameForCustomKeyboard = ""
     @State private var isShowingKeyboard = false
     @State private var isDisabled = false
+    @State private var isNewGame: Bool
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String]) {
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
+        self._isNewGame = State(initialValue: isNewGame)
     }
     
     var body: some View {
@@ -183,9 +185,10 @@ struct SkyjoView: View {
     }
     
     func setupInitialScore() {
-        if UserDefaults.standard.bool(forKey: "partySkyjoOngoing") {
+        if !isNewGame {
             loadData()
         } else {
+            UserDefaults.standard.set(false, forKey: "partySkyjoOngoing")
             let scores = [Int](repeating: 0, count: numberOfPlayer)
             var combinedDict: [String: Int] = [:]
             for (index, name) in names.enumerated() {
@@ -233,6 +236,6 @@ struct SkyjoView: View {
 }
 
 #Preview {
-    SkyjoView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"])
+    SkyjoView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"], isNewGame: true)
         .environment(Data())
 }

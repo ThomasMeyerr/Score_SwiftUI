@@ -87,7 +87,7 @@ struct SkyjoSettingsView: View {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: false)
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -96,7 +96,7 @@ struct SkyjoSettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names)
+                SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: true)
             }
             .padding()
             .foregroundStyle(.white)
@@ -106,9 +106,7 @@ struct SkyjoSettingsView: View {
             .onTapGesture {
                 if (names.count != Set(names).count) && !names.contains(where: { $0.isEmpty }) {
                     isShowingAlert = true
-                    return
                 }
-                UserDefaults.standard.set(false, forKey: "partySkyjoOngoing")
             }
             Spacer()
         }
