@@ -106,9 +106,7 @@ struct UnoSettingsView: View {
             .onTapGesture {
                 if (names.count != Set(names).count) && !names.contains(where: { $0.isEmpty }) {
                     isShowingAlert = true
-                    return
                 }
-                UserDefaults.standard.set(false, forKey: "partyUnoOngoing")
             }
             Spacer()
         }
