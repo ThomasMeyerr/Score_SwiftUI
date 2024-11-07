@@ -23,17 +23,19 @@ struct YamView: View {
     @State private var nameForCustomKeyboard = ""
     @State private var isShowingKeyboard = false
     @State private var isDisabled = false
+    @State private var isNewGame: Bool
     
     private var gridItems: [GridItem] {
         [GridItem(.flexible())] + Array(repeating: GridItem(.flexible(), alignment: .center), count: numberOfPlayer)
     }
     
-    init(numberOfPlayer: Int, names: [String], language: Languages) {
+    init(numberOfPlayer: Int, names: [String], language: Languages, isNewGame: Bool) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._names = State(initialValue: names)
         let scoreList = getScoresString(forLanguage: language)
         self._scores = State(initialValue: scoreList)
         self._playerScores = State(initialValue: names.reduce(into: [:]) { $0[$1] = Array(repeating: 0, count: scoreList.count) })
+        self._isNewGame = State(initialValue: isNewGame)
     }
     
     var body: some View {
@@ -187,9 +189,10 @@ struct YamView: View {
     }
     
     func setupInitialScore() {
-        if UserDefaults.standard.bool(forKey: "partySkyjoOngoing") {
+        if !isNewGame {
             loadData()
         } else {
+            UserDefaults.standard.set(false, forKey: "partyYamOngoing")
             let scores = [Int](repeating: 0, count: numberOfPlayer)
             var combinedDict: [String: Int] = [:]
             for (index, name) in names.enumerated() {
@@ -202,7 +205,7 @@ struct YamView: View {
     }
     
     func saveData() {
-        UserDefaults.standard.set(true, forKey: "partySkyjoOngoing")
+        UserDefaults.standard.set(true, forKey: "partyYamOngoing")
 //        let data = CardGameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
         
 //        if let encodedGameData = try? JSONEncoder().encode(data) {
@@ -231,12 +234,12 @@ struct YamView: View {
     }
     
     func cleanData() {
-        UserDefaults.standard.set(false, forKey: "partySkyjoOngoing")
+        UserDefaults.standard.set(false, forKey: "partyYamOngoing")
         dismiss()
     }
 }
 
 #Preview {
-    YamView(numberOfPlayer: 2, names: ["Thomas", "Zoé"], language: .fr)
+    YamView(numberOfPlayer: 2, names: ["Thomas", "Zoé"], language: .fr, isNewGame: true)
         .environment(Data())
 }

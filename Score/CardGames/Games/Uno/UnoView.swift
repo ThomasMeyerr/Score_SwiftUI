@@ -22,11 +22,13 @@ struct UnoView: View {
     @State private var nameForCustomKeyboard = ""
     @State private var isShowingKeyboard = false
     @State private var isDisabled = false
+    @State private var isNewGame: Bool
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String]) {
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
+        self._isNewGame = State(initialValue: isNewGame)
     }
     
     var body: some View {
@@ -182,9 +184,10 @@ struct UnoView: View {
     }
     
     func setupInitialScore() {
-        if UserDefaults.standard.bool(forKey: "partyUnoOngoing") {
+        if !isNewGame {
             loadData()
         } else {
+            UserDefaults.standard.set(false, forKey: "partyUnoOngoing")
             let scores = [Int](repeating: 0, count: numberOfPlayer)
             var combinedDict: [String: Int] = [:]
             for (index, name) in names.enumerated() {
@@ -232,7 +235,7 @@ struct UnoView: View {
 }
 
 #Preview {
-    UnoView(numberOfPlayer: 2, maxScore: 500, names: ["Thomas", "Zoé"])
+    UnoView(numberOfPlayer: 2, maxScore: 500, names: ["Thomas", "Zoé"], isNewGame: true)
         .environment(Data())
 }
 
