@@ -16,6 +16,7 @@
 		164F37BA2C84D45700650152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37B92C84D45700650152 /* Assets.xcassets */; };
 		164F37BD2C84D45700650152 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37BC2C84D45700650152 /* Preview Assets.xcassets */; };
 		164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37C32C84D8CF00650152 /* CardGamesView.swift */; };
+		166F49952CDE18E00006AD25 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 166F49942CDE18E00006AD25 /* GoogleMobileAds */; };
 		168382F12CDBA9A300B286E2 /* YamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168382F02CDBA9A300B286E2 /* YamView.swift */; };
 		16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */; };
 		16C700B52CAFF284005C6752 /* UnoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C700B42CAFF284005C6752 /* UnoView.swift */; };
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				166F49952CDE18E00006AD25 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +204,9 @@
 			dependencies = (
 			);
 			name = Score;
+			packageProductDependencies = (
+				166F49942CDE18E00006AD25 /* GoogleMobileAds */,
+			);
 			productName = Score;
 			productReference = 164F37B22C84D45500650152 /* Score.app */;
 			productType = "com.apple.product-type.application";
@@ -230,6 +235,9 @@
 				Base,
 			);
 			mainGroup = 164F37A92C84D45500650152;
+			packageReferences = (
+				166F49932CDE18E00006AD25 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = 164F37B32C84D45500650152 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -476,6 +484,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		166F49932CDE18E00006AD25 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		166F49942CDE18E00006AD25 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 166F49932CDE18E00006AD25 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 164F37AA2C84D45500650152 /* Project object */;
 }
