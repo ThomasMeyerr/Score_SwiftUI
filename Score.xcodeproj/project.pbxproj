@@ -18,6 +18,7 @@
 		164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37C32C84D8CF00650152 /* CardGamesView.swift */; };
 		166F49952CDE18E00006AD25 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 166F49942CDE18E00006AD25 /* GoogleMobileAds */; };
 		168382F12CDBA9A300B286E2 /* YamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168382F02CDBA9A300B286E2 /* YamView.swift */; };
+		16A1CCE12CE4E58100B93997 /* InterstitialAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1CCE02CE4E58100B93997 /* InterstitialAd.swift */; };
 		16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */; };
 		16C700B52CAFF284005C6752 /* UnoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C700B42CAFF284005C6752 /* UnoView.swift */; };
 		16DE323A2C9AFEB5000678AC /* SkyjoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE32392C9AFEB5000678AC /* SkyjoView.swift */; };
@@ -39,6 +40,7 @@
 		164F37BC2C84D45700650152 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		164F37C32C84D8CF00650152 /* CardGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGamesView.swift; sourceTree = "<group>"; };
 		168382F02CDBA9A300B286E2 /* YamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamView.swift; sourceTree = "<group>"; };
+		16A1CCE02CE4E58100B93997 /* InterstitialAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAd.swift; sourceTree = "<group>"; };
 		16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGamesView.swift; sourceTree = "<group>"; };
 		16C700B42CAFF284005C6752 /* UnoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoView.swift; sourceTree = "<group>"; };
 		16DE32392C9AFEB5000678AC /* SkyjoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyjoView.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			children = (
 				16F381782C84E0B000569DF1 /* Data.swift */,
 				163F867B2C88C65D0057B639 /* Utils.swift */,
+				16A1CCE02CE4E58100B93997 /* InterstitialAd.swift */,
 			);
 			path = Include;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16A1CCE12CE4E58100B93997 /* InterstitialAd.swift in Sources */,
 				16F381792C84E0B000569DF1 /* Data.swift in Sources */,
 				16DE323A2C9AFEB5000678AC /* SkyjoView.swift in Sources */,
 				164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */,
