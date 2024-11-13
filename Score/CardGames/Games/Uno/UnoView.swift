@@ -64,20 +64,23 @@ struct UnoView: View {
                             
                             Spacer()
                             
-                            TextField("Score", value: Binding(
-                                get: {
-                                    roundScores[name] ?? 0
-                                },
-                                set: { newValue in
-                                    roundScores[name] = newValue
-                                    isDisabled = true
+                            HStack {
+                                TextField("Score", value: Binding(
+                                    get: {
+                                        roundScores[name] ?? 0
+                                    },
+                                    set: { newValue in
+                                        roundScores[name] = newValue
+                                        isDisabled = true
+                                    }
+                                ), formatter: NumberFormatter())
+                                .onTapGesture {
+                                    nameForCustomKeyboard = name
+                                    isShowingKeyboard = true
                                 }
-                            ), formatter: NumberFormatter())
-                            .onTapGesture {
-                                nameForCustomKeyboard = name
-                                isShowingKeyboard = true
+                                .disabled(isDisabled)
                             }
-                            .disabled(isDisabled)
+                            .frame(width: 20, alignment: .leading)
                         }
                     }
                 }
