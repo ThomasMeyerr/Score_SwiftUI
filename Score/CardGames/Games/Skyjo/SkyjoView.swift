@@ -45,7 +45,7 @@ struct SkyjoView: View {
             .clipShape(.rect(cornerRadius: 30))
             
             Form {
-                Section("Score") {
+                Section(getText(forKey: "overallScore", forLanguage: data.languages)) {
                     Grid {
                         ForEach(sortedNameAndScore(), id: \.key) { name, score in
                             GridRow {
@@ -58,7 +58,7 @@ struct SkyjoView: View {
                     }
                 }
                 
-                Section(getText(forKey: "players", forLanguage: data.languages)) {
+                Section(getText(forKey: "roundScore", forLanguage: data.languages)) {
                     ForEach(Array(roundScores.keys), id: \.self) { name in
                         HStack {
                             Text(name)

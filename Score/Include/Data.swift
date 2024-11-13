@@ -103,9 +103,13 @@ let texts: [String: [Languages: String]] = [
         .fr: "Lancer la partie",
         .en: "Launch game"
     ],
-    "players": [
-        .fr: "Joueurs",
-        .en: "Players"
+    "roundScore": [
+        .fr: "Score du tour",
+        .en: "Round score"
+    ],
+    "overallScore": [
+        .fr: "Score de la partie",
+        .en: "Overall score"
     ],
     "maxScore": [
         .fr: "Score maximum",
