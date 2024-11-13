@@ -65,6 +65,10 @@ let texts: [String: [Languages: String]] = [
         .fr: "3,99€",
         .en: "3.99$"
     ],
+    "settingsButtonDailyAdds": [
+        .fr: "Enlever les publicités pour 24 heures",
+        .en: "Remove adds for 24 hours"
+    ],
     
     // GameSettingsView
     "rules": [

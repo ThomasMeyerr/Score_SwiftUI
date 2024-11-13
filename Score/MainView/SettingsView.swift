@@ -25,6 +25,10 @@ struct SettingsView: View {
                         Text(getText(forKey: "settingsButtonAddsPrice", forLanguage: data.languages))
                     }
                 }
+                
+                Button {} label: {
+                    Text(getText(forKey: "settingsButtonDailyAdds", forLanguage: data.languages))
+                }
             }
             
             Section {
