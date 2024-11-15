@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SettingsView: View {
     let languages: [String: Languages] = ["English": .en, "Français": .fr]
+    let flags: [String: String] = ["English": " 🇬🇧", "Français": " 🇫🇷"]
 
     @Environment(Data.self) var data
     @State private var languageSelected = "English"
@@ -34,7 +35,7 @@ struct SettingsView: View {
             Section {
                 Picker(getText(forKey: "settingsPicker", forLanguage: data.languages), selection: $languageSelected) {
                     ForEach(Array(languages.keys), id: \.self) { key in
-                        Text(key)
+                        Text(key + (flags[key] ?? ""))
                             .tag(key)
                     }
                 }

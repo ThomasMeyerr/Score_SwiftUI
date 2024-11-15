@@ -50,13 +50,21 @@ struct YamView: View {
             
             Form {
                 Section(getText(forKey: "overallScore", forLanguage: data.languages)) {
-                    ForEach(rules.indices, id: \.self) { index in
-                        HStack {
-                            cellView(text: rules[index])
-                            
-                            if index == 0 {
-                                ForEach(names, id: \.self) { name in
-                                    cellView(text: name)
+                    ScrollView(.horizontal) {
+                        VStack(alignment: .leading) {
+                            ForEach(rules.indices, id: \.self) { index in
+                                HStack {
+                                    cellView(text: rules[index])
+                                    
+                                    if index == 0 {
+                                        ForEach(names, id: \.self) { name in
+                                            cellView(text: name)
+                                        }
+                                    } else {
+                                        ForEach(names, id: \.self) { name in
+                                            cellView(text: "\(playerScores[name]?[index] ?? 0)")
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -129,8 +137,9 @@ struct YamView: View {
                     .foregroundStyle(.yellow)
             }
             Text(text)
+                .lineLimit(1)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(width: 80, height: 40)
         .padding()
         .border(.gray, width: 1)
     }
@@ -216,6 +225,6 @@ struct YamView: View {
 }
 
 #Preview {
-    YamView(numberOfPlayer: 2, names: ["Thomas", "Zoé"], language: .fr, isNewGame: true)
+    YamView(numberOfPlayer: 5, names: ["Thomas", "Zoé", "de", "fr", "de"], language: .fr, isNewGame: true)
         .environment(Data())
 }
