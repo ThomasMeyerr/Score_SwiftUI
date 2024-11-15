@@ -34,8 +34,8 @@ func getRules(forKey key: String, forLanguage language: Languages) -> String {
 }
 
 
-func getScoresString(forLanguage language: Languages) -> [String] {
-    return scoresString[language] ?? scoresString[.en] ?? []
+func getYamScoresString(forLanguage language: Languages) -> [String] {
+    return yamScoresString[language] ?? yamScoresString[.en] ?? []
 }
 
 

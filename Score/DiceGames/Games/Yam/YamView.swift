@@ -15,6 +15,7 @@ struct YamView: View {
     
     @State private var numberOfPlayer: Int
     @State private var names: [String]
+    @State private var rules: [String]
     @State private var scores: [String]
     @State private var playerScores: [String: [Int]]
     @State private var isPartyFinished = false
@@ -25,14 +26,11 @@ struct YamView: View {
     @State private var isDisabled = false
     @State private var isNewGame: Bool
     
-    private var gridItems: [GridItem] {
-        [GridItem(.flexible())] + Array(repeating: GridItem(.flexible(), alignment: .center), count: numberOfPlayer)
-    }
-    
     init(numberOfPlayer: Int, names: [String], language: Languages, isNewGame: Bool) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._names = State(initialValue: names)
-        let scoreList = getScoresString(forLanguage: language)
+        self._rules = State(initialValue: getYamScoresString(forLanguage: language))
+        let scoreList = getYamScoresString(forLanguage: language)
         self._scores = State(initialValue: scoreList)
         self._playerScores = State(initialValue: names.reduce(into: [:]) { $0[$1] = Array(repeating: 0, count: scoreList.count) })
         self._isNewGame = State(initialValue: isNewGame)
@@ -51,42 +49,9 @@ struct YamView: View {
             .clipShape(.rect(cornerRadius: 30))
             
             Form {
-                Section("Score") {
-                    LazyVGrid(columns: gridItems, spacing: 16) {
-                        // En-tête des colonnes : Type de scores et noms des joueurs
-                        Text("Score")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                        
-                        ForEach(names, id: \.self) { name in
-                            Text(name)
-                                .font(.headline)
-                                .padding()
-                                .frame(maxWidth: .infinity, alignment: .center)
-                        }
-                        
-                        // Ligne des types de scores et champs de score pour chaque joueur
-                        ForEach(scores.indices, id: \.self) { index in
-                            // Colonne de gauche : types de scores
-                            Text(scores[index])
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding()
-                                .background(Color.gray.opacity(0.1))
-                            
-                            // Colonnes des scores pour chaque joueur
-                            ForEach(names, id: \.self) { name in
-                                TextField("Score", value: Binding(
-                                    get: { playerScores[name]?[index] ?? 0 },
-                                    set: { newValue in playerScores[name]?[index] = newValue }
-                                ), formatter: NumberFormatter())
-                                    .multilineTextAlignment(.center)
-                                    .keyboardType(.numberPad)
-                                    .padding()
-                                    .background(Color.gray.opacity(0.1))
-                                    .cornerRadius(5)
-                            }
-                        }
+                Section(getText(forKey: "overallScore", forLanguage: data.languages)) {
+                    ForEach(rules.indices, id: \.self) { index in
+                        cellView(text: rules[index])
                     }
                 }
             }
@@ -157,6 +122,9 @@ struct YamView: View {
             }
             Text(text)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
+        .border(.gray, width: 1)
     }
     
 //    func sortedNameAndScore() -> [(key: String, value: Int)] {
