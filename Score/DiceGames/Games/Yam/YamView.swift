@@ -54,11 +54,11 @@ struct YamView: View {
                         VStack(alignment: .leading) {
                             ForEach(rules.indices, id: \.self) { index in
                                 HStack {
-                                    cellView(text: rules[index])
+                                    cellView(text: rules[index], menu: true, players: index == 0 ? true : false)
                                     
                                     if index == 0 {
                                         ForEach(names, id: \.self) { name in
-                                            cellView(text: name)
+                                            cellView(text: name, title: true)
                                         }
                                     } else {
                                         ForEach(names, id: \.self) { name in
@@ -130,7 +130,7 @@ struct YamView: View {
         }
     }
     
-    func cellView(text: String, isLeader: Bool = false) -> some View {
+    func cellView(text: String, isLeader: Bool = false, menu: Bool = false, title: Bool = false, players: Bool = false) -> some View {
         HStack {
             if isLeader {
                 Image(systemName: "crown.fill")
@@ -138,10 +138,12 @@ struct YamView: View {
             }
             Text(text)
                 .lineLimit(1)
+                .fontWeight(title ? .bold : menu && (text.lowercased().contains("total") || text.lowercased().contains("bonus")) ? .bold : players ? .bold : nil)
         }
         .frame(width: 80, height: 40)
         .padding()
         .border(.gray, width: 1)
+        .background(menu || title ? Color(.systemGray6) : nil)
     }
     
 //    func sortedNameAndScore() -> [(key: String, value: Int)] {
