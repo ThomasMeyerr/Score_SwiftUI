@@ -25,6 +25,10 @@ struct YamView: View {
     @State private var isShowingKeyboard = false
     @State private var isDisabled = false
     @State private var isNewGame: Bool
+    @State private var activePlayer: String? = nil
+    @State private var activeRuleIndex: Int? = nil
+    
+    let totalsAndBonuses: [Int] = [7, 8, 9, 12, 17, 18]
     
     init(numberOfPlayer: Int, names: [String], language: Languages, isNewGame: Bool) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
@@ -51,7 +55,6 @@ struct YamView: View {
             Form {
                 Section(getText(forKey: "overallScore", forLanguage: data.languages)) {
                     ScrollView(.horizontal) {
-                        let totals: [Int] = [7, 8, 9, 12, 17, 18]
                         VStack(alignment: .leading) {
                             ForEach(rules.indices, id: \.self) { index in
                                 HStack {
@@ -63,7 +66,7 @@ struct YamView: View {
                                         }
                                     } else {
                                         ForEach(names, id: \.self) { name in
-                                            cellView(text: "\(playerScores[name]?[index] ?? 0)", menu: totals.contains(index) ? true : false)
+                                            cellView(text: "\(playerScores[name]?[index] ?? 0)", playerName: name, ruleIndex: index, menu: totalsAndBonuses.contains(index) ? true : false)
                                         }
                                     }
                                 }
@@ -89,17 +92,21 @@ struct YamView: View {
 //                }
 //            )
 //        }
-//        .sheet(isPresented: $isShowingKeyboard) {
-//            CustomKeyboard(input: Binding(
-//                get: { roundScores[nameForCustomKeyboard] ?? 0 },
-//                set: { newValue in roundScores[nameForCustomKeyboard] = newValue }
-//            ))
-//        }
-//        .onChange(of: isShowingKeyboard) { oldValue, newValue in
-//            if !newValue {
-//                isDisabled = false
-//            }
-//        }
+        .sheet(isPresented: $isShowingKeyboard) {
+            if let playerName = activePlayer, let ruleIndex = activeRuleIndex {
+                CustomKeyboard(
+                    input: Binding(
+                        get: { playerScores[playerName]?[ruleIndex] ?? 0 },
+                        set: { newValue in playerScores[playerName]?[ruleIndex] = newValue }
+                    )
+                )
+            }
+        }
+        .onChange(of: isShowingKeyboard) { oldValue, newValue in
+            if !newValue {
+                isDisabled = false
+            }
+        }
     }
     
     func loadButtons() -> some View {
@@ -131,7 +138,7 @@ struct YamView: View {
         }
     }
     
-    func cellView(text: String, isLeader: Bool = false, menu: Bool = false, title: Bool = false, players: Bool = false) -> some View {
+    func cellView(text: String, playerName: String? = nil, ruleIndex: Int? = nil, isLeader: Bool = false, menu: Bool = false, title: Bool = false, players: Bool = false) -> some View {
         HStack {
             if isLeader {
                 Image(systemName: "crown.fill")
@@ -145,6 +152,13 @@ struct YamView: View {
         .padding()
         .border(.gray, width: 1)
         .background(menu || title ? Color(.systemGray5) : nil)
+        .onTapGesture {
+            if let playerName = playerName, let ruleIndex = ruleIndex {
+                activePlayer = playerName
+                activeRuleIndex = ruleIndex
+                isShowingKeyboard = true
+            }
+        }
     }
     
 //    func sortedNameAndScore() -> [(key: String, value: Int)] {
