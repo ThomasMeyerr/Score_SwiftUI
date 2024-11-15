@@ -51,6 +51,7 @@ struct YamView: View {
             Form {
                 Section(getText(forKey: "overallScore", forLanguage: data.languages)) {
                     ScrollView(.horizontal) {
+                        let totals: [Int] = [7, 8, 9, 12, 17, 18]
                         VStack(alignment: .leading) {
                             ForEach(rules.indices, id: \.self) { index in
                                 HStack {
@@ -62,7 +63,7 @@ struct YamView: View {
                                         }
                                     } else {
                                         ForEach(names, id: \.self) { name in
-                                            cellView(text: "\(playerScores[name]?[index] ?? 0)")
+                                            cellView(text: "\(playerScores[name]?[index] ?? 0)", menu: totals.contains(index) ? true : false)
                                         }
                                     }
                                 }
@@ -143,7 +144,7 @@ struct YamView: View {
         .frame(width: 80, height: 40)
         .padding()
         .border(.gray, width: 1)
-        .background(menu || title ? Color(.systemGray6) : nil)
+        .background(menu || title ? Color(.systemGray5) : nil)
     }
     
 //    func sortedNameAndScore() -> [(key: String, value: Int)] {
@@ -227,6 +228,6 @@ struct YamView: View {
 }
 
 #Preview {
-    YamView(numberOfPlayer: 5, names: ["Thomas", "Zoé", "de", "fr", "de"], language: .fr, isNewGame: true)
+    YamView(numberOfPlayer: 2, names: ["Thomas", "Zoé"], language: .fr, isNewGame: true)
         .environment(Data())
 }
