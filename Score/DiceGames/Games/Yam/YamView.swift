@@ -51,7 +51,15 @@ struct YamView: View {
             Form {
                 Section(getText(forKey: "overallScore", forLanguage: data.languages)) {
                     ForEach(rules.indices, id: \.self) { index in
-                        cellView(text: rules[index])
+                        HStack {
+                            cellView(text: rules[index])
+                            
+                            if index == 0 {
+                                ForEach(names, id: \.self) { name in
+                                    cellView(text: name)
+                                }
+                            }
+                        }
                     }
                 }
             }

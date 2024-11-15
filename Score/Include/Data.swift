@@ -234,6 +234,6 @@ let rules: [String: [Languages: String]] = [
 
 // Scores array for Yahtzee
 let yamScoresString: [Languages: [String]] = [
-    .fr: ["As", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sous-Total", "Bonus", "Total I", "Max", "Min", "Total II", "Suite", "Full", "Carré", "Yam", "Total III", "Total"],
-    .en: ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes", "Subtotal", "Bonus", "Total I", "Max", "Min", "Total II", "Straight", "Full House", "Four of a Kind", "Yahtzee", "Total III", "Grand Total"]
+    .fr: ["Joueurs", "As", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sous-Total", "Bonus", "Total I", "Max", "Min", "Total II", "Suite", "Full", "Carré", "Yam", "Total III", "Total"],
+    .en: ["Players", "Aces", "Twos", "Threes", "Fours", "Fives", "Sixes", "Subtotal", "Bonus", "Total I", "Max", "Min", "Total II", "Straight", "Full House", "Four of a Kind", "Yahtzee", "Total III", "Grand Total"]
 ]
