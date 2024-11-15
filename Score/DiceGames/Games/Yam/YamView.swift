@@ -154,16 +154,14 @@ struct YamView: View {
         .background(menu || title ? Color(.systemGray5) : nil)
         .onTapGesture {
             if let playerName = playerName, let ruleIndex = ruleIndex {
+                guard !totalsAndBonuses.contains(ruleIndex) else { return }
+                
                 activePlayer = playerName
                 activeRuleIndex = ruleIndex
                 isShowingKeyboard = true
             }
         }
     }
-    
-//    func sortedNameAndScore() -> [(key: String, value: Int)] {
-//        nameAndScore.sorted { $0.value < $1.value }
-//    }
 //    
 //    func getLeaderName() -> String? {
 //        nameAndScore.min(by: { $0.value < $1.value })?.key
