@@ -89,8 +89,8 @@ struct YamView: View {
         }
         .alert(isPresented: $isPartyFinished) {
             Alert(
-                title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!) + Text("\(playerScores[getLeaderName()!]?[totalsAndBonuses.last!] ?? 0)"),
-                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text("\(playerScores[getLooserName()!]?[totalsAndBonuses.last!] ?? 0)"),
+                title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!) + Text(" (\(playerScores[getLeaderName()!]?[totalsAndBonuses.last!] ?? 0))"),
+                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(playerScores[getLooserName()!]?[totalsAndBonuses.last!] ?? 0))"),
                 dismissButton: .default(Text("OK")) {
                     cleanData()
                 }
@@ -230,10 +230,8 @@ struct YamView: View {
             let totalOne = subTotal + scores[bonusIndex]
             scores[totalOneIndex] = totalOne
 
-            let totalTwo = rules[(totalOneIndex + 1)..<totalTwoIndex].enumerated()
-                .map { index, _ in scores[index + totalOneIndex + 1] }
-                .reduce(0, +)
-            scores[totalTwoIndex] = totalTwo
+            let totalTwo = scores[totalOneIndex + 2] - scores[totalOneIndex + 1]
+            scores[totalTwoIndex] = totalTwo * scores[1]
 
             let totalThree = rules[(totalTwoIndex + 1)..<totalThreeIndex].enumerated()
                 .map { index, _ in
