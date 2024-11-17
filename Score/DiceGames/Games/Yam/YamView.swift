@@ -88,8 +88,8 @@ struct YamView: View {
         }
         .alert(isPresented: $isPartyFinished) {
             Alert(
-                title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!) + Text("Score du winner"),
-                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text("Score du looser"),
+                title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!) + Text("\(playerScores[getLeaderName()!]?[totalsAndBonuses.last!] ?? 0)"),
+                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text("\(playerScores[getLooserName()!]?[totalsAndBonuses.last!] ?? 0)"),
                 dismissButton: .default(Text("OK")) {
                     cleanData()
                 }
@@ -239,14 +239,6 @@ struct YamView: View {
             loadData()
         } else {
             UserDefaults.standard.set(false, forKey: "partyYamOngoing")
-//            let scores = [Int](repeating: 0, count: numberOfPlayer)
-//            var combinedDict: [String: Int] = [:]
-//            for (index, name) in names.enumerated() {
-//                combinedDict[name] = scores[index]
-//            }
-            
-//            nameAndScore = combinedDict
-//            roundScores = combinedDict
         }
     }
     
