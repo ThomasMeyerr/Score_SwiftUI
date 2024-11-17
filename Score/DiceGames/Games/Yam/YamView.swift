@@ -230,8 +230,8 @@ struct YamView: View {
             let totalOne = subTotal + scores[bonusIndex]
             scores[totalOneIndex] = totalOne
 
-            let totalTwo = scores[totalOneIndex + 2] - scores[totalOneIndex + 1]
-            scores[totalTwoIndex] = totalTwo * scores[1]
+            let totalTwo = (scores[totalOneIndex + 2] - scores[totalOneIndex + 1]) * scores[1]
+            scores[totalTwoIndex] = totalTwo
 
             let totalThree = rules[(totalTwoIndex + 1)..<totalThreeIndex].enumerated()
                 .map { index, _ in
