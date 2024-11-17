@@ -44,7 +44,7 @@ struct YamView: View {
         VStack {
             Group {
                 Text(getText(forKey: "round", forLanguage: data.languages)) +
-                Text("\(roundNumber)/\(13 * numberOfPlayer)")
+                Text("\(roundNumber)/\(12 * numberOfPlayer)")
             }
             .font(.title2)
             .padding()
@@ -254,7 +254,7 @@ struct YamView: View {
         
         updateScore()
         
-        if roundNumber == 13 * numberOfPlayer {
+        if roundNumber == 12 * numberOfPlayer {
             isPartyFinished = true
         }
     }
