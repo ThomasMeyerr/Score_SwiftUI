@@ -55,9 +55,9 @@ struct YamView: View {
             Form {
                 Section(getText(forKey: "overallScore", forLanguage: data.languages)) {
                     ScrollView(.horizontal) {
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 0) {
                             ForEach(rules.indices, id: \.self) { index in
-                                HStack {
+                                HStack(spacing: 0) {
                                     cellView(text: rules[index], menu: true, players: index == 0 ? true : false)
                                     
                                     if index == 0 {
