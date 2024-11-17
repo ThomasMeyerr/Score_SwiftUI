@@ -186,6 +186,23 @@ class CardGameData: Codable {
 }
 
 
+class YamGameData: Codable {
+    let numberOfPlayer: Int
+    let names: [String]
+    let rules: [String]
+    let playerScores: [String: [Int]]
+    let roundNumber: Int
+    
+    init(numberOfPlayer: Int, names: [String], rules: [String], playerScores: [String: [Int]], roundNumber: Int) {
+        self.numberOfPlayer = numberOfPlayer
+        self.names = names
+        self.rules = rules
+        self.playerScores = playerScores
+        self.roundNumber = roundNumber
+    }
+}
+
+
 class CustomGameData: Codable {
     let numberOfPlayer: Int
     let maxScore: Double

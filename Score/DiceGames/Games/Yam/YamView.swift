@@ -252,31 +252,25 @@ struct YamView: View {
     
     func saveData() {
         UserDefaults.standard.set(true, forKey: "partyYamOngoing")
-//        let data = CardGameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
+        let data = YamGameData(numberOfPlayer: numberOfPlayer, names: names, rules: rules, playerScores: playerScores, roundNumber: roundNumber)
         
-//        if let encodedGameData = try? JSONEncoder().encode(data) {
-//            UserDefaults.standard.set(encodedGameData, forKey: "SkyjoGameData")
-//        }
+        if let encodedGameData = try? JSONEncoder().encode(data) {
+            UserDefaults.standard.set(encodedGameData, forKey: "YamGameData")
+        }
     }
     
     func loadData() {
-//        if let data = UserDefaults.standard.data(forKey: "SkyjoGameData") {
-//            if let decodedGameData = try? JSONDecoder().decode(CardGameData.self, from: data) {
-//                numberOfPlayer = decodedGameData.numberOfPlayer
-//                maxScore = decodedGameData.maxScore
-//                names = decodedGameData.names
-//                nameAndScore = decodedGameData.nameAndScore
-//                roundScores = decodedGameData.roundScores
-//                roundNumber = decodedGameData.roundNumber
-//                
-//                for name in nameAndScore.keys {
-//                    if let roundScore = roundScores[name] {
-//                        nameAndScore[name, default: 0] += roundScore
-//                    }
-//                    roundScores[name] = 0
-//                }
-//            }
-//        }
+        if let data = UserDefaults.standard.data(forKey: "YamGameData") {
+            if let decodedGameData = try? JSONDecoder().decode(YamGameData.self, from: data) {
+                numberOfPlayer = decodedGameData.numberOfPlayer
+                names = decodedGameData.names
+                rules = decodedGameData.rules
+                playerScores = decodedGameData.playerScores
+                roundNumber = decodedGameData.roundNumber
+            }
+        }
+        
+        updateScore()
     }
     
     func cleanData() {
