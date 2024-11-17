@@ -44,7 +44,7 @@ struct YamView: View {
         VStack {
             Group {
                 Text(getText(forKey: "round", forLanguage: data.languages)) +
-                Text("\(roundNumber)")
+                Text("\(roundNumber)/\(13 * numberOfPlayer)")
             }
             .font(.title2)
             .padding()
