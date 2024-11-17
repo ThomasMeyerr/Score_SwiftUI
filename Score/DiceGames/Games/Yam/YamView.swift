@@ -28,6 +28,7 @@ struct YamView: View {
     @State private var activeRuleIndex: Int? = nil
     
     let totalsAndBonuses: [Int] = [7, 8, 9, 12, 17, 18]
+    let totalThreeScores: [Int: Int] = [13: 20, 14: 30, 15: 40, 16: 50]
     
     init(numberOfPlayer: Int, names: [String], language: Languages, isNewGame: Bool) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
@@ -143,13 +144,30 @@ struct YamView: View {
     
     func cellView(text: String, playerName: String? = nil, ruleIndex: Int? = nil, isLeader: Bool = false, menu: Bool = false, title: Bool = false, players: Bool = false) -> some View {
         HStack {
-            if isLeader {
-                Image(systemName: "crown.fill")
-                    .foregroundStyle(.yellow)
+            if let ruleIndex, ruleIndex > 12 && ruleIndex < 17 {
+                if playerScores[playerName!]?[ruleIndex] == 0 {
+                    HStack {
+                        Button("V") {
+                            playerScores[playerName!]?[ruleIndex] = totalThreeScores[ruleIndex]!
+                        }
+                        Button("N") {
+                            playerScores[playerName!]?[ruleIndex] = -1
+                        }
+                    }
+                } else {
+                    Text(text == "-1" ? "0" : text)
+                        .lineLimit(1)
+                        .fontWeight(title ? .bold : menu && (text.lowercased().contains("total") || text.lowercased().contains("bonus")) ? .bold : players ? .bold : nil)
+                }
+            } else {
+                if isLeader {
+                    Image(systemName: "crown.fill")
+                        .foregroundStyle(.yellow)
+                }
+                Text(text)
+                    .lineLimit(1)
+                    .fontWeight(title ? .bold : menu && (text.lowercased().contains("total") || text.lowercased().contains("bonus")) ? .bold : players ? .bold : nil)
             }
-            Text(text)
-                .lineLimit(1)
-                .fontWeight(title ? .bold : menu && (text.lowercased().contains("total") || text.lowercased().contains("bonus")) ? .bold : players ? .bold : nil)
         }
         .frame(width: 100, height: 40)
         .padding()
@@ -212,7 +230,10 @@ struct YamView: View {
             scores[totalTwoIndex] = totalTwo
 
             let totalThree = rules[(totalTwoIndex + 1)..<totalThreeIndex].enumerated()
-                .map { index, _ in scores[index + totalTwoIndex + 1] }
+                .map { index, _ in
+                    let score = scores[index + totalTwoIndex + 1]
+                    return score == -1 ? 0 : score
+                }
                 .reduce(0, +)
             scores[totalThreeIndex] = totalThree
 
