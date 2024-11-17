@@ -147,11 +147,17 @@ struct YamView: View {
             if let ruleIndex, ruleIndex > 12 && ruleIndex < 17 {
                 if playerScores[playerName!]?[ruleIndex] == 0 {
                     HStack {
-                        Button("V") {
+                        Button {
                             playerScores[playerName!]?[ruleIndex] = totalThreeScores[ruleIndex]!
+                        } label: {
+                            Image(systemName: "checkmark.seal.fill")
+                                .foregroundStyle(.green)
                         }
-                        Button("N") {
+                        Button {
                             playerScores[playerName!]?[ruleIndex] = -1
+                        } label: {
+                            Image(systemName: "xmark.seal.fill")
+                                .foregroundStyle(.red)
                         }
                     }
                 } else {
