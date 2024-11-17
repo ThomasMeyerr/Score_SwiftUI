@@ -167,13 +167,19 @@ struct YamView: View {
     }
     
     func getLeaderName() -> String? {
-        // check with final total
-        return "Thomas"
+        names.max {
+                let scoreA = playerScores[$0]?[totalsAndBonuses.last!] ?? 0
+                let scoreB = playerScores[$1]?[totalsAndBonuses.last!] ?? 0
+                return scoreA < scoreB
+            }
     }
    
     func getLooserName() -> String? {
-        // check with final total
-        return "Zoé"
+        names.min {
+                let scoreA = playerScores[$0]?[totalsAndBonuses.last!] ?? 0
+                let scoreB = playerScores[$1]?[totalsAndBonuses.last!] ?? 0
+                return scoreA < scoreB
+            }
     }
     
     func updateScore() {
