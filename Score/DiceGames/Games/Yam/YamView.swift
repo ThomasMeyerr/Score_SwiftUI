@@ -5,7 +5,6 @@
 //  Created by Thomas Meyer on 06/11/2024.
 //
 
-
 import SwiftUI
 
 
@@ -162,7 +161,7 @@ struct YamView: View {
             }
         }
     }
-//    
+    
 //    func getLeaderName() -> String? {
 //        nameAndScore.min(by: { $0.value < $1.value })?.key
 //    }
@@ -175,17 +174,9 @@ struct YamView: View {
         roundNumber += 1
         saveData()
         
-//        for name in nameAndScore.keys {
-//            if let roundScore = roundScores[name] {
-//                nameAndScore[name, default: 0] += roundScore
-//            }
-//            roundScores[name] = 0
-//        }
-        
-//        let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
-//        if possibleLooser! >= Int(maxScore) {
-//            isPartyFinished = true
-//        }
+        if roundNumber == 13 * numberOfPlayer {
+            isPartyFinished = true
+        }
     }
     
     func setupInitialScore() {
