@@ -61,7 +61,11 @@ struct YamView: View {
                                     
                                     if index == 0 {
                                         ForEach(names, id: \.self) { name in
-                                            cellView(text: name, title: true)
+                                            cellView(text: name, isLeader: name == getLeaderName(), title: true)
+                                        }
+                                    } else if index == rules.count - 1 {
+                                        ForEach(names, id: \.self) { name in
+                                            cellView(text: "\(playerScores[name]?[index] ?? 0)", playerName: name, ruleIndex: index, menu: true, title: true)
                                         }
                                     } else {
                                         ForEach(names, id: \.self) { name in
@@ -82,15 +86,15 @@ struct YamView: View {
         .onAppear {
             setupInitialScore()
         }
-//        .alert(isPresented: $isPartyFinished) {
-//            Alert(
-//                title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
-//                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(nameAndScore[getLooserName()!] ?? 0))"),
-//                dismissButton: .default(Text("OK")) {
-//                    cleanData()
-//                }
-//            )
-//        }
+        .alert(isPresented: $isPartyFinished) {
+            Alert(
+                title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!) + Text("Score du winner"),
+                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text("Score du looser"),
+                dismissButton: .default(Text("OK")) {
+                    cleanData()
+                }
+            )
+        }
         .sheet(isPresented: $isShowingKeyboard) {
             if let playerName = activePlayer, let ruleIndex = activeRuleIndex {
                 CustomKeyboard(
@@ -147,7 +151,7 @@ struct YamView: View {
                 .lineLimit(1)
                 .fontWeight(title ? .bold : menu && (text.lowercased().contains("total") || text.lowercased().contains("bonus")) ? .bold : players ? .bold : nil)
         }
-        .frame(width: 80, height: 40)
+        .frame(width: 100, height: 40)
         .padding()
         .border(.gray, width: 1)
         .background(menu || title ? Color(.systemGray5) : nil)
@@ -162,17 +166,62 @@ struct YamView: View {
         }
     }
     
-//    func getLeaderName() -> String? {
-//        nameAndScore.min(by: { $0.value < $1.value })?.key
-//    }
-//    
-//    func getLooserName() -> String? {
-//        nameAndScore.max(by: { $0.value < $1.value })?.key
-//    }
+    func getLeaderName() -> String? {
+        // check with final total
+        return "Thomas"
+    }
+   
+    func getLooserName() -> String? {
+        // check with final total
+        return "Zoé"
+    }
+    
+    func updateScore() {
+        let subTotalIndex = totalsAndBonuses[0]
+        let bonusIndex = totalsAndBonuses[1]
+        let totalOneIndex = totalsAndBonuses[2]
+        let totalTwoIndex = totalsAndBonuses[3]
+        let totalThreeIndex = totalsAndBonuses[4]
+        let finalTotalIndex = totalsAndBonuses[5]
+        
+        let bonusThreshold = 63
+        let bonusPoints = 35
+        
+        for name in names {
+            var scores = playerScores[name] ?? []
+            
+            let subTotal = rules[0..<subTotalIndex].enumerated()
+                .map { index, _ in scores[index] }
+                .reduce(0, +)
+            scores[subTotalIndex] = subTotal
+
+            scores[bonusIndex] = subTotal >= bonusThreshold ? bonusPoints : 0
+
+            let totalOne = subTotal + scores[bonusIndex]
+            scores[totalOneIndex] = totalOne
+
+            let totalTwo = rules[(totalOneIndex + 1)..<totalTwoIndex].enumerated()
+                .map { index, _ in scores[index + totalOneIndex + 1] }
+                .reduce(0, +)
+            scores[totalTwoIndex] = totalTwo
+
+            let totalThree = rules[(totalTwoIndex + 1)..<totalThreeIndex].enumerated()
+                .map { index, _ in scores[index + totalTwoIndex + 1] }
+                .reduce(0, +)
+            scores[totalThreeIndex] = totalThree
+
+            let finalTotal = totalOne + totalTwo + totalThree
+            scores[finalTotalIndex] = finalTotal
+
+            playerScores[name] = scores
+        }
+    }
     
     func endRound() {
         roundNumber += 1
         saveData()
+        
+        updateScore()
         
         if roundNumber == 13 * numberOfPlayer {
             isPartyFinished = true
@@ -184,11 +233,11 @@ struct YamView: View {
             loadData()
         } else {
             UserDefaults.standard.set(false, forKey: "partyYamOngoing")
-            let scores = [Int](repeating: 0, count: numberOfPlayer)
-            var combinedDict: [String: Int] = [:]
-            for (index, name) in names.enumerated() {
-                combinedDict[name] = scores[index]
-            }
+//            let scores = [Int](repeating: 0, count: numberOfPlayer)
+//            var combinedDict: [String: Int] = [:]
+//            for (index, name) in names.enumerated() {
+//                combinedDict[name] = scores[index]
+//            }
             
 //            nameAndScore = combinedDict
 //            roundScores = combinedDict
