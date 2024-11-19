@@ -128,6 +128,7 @@ struct YamView: View {
                     HStack {
                         Button {
                             playerScores[playerName!]?[ruleIndex] = totalThreeScores[ruleIndex]!
+                            updateScore()
                         } label: {
                             Image(systemName: "checkmark.seal.fill")
                                 .foregroundStyle(.green)
