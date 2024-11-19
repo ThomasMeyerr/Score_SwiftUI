@@ -189,13 +189,11 @@ class CardGameData: Codable {
 class YamGameData: Codable {
     let numberOfPlayer: Int
     let names: [String]
-    let rules: [String]
     let playerScores: [String: [Int]]
     
-    init(numberOfPlayer: Int, names: [String], rules: [String], playerScores: [String: [Int]]) {
+    init(numberOfPlayer: Int, names: [String], playerScores: [String: [Int]]) {
         self.numberOfPlayer = numberOfPlayer
         self.names = names
-        self.rules = rules
         self.playerScores = playerScores
     }
 }

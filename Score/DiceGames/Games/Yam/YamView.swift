@@ -53,11 +53,11 @@ struct YamView: View {
                                         }
                                     } else if index == rules.count - 1 {
                                         ForEach(names, id: \.self) { name in
-                                            cellView(text: "\(playerScores[name]?[index] ?? 0)", playerName: name, ruleIndex: index, menu: true, title: true)
+                                            cellView(text: "\(playerScores[name]?[index] ?? 0)", playerName: name, ruleIndex: index, menu: true, title: true, number: true)
                                         }
                                     } else {
                                         ForEach(names, id: \.self) { name in
-                                            cellView(text: "\(playerScores[name]?[index] ?? 0)", playerName: name, ruleIndex: index, menu: totalsAndBonuses.contains(index) ? true : false)
+                                            cellView(text: "\(playerScores[name]?[index] ?? 0)", playerName: name, ruleIndex: index, menu: totalsAndBonuses.contains(index) ? true : false, number: true)
                                         }
                                     }
                                 }
@@ -121,7 +121,7 @@ struct YamView: View {
         }
     }
     
-    func cellView(text: String, playerName: String? = nil, ruleIndex: Int? = nil, isLeader: Bool = false, menu: Bool = false, title: Bool = false, players: Bool = false) -> some View {
+    func cellView(text: String, playerName: String? = nil, ruleIndex: Int? = nil, isLeader: Bool = false, menu: Bool = false, title: Bool = false, players: Bool = false, number: Bool = false) -> some View {
         HStack {
             if let ruleIndex, ruleIndex > 12 && ruleIndex < 17 {
                 if playerScores[playerName!]?[ruleIndex] == 0 {
@@ -135,6 +135,7 @@ struct YamView: View {
                         }
                         Button {
                             playerScores[playerName!]?[ruleIndex] = -1
+                            updateScore()
                         } label: {
                             Image(systemName: "xmark.seal.fill")
                                 .foregroundStyle(.red)
@@ -142,7 +143,6 @@ struct YamView: View {
                     }
                 } else {
                     Text(text == "-1" ? "0" : text)
-                        .lineLimit(1)
                         .fontWeight(title ? .bold : menu && (text.lowercased().contains("total") || text.lowercased().contains("bonus")) ? .bold : players ? .bold : nil)
                 }
             } else {
@@ -151,11 +151,11 @@ struct YamView: View {
                         .foregroundStyle(.yellow)
                 }
                 Text(text)
-                    .lineLimit(1)
                     .fontWeight(title ? .bold : menu && (text.lowercased().contains("total") || text.lowercased().contains("bonus")) ? .bold : players ? .bold : nil)
             }
         }
-        .frame(width: 80, height: 20)
+        .frame(width: 60, height: 20)
+        .font(number ? .subheadline : .caption)
         .padding()
         .border(.gray, width: 1)
         .background(menu || title ? Color(.systemGray5) : nil)
@@ -238,7 +238,7 @@ struct YamView: View {
     
     func saveData() {
         UserDefaults.standard.set(true, forKey: "partyYamOngoing")
-        let data = YamGameData(numberOfPlayer: numberOfPlayer, names: names, rules: rules, playerScores: playerScores)
+        let data = YamGameData(numberOfPlayer: numberOfPlayer, names: names, playerScores: playerScores)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "YamGameData")
@@ -250,7 +250,6 @@ struct YamView: View {
             if let decodedGameData = try? JSONDecoder().decode(YamGameData.self, from: data) {
                 numberOfPlayer = decodedGameData.numberOfPlayer
                 names = decodedGameData.names
-                rules = decodedGameData.rules
                 playerScores = decodedGameData.playerScores
             }
         }
