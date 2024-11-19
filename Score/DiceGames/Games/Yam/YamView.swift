@@ -159,9 +159,11 @@ struct YamView: View {
         .padding()
         .border(.gray, width: 1)
         .background(menu || title ? Color(.systemGray5) : nil)
+        .contentShape(Rectangle())
         .onTapGesture {
             if let playerName = playerName, let ruleIndex = ruleIndex {
                 guard !totalsAndBonuses.contains(ruleIndex) else { return }
+                if let score = playerScores[playerName]?[ruleIndex], score != 0 { return }
                 
                 activePlayer = playerName
                 activeRuleIndex = ruleIndex
