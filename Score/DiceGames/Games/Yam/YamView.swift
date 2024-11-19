@@ -17,10 +17,7 @@ struct YamView: View {
     @State private var rules: [String]
     @State private var scores: [String]
     @State private var playerScores: [String: [Int]]
-    @State private var isPartyFinished = false
     @State private var isCancelSure = false
-    @State private var roundNumber = 1
-    @State private var nameForCustomKeyboard = ""
     @State private var isShowingKeyboard = false
     @State private var isDisabled = false
     @State private var isNewGame: Bool
@@ -42,16 +39,6 @@ struct YamView: View {
     
     var body: some View {
         VStack {
-            Group {
-                Text(getText(forKey: "round", forLanguage: data.languages)) +
-                Text("\(roundNumber)/\(12 * numberOfPlayer)")
-            }
-            .font(.title2)
-            .padding()
-            .foregroundStyle(.white)
-            .background(.secondary)
-            .clipShape(.rect(cornerRadius: 30))
-            
             Form {
                 Section(getText(forKey: "overallScore", forLanguage: data.languages)) {
                     ScrollView(.horizontal) {
@@ -87,15 +74,6 @@ struct YamView: View {
         .onAppear {
             setupInitialScore()
         }
-        .alert(isPresented: $isPartyFinished) {
-            Alert(
-                title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!) + Text(" (\(playerScores[getLeaderName()!]?[totalsAndBonuses.last!] ?? 0))"),
-                message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(playerScores[getLooserName()!]?[totalsAndBonuses.last!] ?? 0))"),
-                dismissButton: .default(Text("OK")) {
-                    cleanData()
-                }
-            )
-        }
         .sheet(isPresented: $isShowingKeyboard) {
             if let playerName = activePlayer, let ruleIndex = activeRuleIndex {
                 CustomKeyboard(
@@ -110,6 +88,7 @@ struct YamView: View {
             if !newValue {
                 isDisabled = false
             }
+            updateScore()
         }
     }
     
@@ -117,7 +96,7 @@ struct YamView: View {
         HStack {
             Spacer()
             
-            Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
+            Button(getText(forKey: "saveGame", forLanguage: data.languages), action: saveData)
             .padding()
             .foregroundStyle(.white)
             .background(.green)
@@ -175,7 +154,7 @@ struct YamView: View {
                     .fontWeight(title ? .bold : menu && (text.lowercased().contains("total") || text.lowercased().contains("bonus")) ? .bold : players ? .bold : nil)
             }
         }
-        .frame(width: 100, height: 40)
+        .frame(width: 80, height: 20)
         .padding()
         .border(.gray, width: 1)
         .background(menu || title ? Color(.systemGray5) : nil)
@@ -248,17 +227,6 @@ struct YamView: View {
         }
     }
     
-    func endRound() {
-        roundNumber += 1
-        saveData()
-        
-        updateScore()
-        
-        if roundNumber == 12 * numberOfPlayer {
-            isPartyFinished = true
-        }
-    }
-    
     func setupInitialScore() {
         if !isNewGame {
             loadData()
@@ -269,7 +237,7 @@ struct YamView: View {
     
     func saveData() {
         UserDefaults.standard.set(true, forKey: "partyYamOngoing")
-        let data = YamGameData(numberOfPlayer: numberOfPlayer, names: names, rules: rules, playerScores: playerScores, roundNumber: roundNumber)
+        let data = YamGameData(numberOfPlayer: numberOfPlayer, names: names, rules: rules, playerScores: playerScores)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "YamGameData")
@@ -283,7 +251,6 @@ struct YamView: View {
                 names = decodedGameData.names
                 rules = decodedGameData.rules
                 playerScores = decodedGameData.playerScores
-                roundNumber = decodedGameData.roundNumber
             }
         }
         

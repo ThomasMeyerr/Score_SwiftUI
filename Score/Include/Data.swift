@@ -175,6 +175,10 @@ let texts: [String: [Languages: String]] = [
         .fr: "Yam",
         .en: "Yahtzee"
     ],
+    "saveGame": [
+        .fr: "Sauvegarder la progression",
+        .en: "Save game"
+    ],
     
     // CustomGamesView
     "customGamesTitle": [
@@ -234,6 +238,6 @@ let rules: [String: [Languages: String]] = [
 
 // Scores array for Yahtzee
 let yamScoresString: [Languages: [String]] = [
-    .fr: ["Joueurs", "As", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sous-Total", "Bonus", "Total I", "Min", "Max", "Total II", "Suite", "Full", "Carré", "Yam", "Total III", "Total"],
-    .en: ["Players", "Aces", "Twos", "Threes", "Fours", "Fives", "Sixes", "Subtotal", "Bonus", "Total I", "Min", "Max", "Total II", "Straight", "Full House", "Four of a Kind", "Yahtzee", "Total III", "Grand Total"]
+    .fr: ["Joueurs", "As", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sous-Total", "Bonus", "Total I", "Moins", "Plus", "Total II", "Suite", "Full", "Carré", "Yam", "Total III", "Total"],
+    .en: ["Players", "Aces", "Twos", "Threes", "Fours", "Fives", "Sixes", "Subtotal", "Bonus", "Total I", "Less", "More", "Total II", "Straight", "Full House", "Four of a Kind", "Yahtzee", "Total III", "Grand Total"]
 ]
