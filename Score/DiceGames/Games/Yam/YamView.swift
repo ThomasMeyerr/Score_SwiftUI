@@ -210,7 +210,9 @@ struct YamView: View {
             let totalOne = subTotal + scores[bonusIndex]
             scores[totalOneIndex] = totalOne
 
-            let totalTwo = (scores[totalOneIndex + 2] - scores[totalOneIndex + 1]) * scores[1]
+            var totalTwo = (scores[totalOneIndex + 2] - scores[totalOneIndex + 1]) * scores[1]
+            let checker = scores[totalOneIndex + 2] != 0 && scores[totalOneIndex + 1] != 0 && scores[1] != 0
+            totalTwo = checker ? totalTwo : 0
             scores[totalTwoIndex] = totalTwo
 
             let totalThree = rules[(totalTwoIndex + 1)..<totalThreeIndex].enumerated()
