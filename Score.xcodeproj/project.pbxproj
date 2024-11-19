@@ -20,6 +20,7 @@
 		168382F12CDBA9A300B286E2 /* YamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168382F02CDBA9A300B286E2 /* YamView.swift */; };
 		16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */; };
 		16C700B52CAFF284005C6752 /* UnoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C700B42CAFF284005C6752 /* UnoView.swift */; };
+		16D7AF522CECEC9D0023BABF /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 16D7AF512CECEC9D0023BABF /* GoogleMobileAds */; };
 		16DE323A2C9AFEB5000678AC /* SkyjoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE32392C9AFEB5000678AC /* SkyjoView.swift */; };
 		16F3816F2C84DA7600569DF1 /* DiceGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3816E2C84DA7600569DF1 /* DiceGamesView.swift */; };
 		16F381712C84DA8400569DF1 /* CustomSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381702C84DA8400569DF1 /* CustomSettingsView.swift */; };
@@ -54,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16D7AF522CECEC9D0023BABF /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +208,7 @@
 			);
 			name = Score;
 			packageProductDependencies = (
+				16D7AF512CECEC9D0023BABF /* GoogleMobileAds */,
 			);
 			productName = Score;
 			productReference = 164F37B22C84D45500650152 /* Score.app */;
@@ -236,6 +239,7 @@
 			);
 			mainGroup = 164F37A92C84D45500650152;
 			packageReferences = (
+				16D7AF502CECEC9D0023BABF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 164F37B32C84D45500650152 /* Products */;
 			projectDirPath = "";
@@ -416,6 +420,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Score/Info.plist;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Would you allow us to make ads more personalized for you?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -446,6 +451,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Score/Info.plist;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Would you allow us to make ads more personalized for you?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -486,6 +492,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		16D7AF502CECEC9D0023BABF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = exactVersion;
+				version = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		16D7AF512CECEC9D0023BABF /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 16D7AF502CECEC9D0023BABF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 164F37AA2C84D45500650152 /* Project object */;
 }
