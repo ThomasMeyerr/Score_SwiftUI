@@ -420,7 +420,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Score/Info.plist;
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Would you allow us to make ads more personalized for you?";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Accepteriez-vous que nous rendions les publicités plus personnalisées pour vous ?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -451,7 +451,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Score/Info.plist;
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Would you allow us to make ads more personalized for you?";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Accepteriez-vous que nous rendions les publicités plus personnalisées pour vous ?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
