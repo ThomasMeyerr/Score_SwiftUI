@@ -251,6 +251,11 @@ class CountdownTimer: ObservableObject {
         self.remainingSeconds = seconds
         startCountdown()
     }
+    
+    func stopCountdown() {
+        timer?.cancel()
+        timer = nil
+    }
 }
 
 

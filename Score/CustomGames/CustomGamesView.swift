@@ -102,7 +102,7 @@ struct CustomGamesView: View {
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
                 message: nameAndScore.count > 1 ? Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(nameAndScore[getLooserName()!] ?? 0))") : nil,
                 dismissButton: .default(Text("OK")) {
-                    cleanData() 
+                    cleanData()
                 }
             )
         }
@@ -214,8 +214,6 @@ struct CustomGamesView: View {
     }
     
     func endRound() {
-        countdownTimer.resetCountdown(to: countdown)
-        roundNumber += 1
         saveData()
         
         for name in nameAndScore.keys {
@@ -227,8 +225,11 @@ struct CustomGamesView: View {
         
         let possibleWinner = nameAndScore.max(by: { $0.value < $1.value })?.value
         if possibleWinner! >= Int(maxScore) {
+            countdownTimer.stopCountdown()
             isPartyFinished = true
-            return
+        } else {
+            countdownTimer.resetCountdown(to: countdown)
+            roundNumber += 1
         }
     }
     
