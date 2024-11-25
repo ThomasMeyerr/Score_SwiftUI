@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 
 struct SettingsView: View {
@@ -13,6 +14,7 @@ struct SettingsView: View {
     let flags: [String: String] = ["English": " 🇬🇧", "Français": " 🇫🇷"]
 
     @Environment(Data.self) var data
+    @Environment(\.requestReview) var requestReview
     @State private var languageSelected = "English"
     @State private var isAlert = false
 
@@ -29,6 +31,12 @@ struct SettingsView: View {
                 
                 Button {} label: {
                     Text(getText(forKey: "settingsButtonDailyAdds", forLanguage: data.languages))
+                }
+                
+                Button {
+                    requestReview()
+                } label: {
+                    Text(getText(forKey: "settingsReview", forLanguage: data.languages))
                 }
             }
             

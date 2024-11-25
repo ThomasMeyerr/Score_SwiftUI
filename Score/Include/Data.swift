@@ -69,6 +69,10 @@ let texts: [String: [Languages: String]] = [
         .fr: "Enlever les publicités pour 24 heures",
         .en: "Remove adds for 24 hours"
     ],
+    "settingsReview": [
+        .fr: "Laisser un commentaire",
+        .en: "Review the app"
+    ],
     
     // GameSettingsView
     "rules": [
