@@ -97,21 +97,22 @@ struct CustomGamesView: View {
             setupInitialScore()
             countdownTimer.resetCountdown(to: countdown)
         }
-        .alert(isPresented: $isPartyFinished) {
-            Alert(
-                title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
-                message: nameAndScore.count > 1 ? Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(nameAndScore[getLooserName()!] ?? 0))") : nil,
-                dismissButton: .default(Text("OK")) {
-                    cleanData()
-                }
-            )
-        }
-        .alert(isPresented: $isAlert) {
-            Alert(
-                title: Text(getText(forKey: "timeUp", forLanguage: data.languages)),
-                message: Text(getText(forKey: "timeUpMessage", forLanguage: data.languages)),
-                dismissButton: .default(Text("OK")) {}
-            )
+        .alert(isPresented: Binding(get: { isPartyFinished || isAlert }, set: { _ in })) {
+            if isPartyFinished {
+                return Alert(
+                    title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
+                    message: nameAndScore.count > 1 ? Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(nameAndScore[getLooserName()!] ?? 0))") : nil,
+                    dismissButton: .default(Text("OK")) {
+                        cleanData()
+                    }
+                )
+            } else {
+                return Alert(
+                    title: Text(getText(forKey: "timeUp", forLanguage: data.languages)),
+                    message: Text(getText(forKey: "timeUpMessage", forLanguage: data.languages)),
+                    dismissButton: .default(Text("OK")) {}
+                )
+            }
         }
         .sheet(isPresented: $isShowingKeyboard) {
             CustomKeyboard(input: Binding(
