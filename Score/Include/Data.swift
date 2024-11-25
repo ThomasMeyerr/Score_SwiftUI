@@ -176,7 +176,7 @@ let texts: [String: [Languages: String]] = [
         .en: "Yahtzee"
     ],
     "saveGame": [
-        .fr: "Sauvegarder la progression",
+        .fr: "Sauvegarder",
         .en: "Save game"
     ],
     

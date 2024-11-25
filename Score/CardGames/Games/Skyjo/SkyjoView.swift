@@ -125,6 +125,7 @@ struct SkyjoView: View {
             .foregroundStyle(.white)
             .background(.green)
             .cornerRadius(10)
+            .frame(height: 30)
             
             Spacer()
             
@@ -135,6 +136,7 @@ struct SkyjoView: View {
             .foregroundStyle(.white)
             .background(.red)
             .cornerRadius(10)
+            .frame(height: 30)
             
             Spacer()
         }
