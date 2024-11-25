@@ -16,6 +16,7 @@ struct CustomSettingsView: View {
     @State private var isShowingAlert = false
     @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyCustomOngoing")
     @State private var isToggleTimer = false
+    @State private var isScoreToWin = true
     @State private var countdown: Double = 120
     
     var body: some View {
@@ -27,7 +28,10 @@ struct CustomSettingsView: View {
                     }
                     
                     Section(getText(forKey: "maxScore", forLanguage: data.languages)) {
-//                        Toggle
+                        Toggle(isOn: $isScoreToWin) {
+                            Text(isScoreToWin ? getText(forKey: "scoreToWin", forLanguage: data.languages) : getText(forKey: "scoreToLoose", forLanguage: data.languages))
+                        }
+                        
                         HStack {
                             Text(String(Int(maxScore)))
                             Slider(value: $maxScore, in: 50...500, step: 10)
@@ -38,6 +42,7 @@ struct CustomSettingsView: View {
                         Toggle(isOn: $isToggleTimer) {
                             Text(getText(forKey: "countdownEnable", forLanguage: data.languages))
                         }
+                        .tint(.blue)
                         
                         if isToggleTimer {
                             HStack {

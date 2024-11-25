@@ -201,6 +201,14 @@ let texts: [String: [Languages: String]] = [
         .fr: "Entrez votre score s'il vous plaît",
         .en: "Please enter your score"
     ],
+    "scoreToWin": [
+        .fr: "Score pour gagner",
+        .en: "Score to win"
+    ],
+    "scoreToLoose": [
+        .fr: "Score pour perdre",
+        .en: "Score to loose"
+    ],
 ]
 
 
