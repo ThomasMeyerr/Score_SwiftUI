@@ -207,8 +207,9 @@ class CustomGameData: Codable {
     let roundScores: [String: Int]
     let roundNumber: Int
     let countdown: Int
+    let isScoreToWin: Bool
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, countdown: Int) {
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, countdown: Int, isScoreToWin: Bool) {
         self.numberOfPlayer = numberOfPlayer
         self.maxScore = maxScore
         self.names = names
@@ -216,6 +217,7 @@ class CustomGameData: Codable {
         self.roundScores = roundScores
         self.roundNumber = roundNumber
         self.countdown = countdown
+        self.isScoreToWin = isScoreToWin
     }
 }
 

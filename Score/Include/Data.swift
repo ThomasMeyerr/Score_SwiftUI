@@ -181,6 +181,10 @@ let texts: [String: [Languages: String]] = [
     ],
     
     // CustomGamesView
+    "customGame": [
+        .fr: "Partie personnalisée",
+        .en: "Custom game"
+    ],
     "customGamesTitle": [
         .fr: "Paramètres personnalisés",
         .en: "Custom Parameters"

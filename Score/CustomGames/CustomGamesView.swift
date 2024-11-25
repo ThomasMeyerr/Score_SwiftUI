@@ -91,7 +91,7 @@ struct CustomGamesView: View {
             
             loadButtons()
         }
-        .navigationTitle("Skyjo")
+        .navigationTitle(getText(forKey: "customGame", forLanguage: data.languages))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             setupInitialScore()
@@ -250,7 +250,7 @@ struct CustomGamesView: View {
     
     func saveData() {
         UserDefaults.standard.set(true, forKey: "partyCustomOngoing")
-        let data = CustomGameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, countdown: countdown)
+        let data = CustomGameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, countdown: countdown, isScoreToWin: isScoreToWin)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "CustomGameData")
@@ -267,6 +267,7 @@ struct CustomGamesView: View {
                 roundScores = decodedGameData.roundScores
                 roundNumber = decodedGameData.roundNumber
                 countdown = decodedGameData.countdown
+                isScoreToWin = decodedGameData.isScoreToWin
                 
                 for name in nameAndScore.keys {
                     if let roundScore = roundScores[name] {
