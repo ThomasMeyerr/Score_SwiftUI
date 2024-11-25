@@ -28,13 +28,15 @@ struct CustomGamesView: View {
     @State private var isDisabled = false
     @State private var isAlert = false
     @State private var isNewGame: Bool
+    @State private var isScoreToWin: Bool
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String], countdown: Int, isNewGame: Bool) {
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], countdown: Int, isNewGame: Bool, isScoreToWin: Bool) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
         self._countdown = State(initialValue: countdown)
         self._isNewGame = State(initialValue: isNewGame)
+        self._isScoreToWin = State(initialValue: isScoreToWin)
     }
     
     var body: some View {
@@ -77,8 +79,11 @@ struct CustomGamesView: View {
                                     isShowingKeyboard = true
                                 }
                                 .disabled(isDisabled)
+                                .multilineTextAlignment(.trailing)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                                .truncationMode(.middle)
                             }
-                            .frame(width: 20, alignment: .leading)
                         }
                     }
                 }
@@ -193,11 +198,19 @@ struct CustomGamesView: View {
     }
     
     func getLeaderName() -> String? {
-        nameAndScore.max(by: { $0.value < $1.value })?.key
+        if isScoreToWin {
+            return nameAndScore.max(by: { $0.value < $1.value })?.key
+        } else {
+            return nameAndScore.min(by: { $0.value < $1.value })?.key
+        }
     }
     
     func getLooserName() -> String? {
-        nameAndScore.min(by: { $0.value < $1.value })?.key
+        if isScoreToWin {
+            return nameAndScore.min(by: { $0.value < $1.value })?.key
+        } else {
+            return nameAndScore.max(by: { $0.value < $1.value })?.key
+        }
     }
     
     func endRound() {
@@ -272,6 +285,6 @@ struct CustomGamesView: View {
 }
 
 #Preview {
-    CustomGamesView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"], countdown: 120, isNewGame: true)
+    CustomGamesView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"], countdown: 120, isNewGame: true, isScoreToWin: true)
         .environment(Data())
 }

@@ -79,8 +79,11 @@ struct UnoView: View {
                                     isShowingKeyboard = true
                                 }
                                 .disabled(isDisabled)
+                                .multilineTextAlignment(.trailing)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                                .truncationMode(.middle)
                             }
-                            .frame(width: 20, alignment: .leading)
                         }
                     }
                 }
