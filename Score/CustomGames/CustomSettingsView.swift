@@ -15,7 +15,7 @@ struct CustomSettingsView: View {
     @State private var names: [String] = Array(repeating: "", count: 1)
     @State private var isShowingAlert = false
     @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyCustomOngoing")
-    @State private var isToggle = false
+    @State private var isToggleTimer = false
     @State private var countdown: Double = 120
     
     var body: some View {
@@ -27,6 +27,7 @@ struct CustomSettingsView: View {
                     }
                     
                     Section(getText(forKey: "maxScore", forLanguage: data.languages)) {
+//                        Toggle
                         HStack {
                             Text(String(Int(maxScore)))
                             Slider(value: $maxScore, in: 50...500, step: 10)
@@ -34,11 +35,11 @@ struct CustomSettingsView: View {
                     }
                     
                     Section(getText(forKey: "countdown", forLanguage: data.languages)) {
-                        Toggle(isOn: $isToggle) {
+                        Toggle(isOn: $isToggleTimer) {
                             Text(getText(forKey: "countdownEnable", forLanguage: data.languages))
                         }
                         
-                        if isToggle {
+                        if isToggleTimer {
                             HStack {
                                 Text(String(Int(countdown)))
                                 Slider(value: $countdown, in: 10...300, step: 10)
@@ -107,10 +108,11 @@ struct CustomSettingsView: View {
                 .foregroundStyle(.white)
                 .background(.green)
                 .cornerRadius(10)
+                .frame(height: 30)
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                if isToggle {
+                if isToggleTimer {
                     CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, countdown: Int(countdown), isNewGame: true)
                 } else {
                     CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, countdown: -1, isNewGame: true)
@@ -120,6 +122,7 @@ struct CustomSettingsView: View {
             .foregroundStyle(.white)
             .background(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count ? .gray : .blue)
             .cornerRadius(10)
+            .frame(height: 30)
             .disabled(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count)
             .onTapGesture {
                 if (names.count != Set(names).count) && !names.contains(where: { $0.isEmpty }) {

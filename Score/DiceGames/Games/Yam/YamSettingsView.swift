@@ -86,6 +86,7 @@ struct YamSettingsView: View {
                 .foregroundStyle(.white)
                 .background(.green)
                 .cornerRadius(10)
+                .frame(height: 30)
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
@@ -95,6 +96,7 @@ struct YamSettingsView: View {
             .foregroundStyle(.white)
             .background(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count ? .gray : .blue)
             .cornerRadius(10)
+            .frame(height: 30)
             .disabled(names.contains(where: { $0.isEmpty }) || names.count != Set(names).count)
             .onTapGesture {
                 if (names.count != Set(names).count) && !names.contains(where: { $0.isEmpty }) {
