@@ -13,6 +13,10 @@ struct ContentView: View {
     @State private var data = Data()
 
     var body: some View {
+        Button("ad") {
+            Interstitial.shared.loadInterstitial()
+            Interstitial.shared.showInterstitialAds()
+        }
         TabView {
             CardGamesView()
                 .tabItem {
