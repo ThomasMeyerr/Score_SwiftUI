@@ -21,17 +21,17 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section {
-                Button {} label: {
-                    HStack {
-                        Text(getText(forKey: "settingsButtonAdds", forLanguage: data.languages))
-                        Spacer()
-                        Text(getText(forKey: "settingsButtonAddsPrice", forLanguage: data.languages))
-                    }
-                }
+//                Button {} label: {
+//                    HStack {
+//                        Text(getText(forKey: "settingsButtonAdds", forLanguage: data.languages))
+//                        Spacer()
+//                        Text(getText(forKey: "settingsButtonAddsPrice", forLanguage: data.languages))
+//                    }
+//                }
                 
-                Button {} label: {
-                    Text(getText(forKey: "settingsButtonDailyAdds", forLanguage: data.languages))
-                }
+//                Button {} label: {
+//                    Text(getText(forKey: "settingsButtonDailyAdds", forLanguage: data.languages))
+//                }
                 
                 Button {
                     requestReview()
