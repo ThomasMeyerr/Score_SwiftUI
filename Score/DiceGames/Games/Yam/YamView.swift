@@ -26,6 +26,7 @@ struct YamView: View {
     
     let totalsAndBonuses: [Int] = [7, 8, 9, 12, 17, 18]
     let totalThreeScores: [Int: Int] = [13: 20, 14: 30, 15: 40, 16: 50]
+    let combiScore : [Int] = [13, 14, 15, 16]
     
     init(numberOfPlayer: Int, names: [String], language: Languages, isNewGame: Bool) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
@@ -165,7 +166,11 @@ struct YamView: View {
         .onTapGesture {
             if let playerName = playerName, let ruleIndex = ruleIndex {
                 guard !totalsAndBonuses.contains(ruleIndex) else { return }
-                if let score = playerScores[playerName]?[ruleIndex], score != 0 { return }
+                if let score = playerScores[playerName]?[ruleIndex], score != 0 && combiScore.contains(ruleIndex) {
+                    playerScores[playerName]?[ruleIndex] = 0
+                    updateScore()
+                    return
+                }
                 
                 activePlayer = playerName
                 activeRuleIndex = ruleIndex
