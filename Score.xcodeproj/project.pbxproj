@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1609A7122CFD0267001F50B3 /* InterstitialAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1609A7112CFD0267001F50B3 /* InterstitialAd.swift */; };
+		1609A7142CFD0732001F50B3 /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1609A7132CFD0732001F50B3 /* BannerAd.swift */; };
 		16224D702CFCE6ED0086E343 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 16224D6F2CFCE6ED0086E343 /* GoogleMobileAds */; };
 		163F867A2C88C5C50057B639 /* SkyjoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */; };
 		163F867C2C88C65D0057B639 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867B2C88C65D0057B639 /* Utils.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		1609A7112CFD0267001F50B3 /* InterstitialAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAd.swift; sourceTree = "<group>"; };
+		1609A7132CFD0732001F50B3 /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
 		163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyjoSettingsView.swift; sourceTree = "<group>"; };
 		163F867B2C88C65D0057B639 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		163F867D2C88C6A20057B639 /* UnoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoSettingsView.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				16F381782C84E0B000569DF1 /* Data.swift */,
+				1609A7132CFD0732001F50B3 /* BannerAd.swift */,
 				163F867B2C88C65D0057B639 /* Utils.swift */,
 				1609A7112CFD0267001F50B3 /* InterstitialAd.swift */,
 			);
@@ -277,6 +280,7 @@
 				164F37B82C84D45500650152 /* ContentView.swift in Sources */,
 				16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */,
 				164F37B62C84D45500650152 /* ScoreApp.swift in Sources */,
+				1609A7142CFD0732001F50B3 /* BannerAd.swift in Sources */,
 				16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */,
 				163F867C2C88C65D0057B639 /* Utils.swift in Sources */,
 				163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */,
