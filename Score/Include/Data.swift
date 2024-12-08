@@ -68,8 +68,8 @@ let texts: [String: [Languages: String]] = [
         .en: "Remove adds"
     ],
     "settingsButtonAddsPrice": [
-        .fr: "3,99€",
-        .en: "3.99$"
+        .fr: "1,99€",
+        .en: "1.99$"
     ],
     "settingsButtonDailyAdds": [
         .fr: "Enlever les publicités pour 24 heures",

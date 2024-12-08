@@ -20,6 +20,7 @@
 		164F37BD2C84D45700650152 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37BC2C84D45700650152 /* Preview Assets.xcassets */; };
 		164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37C32C84D8CF00650152 /* CardGamesView.swift */; };
 		168382F12CDBA9A300B286E2 /* YamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168382F02CDBA9A300B286E2 /* YamView.swift */; };
+		169139932D0641E10007FB8D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169139922D0641E10007FB8D /* StoreKit.framework */; };
 		16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */; };
 		16C700B52CAFF284005C6752 /* UnoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C700B42CAFF284005C6752 /* UnoView.swift */; };
 		16DE323A2C9AFEB5000678AC /* SkyjoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE32392C9AFEB5000678AC /* SkyjoView.swift */; };
@@ -43,6 +44,7 @@
 		164F37BC2C84D45700650152 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		164F37C32C84D8CF00650152 /* CardGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGamesView.swift; sourceTree = "<group>"; };
 		168382F02CDBA9A300B286E2 /* YamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamView.swift; sourceTree = "<group>"; };
+		169139922D0641E10007FB8D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGamesView.swift; sourceTree = "<group>"; };
 		16C700B42CAFF284005C6752 /* UnoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoView.swift; sourceTree = "<group>"; };
 		16DE32392C9AFEB5000678AC /* SkyjoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyjoView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16224D702CFCE6ED0086E343 /* GoogleMobileAds in Frameworks */,
+				169139932D0641E10007FB8D /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +127,7 @@
 			children = (
 				164F37B42C84D45500650152 /* Score */,
 				164F37B32C84D45500650152 /* Products */,
+				169139912D0641E10007FB8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +160,14 @@
 				164F37BC2C84D45700650152 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		169139912D0641E10007FB8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				169139922D0641E10007FB8D /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		16F381722C84DCB700569DF1 /* CardGames */ = {
@@ -424,6 +436,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Score/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Score;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Accepteriez-vous que nous rendions les publicités plus personnalisées pour vous ?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -456,6 +470,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Score/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Score;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Accepteriez-vous que nous rendions les publicités plus personnalisées pour vous ?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
