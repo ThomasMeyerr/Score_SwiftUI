@@ -25,13 +25,19 @@ struct DiceGamesView: View {
                             .clipShape(.rect(cornerRadius: 30))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 30)
-                                    .stroke(.secondary, lineWidth: 2)
+                                    .stroke(.white, lineWidth: 5)
                             )
                             .padding()
                     }
                 }
             }
             .padding()
+            .background(
+                Image("diceBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            )
         }
         .navigationTitle(getText(forKey: "diceGamesTitle", forLanguage: data.languages))
     }
