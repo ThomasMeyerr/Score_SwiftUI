@@ -38,6 +38,7 @@ struct SettingsView: View {
                 } label: {
                     Text(getText(forKey: "settingsReview", forLanguage: data.languages))
                 }
+                .tint(.green)
             }
             
             Section {

@@ -30,6 +30,7 @@ struct DiceGamesView: View {
                             .padding()
                     }
                 }
+                .padding()
             }
             .padding()
             .background(

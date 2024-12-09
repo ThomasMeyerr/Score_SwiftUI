@@ -25,13 +25,20 @@ struct CardGamesView: View {
                             .clipShape(.rect(cornerRadius: 30))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 30)
-                                    .stroke(.secondary, lineWidth: 2)
+                                    .stroke(.white, lineWidth: 5)
                             )
                             .padding()
                     }
                 }
                 .padding()
             }
+            .padding()
+            .background(
+                Image("cardBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+            )
         }
         .navigationTitle(getText(forKey: "cardGamesTitle", forLanguage: data.languages))
     }

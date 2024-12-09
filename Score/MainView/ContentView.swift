@@ -34,6 +34,7 @@ struct ContentView: View {
                     Label(getText(forKey: "settingsTitle", forLanguage: data.languages), systemImage: "gearshape.fill")
                 }
         }
+        .tint(.white)
         .environment(data)
         .preferredColorScheme(.dark)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in

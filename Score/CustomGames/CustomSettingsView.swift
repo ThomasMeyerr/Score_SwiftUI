@@ -31,6 +31,7 @@ struct CustomSettingsView: View {
                         Toggle(isOn: $isScoreToWin) {
                             Text(isScoreToWin ? getText(forKey: "scoreToWin", forLanguage: data.languages) : getText(forKey: "scoreToLoose", forLanguage: data.languages))
                         }
+                        .tint(.green)
                         
                         HStack {
                             Text(String(Int(maxScore)))
