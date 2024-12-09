@@ -37,9 +37,6 @@ struct ContentView: View {
         .tint(.white)
         .environment(data)
         .preferredColorScheme(.dark)
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-            ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in })
-        }
     }
 }
 
