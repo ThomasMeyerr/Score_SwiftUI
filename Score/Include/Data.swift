@@ -13,12 +13,6 @@ enum Languages: Codable {
 }
 
 
-// ID for AdMob
-let testMode = true
-let bannerID = testMode ? "ca-app-pub-3940256099942544/2435281174" : "ca-app-pub-7069513903308677/2364727937"
-let interstitialID = testMode ? "ca-app-pub-3940256099942544/4411468910" : "ca-app-pub-7069513903308677/8780176633"
-
-
 @Observable
 class Data {
     var languages: Languages {
