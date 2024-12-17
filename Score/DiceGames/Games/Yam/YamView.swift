@@ -124,6 +124,16 @@ struct YamView: View {
         }
     }
     
+    func checkingTitle(title: String) -> Bool {
+        let total = getYamScoresString(forLanguage: data.languages)[18].lowercased()
+        let bonus = getYamScoresString(forLanguage: data.languages)[8].lowercased()
+        print(total + " " + bonus)
+        if title.contains(total) || title.contains(bonus) {
+            return true
+        }
+        return false
+    }
+    
     func cellView(text: String, playerName: String? = nil, ruleIndex: Int? = nil, isLeader: Bool = false, menu: Bool = false, title: Bool = false, players: Bool = false, number: Bool = false) -> some View {
         HStack {
             if let ruleIndex, ruleIndex > 12 && ruleIndex < 17 {
@@ -146,7 +156,7 @@ struct YamView: View {
                     }
                 } else {
                     Text(text == "-1" ? "0" : text)
-                        .fontWeight(title ? .bold : menu && (text.lowercased().contains("total") || text.lowercased().contains("bonus")) ? .bold : players ? .bold : nil)
+                        .fontWeight(title ? .bold : checkingTitle(title: text.lowercased()) ? .bold : players ? .bold : nil)
                 }
             } else {
                 if isLeader {
@@ -154,7 +164,7 @@ struct YamView: View {
                         .foregroundStyle(.yellow)
                 }
                 Text(text)
-                    .fontWeight(title ? .bold : menu && (text.lowercased().contains("total") || text.lowercased().contains("bonus")) ? .bold : players ? .bold : nil)
+                    .fontWeight(title ? .bold : menu && checkingTitle(title: text.lowercased()) ? .bold : players ? .bold : nil)
             }
         }
         .frame(width: 60, height: 20)
