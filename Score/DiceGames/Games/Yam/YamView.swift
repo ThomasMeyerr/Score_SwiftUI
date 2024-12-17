@@ -125,10 +125,13 @@ struct YamView: View {
     }
     
     func checkingTitle(title: String) -> Bool {
-        let total = getYamScoresString(forLanguage: data.languages)[18].lowercased()
-        let bonus = getYamScoresString(forLanguage: data.languages)[8].lowercased()
-        print(total + " " + bonus)
+        let lang = data.languages
+        let total = lang == .de ? "gesamt" : getYamScoresString(forLanguage: lang)[18].lowercased()
+        let bonus = getYamScoresString(forLanguage: lang)[8].lowercased()
+        
         if title.contains(total) || title.contains(bonus) {
+            return true
+        } else if lang == .de ? title.contains("zwischensumme") : false {
             return true
         }
         return false
