@@ -39,183 +39,312 @@ let texts: [String: [Languages: String]] = [
     // SettingsView
     "settingsTitle": [
         .fr: "Paramètres",
-        .en: "Settings"
+        .en: "Settings",
+        .es: "Configuración",
+        .pt: "Configurações",
+        .it: "Impostazioni"
     ],
     "settingsPicker": [
         .fr: "Choisissez votre langue",
-        .en: "Choose your language"
+        .en: "Choose your language",
+        .es: "Elige tu idioma",
+        .pt: "Escolha seu idioma",
+        .it: "Scegli la tua lingua"
     ],
     "settingsReset": [
         .fr: "Restaurer les paramètres",
-        .en: "Reset settings"
+        .en: "Reset settings",
+        .es: "Restablecer configuración",
+        .pt: "Restaurar configurações",
+        .it: "Ripristina le impostazioni"
     ],
     "settingsAlert": [
         .fr: "Êtes-vous sûr ?",
-        .en: "Are you sure?"
+        .en: "Are you sure?",
+        .es: "¿Estás seguro?",
+        .pt: "Tem certeza?",
+        .it: "Sei sicuro?"
     ],
     "settingsButtonCancel": [
         .fr: "Annuler",
-        .en: "Cancel"
+        .en: "Cancel",
+        .es: "Cancelar",
+        .pt: "Cancelar",
+        .it: "Annulla"
     ],
     "settingsButtonAdds": [
         .fr: "Enlever les publicités",
-        .en: "Remove adds"
+        .en: "Remove adds",
+        .es: "Eliminar anuncios",
+        .pt: "Remover anúncios",
+        .it: "Rimuovi pubblicità"
     ],
     "settingsButtonAddsPrice": [
         .fr: "1,99€",
-        .en: "1.99$"
+        .en: "1.99$",
+        .es: "1,99€",
+        .pt: "1,99€",
+        .it: "1,99€"
     ],
     "settingsButtonDailyAdds": [
         .fr: "Enlever les publicités pour 24 heures",
-        .en: "Remove adds for 24 hours"
+        .en: "Remove adds for 24 hours",
+        .es: "Eliminar anuncios por 24 horas",
+        .pt: "Remover anúncios por 24 horas",
+        .it: "Rimuovi pubblicità per 24 ore"
     ],
     "settingsReview": [
         .fr: "Laisser un commentaire",
-        .en: "Review the app"
+        .en: "Review the app",
+        .es: "Deja un comentario",
+        .pt: "Deixe um comentário",
+        .it: "Lascia una recensione"
     ],
     
     // GameSettingsView
     "rules": [
         .fr: "Règles",
-        .en: "Rules"
+        .en: "Rules",
+        .es: "Reglas",
+        .pt: "Regras",
+        .it: "Regole"
     ],
     "settings": [
         .fr: "Paramètres de la partie de ",
-        .en: "Game settings of "
+        .en: "Game settings of ",
+        .es: "Configuración del juego de ",
+        .pt: "Configurações do jogo de ",
+        .it: "Impostazioni del gioco di "
     ],
     "cutomSettings": [
         .fr: "Paramètres de la partie",
-        .en: "Game settings"
+        .en: "Game settings",
+        .es: "Configuración del juego",
+        .pt: "Configurações do jogo",
+        .it: "Impostazioni del gioco"
     ],
     "showMore": [
         .fr: "Voir plus...",
-        .en: "Show more..."
+        .en: "Show more...",
+        .es: "Mostrar más...",
+        .pt: "Mostrar mais...",
+        .it: "Mostra di più..."
     ],
     "showLess": [
         .fr: "Voir moins...",
-        .en: "Show less..."
+        .en: "Show less...",
+        .es: "Mostrar menos...",
+        .pt: "Mostrar menos...",
+        .it: "Mostra meno..."
     ],
     "numberOfPlayers": [
         .fr: "Nombres de joueurs",
-        .en: "Number of players"
+        .en: "Number of players",
+        .es: "Número de jugadores",
+        .pt: "Número de jogadores",
+        .it: "Numero di giocatori"
     ],
     "pseudo": [
         .fr: "Entrer votre nom",
-        .en: "Enter your name"
+        .en: "Enter your name",
+        .es: "Ingresa tu nombre",
+        .pt: "Digite seu nome",
+        .it: "Inserisci il tuo nome"
     ],
     "launch": [
         .fr: "Lancer la partie",
-        .en: "Launch game"
+        .en: "Launch game",
+        .es: "Iniciar juego",
+        .pt: "Iniciar jogo",
+        .it: "Avvia il gioco"
     ],
     "roundScore": [
         .fr: "Score du tour",
-        .en: "Round score"
+        .en: "Round score",
+        .es: "Puntuación de la ronda",
+        .pt: "Pontuação da rodada",
+        .it: "Punteggio del round"
     ],
     "overallScore": [
         .fr: "Score de la partie",
-        .en: "Overall score"
+        .en: "Overall score",
+        .es: "Puntuación total",
+        .pt: "Pontuação geral",
+        .it: "Punteggio totale"
     ],
     "maxScore": [
         .fr: "Score maximum",
-        .en: "Max score"
+        .en: "Max score",
+        .es: "Puntuación máxima",
+        .pt: "Pontuação máxima",
+        .it: "Punteggio massimo"
     ],
     "finishRound": [
         .fr: "Finir le tour",
-        .en: "Finish round"
+        .en: "Finish round",
+        .es: "Terminar ronda",
+        .pt: "Terminar rodada",
+        .it: "Termina il round"
     ],
     "cancelGame": [
         .fr: "Annuler la partie",
-        .en: "Cancel game"
+        .en: "Cancel game",
+        .es: "Cancelar juego",
+        .pt: "Cancelar jogo",
+        .it: "Annulla il gioco"
     ],
     "alertTitle": [
         .fr: "Noms en double",
-        .en: "Duplicate names"
+        .en: "Duplicate names",
+        .es: "Nombres duplicados",
+        .pt: "Nomes duplicados",
+        .it: "Nomi duplicati"
     ],
     "alertMessage": [
         .fr: "S'il vous plaît, entrez un nom unique pour chaque joueur",
-        .en: "Please enter unique names for all players"
+        .en: "Please enter unique names for all players",
+        .es: "Por favor, ingrese nombres únicos para todos los jugadores",
+        .pt: "Por favor, insira nomes exclusivos para todos os jogadores",
+        .it: "Per favore, inserisci nomi unici per tutti i giocatori"
     ],
     "alertWinner": [
         .fr: "Le gagnant est ",
-        .en: "The winner is "
+        .en: "The winner is ",
+        .es: "El ganador es ",
+        .pt: "O vencedor é ",
+        .it: "Il vincitore è "
     ],
     "alertLooser": [
         .fr: "Et le perdant est ",
-        .en: "And the looser is "
+        .en: "And the looser is ",
+        .es: "Y el perdedor es ",
+        .pt: "E o perdedor é ",
+        .it: "E il perdente è "
     ],
     "continue": [
         .fr: "Reprendre",
-        .en: "Continue"
+        .en: "Continue",
+        .es: "Continuar",
+        .pt: "Continuar",
+        .it: "Continua"
     ],
     "round": [
         .fr: "Tour ",
-        .en: "Round "
+        .en: "Round ",
+        .es: "Ronda ",
+        .pt: "Rodada ",
+        .it: "Round "
     ],
     "cancelSure": [
         .fr: "Êtes-vous sûrs ?",
-        .en: "Are you sure?"
+        .en: "Are you sure?",
+        .es: "¿Estás seguro?",
+        .pt: "Tem certeza?",
+        .it: "Sei sicuro?"
     ],
     "yes": [
         .fr: "Oui",
-        .en: "Yes"
+        .en: "Yes",
+        .es: "Sí",
+        .pt: "Sim",
+        .it: "Sì"
     ],
     "no": [
         .fr: "Non",
-        .en: "No"
+        .en: "No",
+        .es: "No",
+        .pt: "Não",
+        .it: "No"
     ],
     
     // CardGamesView
     "cardGamesTitle": [
         .fr: "Jeux de Cartes",
-        .en: "Card Games"
+        .en: "Card Games",
+        .es: "Juegos de Cartas",
+        .pt: "Jogos de Cartas",
+        .it: "Giochi di Carte"
     ],
     
     // DiceGamesView
     "diceGamesTitle": [
         .fr: "Jeux de Dés",
-        .en: "Dice Games"
+        .en: "Dice Games",
+        .es: "Juegos de Dados",
+        .pt: "Jogos de Dados",
+        .it: "Giochi di Dadi"
     ],
     "yamTitle": [
         .fr: "Yam",
-        .en: "Yahtzee"
+        .en: "Yahtzee",
+        .es: "Yam",
+        .pt: "Yam",
+        .it: "Yam"
     ],
     "saveGame": [
         .fr: "Sauvegarder",
-        .en: "Save game"
+        .en: "Save game",
+        .es: "Guardar juego",
+        .pt: "Salvar jogo",
+        .it: "Salva il gioco"
     ],
     
     // CustomGamesView
     "customGame": [
         .fr: "Partie personnalisée",
-        .en: "Custom game"
+        .en: "Custom game",
+        .es: "Juego personalizado",
+        .pt: "Jogo personalizado",
+        .it: "Gioco personalizzato"
     ],
     "customGamesTitle": [
         .fr: "Paramètres personnalisés",
-        .en: "Custom Parameters"
+        .en: "Custom Parameters",
+        .es: "Parámetros personalizados",
+        .pt: "Parâmetros personalizados",
+        .it: "Parametri personalizzati"
     ],
     "countdown": [
         .fr: "Compte à rebours",
-        .en: "Countdown"
+        .en: "Countdown",
+        .es: "Cuenta atrás",
+        .pt: "Contagem regressiva",
+        .it: "Conto alla rovescia"
     ],
     "countdownEnable": [
         .fr: "Voulez-vous un compte à rebours ? (en secondes)",
-        .en: "Did you want a countdown ? (in seconds)"
+        .en: "Did you want a countdown ? (in seconds)",
+        .es: "¿Quieres un cuenta atrás? (en segundos)",
+        .pt: "Você quer uma contagem regressiva? (em segundos)",
+        .it: "Vuoi un conto alla rovescia? (in secondi)"
     ],
     "timeUp": [
         .fr: "Le temps est écoulé",
-        .en: "Time's up"
+        .en: "Time's up",
+        .es: "Se acabó el tiempo",
+        .pt: "O tempo acabou",
+        .it: "Il tempo è scaduto"
     ],
     "timeUpMessage": [
         .fr: "Entrez votre score s'il vous plaît",
-        .en: "Please enter your score"
+        .en: "Please enter your score",
+        .es: "Por favor, ingresa tu puntuación",
+        .pt: "Por favor, insira sua pontuação",
+        .it: "Per favore, inserisci il tuo punteggio"
     ],
     "scoreToWin": [
         .fr: "Score pour gagner",
-        .en: "Score to win"
+        .en: "Score to win",
+        .es: "Puntuación para ganar",
+        .pt: "Pontuação para ganhar",
+        .it: "Punteggio per vincere"
     ],
     "scoreToLoose": [
         .fr: "Score pour perdre",
-        .en: "Score to loose"
+        .en: "Score to loose",
+        .es: "Puntuación para perder",
+        .pt: "Pontuação para perder",
+        .it: "Punteggio per perdere"
     ],
 ]
 
