@@ -10,8 +10,8 @@ import StoreKit
 
 
 struct SettingsView: View {
-    let languages: [String: Languages] = ["English": .en, "Français": .fr]
-    let flags: [String: String] = ["English": " 🇬🇧", "Français": " 🇫🇷"]
+    let languages: [String: Languages] = ["English": .en, "Français": .fr, "Español": .es]
+    let flags: [String: String] = ["English": " 🇬🇧", "Français": " 🇫🇷", "Español": " 🇪🇸"]
 
     @Environment(Data.self) var data
     @Environment(\.requestReview) var requestReview
