@@ -237,6 +237,8 @@ struct YamView: View {
 
             playerScores[name] = scores
         }
+        
+        saveData()
     }
     
     func setupInitialScore() {
