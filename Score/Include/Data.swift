@@ -9,7 +9,7 @@ import Foundation
 
 
 enum Languages: Codable {
-    case fr, en, es
+    case fr, en, es, pt, it
 }
 
 
