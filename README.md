@@ -12,9 +12,9 @@ Score est une application intuitive dédiée à la gestion des scores pour vos p
 - Personnalisation : Compatible avec une variété de jeux de société.
 - Aperçu :
 <div>
-  <img src="Screenshots/CardMenu.png" alt="Aperçu de l'application" width="300">
-  <img src="Screenshots/DiceMenu.png" alt="Aperçu de l'application" width="300">
-  <img src="Screenshots/GameView.png" alt="Aperçu de l'application" width="300">
+  <img src="Screenshots/CardMenu.png" alt="Aperçu de l'application" width="200">
+  <img src="Screenshots/DiceMenu.png" alt="Aperçu de l'application" width="200">
+  <img src="Screenshots/GameView.png" alt="Aperçu de l'application" width="200">
 </div>
 
 
