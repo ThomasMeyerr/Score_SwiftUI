@@ -66,10 +66,13 @@ struct SettingsView: View {
             Button(getText(forKey: "settingsButtonCancel", forLanguage: data.languages), role: .cancel) {}
         }
         .onAppear {
-            if data.languages == .en {
-                languageSelected = "English"
-            } else {
-                languageSelected = "Français"
+            switch data.languages {
+            case .en: languageSelected = "English"
+            case .es: languageSelected = "Español"
+            case .pt: languageSelected = "Português"
+            case .it: languageSelected = "Italiano"
+            case .de: languageSelected = "Deutsch"
+            default: languageSelected = "Français"
             }
         }
     }
