@@ -24,6 +24,7 @@ struct SkyjoView: View {
     @State private var isShowingKeyboard = false
     @State private var isDisabled = false
     @State private var isNewGame: Bool
+    @State private var isFinished = false
     
     init(numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
@@ -102,7 +103,7 @@ struct SkyjoView: View {
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
                 message: Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(nameAndScore[getLooserName()!] ?? 0))"),
                 dismissButton: .default(Text("OK")) {
-                    cleanData()
+                    isFinished = true
                 }
             )
         }
@@ -123,14 +124,16 @@ struct SkyjoView: View {
         HStack {
             Spacer()
             
-            Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
-            .padding()
-            .foregroundStyle(.white)
-            .background(.green)
-            .cornerRadius(10)
-            .frame(height: 30)
-            
-            Spacer()
+            if !isFinished {
+                Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
+                    .padding()
+                    .foregroundStyle(.white)
+                    .background(.green)
+                    .cornerRadius(10)
+                    .frame(height: 30)
+                
+                Spacer()
+            }
             
             Button(getText(forKey: "cancelGame", forLanguage: data.languages)) {
                 isCancelSure = true
@@ -240,6 +243,7 @@ struct SkyjoView: View {
     
     func cleanData() {
         UserDefaults.standard.set(false, forKey: "partySkyjoOngoing")
+        isFinished = false
         dismiss()
     }
 }
