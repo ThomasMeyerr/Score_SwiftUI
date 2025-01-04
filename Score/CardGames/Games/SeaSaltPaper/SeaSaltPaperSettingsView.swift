@@ -92,8 +92,7 @@ struct SeaSaltPaperSettingsView: View {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    SeaSaltPaperView()
-//                    UnoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: false)
+                    SeaSaltPaperView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: false)
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -103,8 +102,7 @@ struct SeaSaltPaperSettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                SeaSaltPaperView()
-//                UnoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: true)
+                SeaSaltPaperView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: true)
             }
             .padding()
             .foregroundStyle(.white)
