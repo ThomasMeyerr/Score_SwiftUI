@@ -12,7 +12,7 @@ struct SeaSaltPaperSettingsView: View {
     @Environment(Data.self) var data
     
     @State private var numberOfPlayer = 2
-    @State private var maxScore: Double = 500
+    @State private var maxScore: Double = 40
     @State private var names: [String] = Array(repeating: "", count: 2)
     @State private var isShowingAlert = false
     @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partySeaSaltPaperOngoing")
@@ -28,7 +28,7 @@ struct SeaSaltPaperSettingsView: View {
                     Section(getText(forKey: "maxScore", forLanguage: data.languages)) {
                         HStack {
                             Text(String(Int(maxScore)))
-                            Slider(value: $maxScore, in: 400...600, step: 10)
+                            Slider(value: $maxScore, in: 30...41, step: 5)
                         }
                     }
                     
@@ -57,7 +57,7 @@ struct SeaSaltPaperSettingsView: View {
     func loadPlayersList() -> some View {
         Section {
             Picker(getText(forKey: "numberOfPlayers", forLanguage: data.languages), selection: $numberOfPlayer) {
-                ForEach(2..<11, id: \.self) {
+                ForEach(2..<5, id: \.self) {
                     Text(String($0))
                 }
             }
@@ -66,6 +66,11 @@ struct SeaSaltPaperSettingsView: View {
                     names.append(contentsOf: Array(repeating: "", count: newValue - names.count))
                 } else if names.count > newValue {
                     names.removeLast(names.count - newValue)
+                }
+                switch numberOfPlayer {
+                case 3: maxScore = 35
+                case 4: maxScore = 30
+                default: maxScore = 40
                 }
             }
             
@@ -118,7 +123,7 @@ struct SeaSaltPaperSettingsView: View {
     func resetData() {
         isPartyOngoing = UserDefaults.standard.bool(forKey: "partySeaSaltPaperOngoing")
         numberOfPlayer = 2
-        maxScore = 500
+        maxScore = 40
         names = Array(repeating: "", count: 2)
     }
 }
