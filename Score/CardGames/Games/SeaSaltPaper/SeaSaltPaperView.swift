@@ -169,7 +169,7 @@ struct SeaSaltPaperView: View {
     }
     
     func getLeaderName() -> String? {
-        nameAndScore.min(by: { $0.value < $1.value })?.key
+        nameAndScore.max(by: { $0.value < $1.value })?.key
     }
     
     func endRound() {
