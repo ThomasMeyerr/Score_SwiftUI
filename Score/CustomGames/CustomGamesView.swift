@@ -29,6 +29,7 @@ struct CustomGamesView: View {
     @State private var isAlert = false
     @State private var isNewGame: Bool
     @State private var isScoreToWin: Bool
+    @State private var isFinished = false
     
     init(numberOfPlayer: Int, maxScore: Double, names: [String], countdown: Int, isNewGame: Bool, isScoreToWin: Bool) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
@@ -101,9 +102,8 @@ struct CustomGamesView: View {
             if isPartyFinished {
                 return Alert(
                     title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
-                    message: nameAndScore.count > 1 ? Text(getText(forKey: "alertLooser", forLanguage: data.languages)) + Text(getLooserName()!) + Text(" (\(nameAndScore[getLooserName()!] ?? 0))") : nil,
                     dismissButton: .default(Text("OK")) {
-                        cleanData()
+                        isFinished = true
                     }
                 )
             } else {
@@ -154,14 +154,16 @@ struct CustomGamesView: View {
         HStack {
             Spacer()
             
-            Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
-            .padding()
-            .foregroundStyle(.white)
-            .background(.green)
-            .cornerRadius(10)
-            .frame(height: 30)
-            
-            Spacer()
+            if !isFinished {
+                Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
+                    .padding()
+                    .foregroundStyle(.white)
+                    .background(.green)
+                    .cornerRadius(10)
+                    .frame(height: 30)
+                
+                Spacer()
+            }
             
             Button(getText(forKey: "cancelGame", forLanguage: data.languages)) {
                 isCancelSure = true
@@ -203,14 +205,6 @@ struct CustomGamesView: View {
             return nameAndScore.max(by: { $0.value < $1.value })?.key
         } else {
             return nameAndScore.min(by: { $0.value < $1.value })?.key
-        }
-    }
-    
-    func getLooserName() -> String? {
-        if isScoreToWin {
-            return nameAndScore.min(by: { $0.value < $1.value })?.key
-        } else {
-            return nameAndScore.max(by: { $0.value < $1.value })?.key
         }
     }
     
@@ -283,6 +277,7 @@ struct CustomGamesView: View {
     
     func cleanData() {
         UserDefaults.standard.set(false, forKey: "partyCustomOngoing")
+        isFinished = false
         dismiss()
     }
 }
