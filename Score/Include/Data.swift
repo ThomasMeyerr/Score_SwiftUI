@@ -239,14 +239,6 @@ let texts: [String: [Languages: String]] = [
         .it: "Il vincitore è ",
         .de: "Der Gewinner ist "
     ],
-    "alertLooser": [
-        .fr: "Et le perdant est ",
-        .en: "And the looser is ",
-        .es: "Y el perdedor es ",
-        .pt: "E o perdedor é ",
-        .it: "E il perdente è ",
-        .de: "Und der Verlierer ist "
-    ],
     "continue": [
         .fr: "Reprendre",
         .en: "Continue",
