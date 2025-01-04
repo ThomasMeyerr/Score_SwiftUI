@@ -18,6 +18,8 @@ func getGameView(for game: String) -> some View {
         UnoSettingsView()
     case "Yam":
         YamSettingsView()
+    case "SeaSaltPaper":
+        SkyjoSettingsView()
     default:
         Text("View not available")
     }
