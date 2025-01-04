@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1604AFA52D29A676008EA1DE /* SeaSaltPaperSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1604AFA42D29A676008EA1DE /* SeaSaltPaperSettingsView.swift */; };
 		163F867A2C88C5C50057B639 /* SkyjoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */; };
 		163F867C2C88C65D0057B639 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867B2C88C65D0057B639 /* Utils.swift */; };
 		163F867E2C88C6A20057B639 /* UnoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867D2C88C6A20057B639 /* UnoSettingsView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1604AFA42D29A676008EA1DE /* SeaSaltPaperSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaSaltPaperSettingsView.swift; sourceTree = "<group>"; };
 		163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyjoSettingsView.swift; sourceTree = "<group>"; };
 		163F867B2C88C65D0057B639 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		163F867D2C88C6A20057B639 /* UnoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoSettingsView.swift; sourceTree = "<group>"; };
@@ -61,9 +63,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1604AFA32D29A65C008EA1DE /* SeaSaltPaper */ = {
+			isa = PBXGroup;
+			children = (
+				1604AFA42D29A676008EA1DE /* SeaSaltPaperSettingsView.swift */,
+			);
+			path = SeaSaltPaper;
+			sourceTree = "<group>";
+		};
 		163F86762C8890DF0057B639 /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				1604AFA32D29A65C008EA1DE /* SeaSaltPaper */,
 				163F867F2C88C6C00057B639 /* Skyjo */,
 				163F86802C88C6C80057B639 /* Uno */,
 			);
@@ -282,6 +293,7 @@
 				16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */,
 				164F37B62C84D45500650152 /* ScoreApp.swift in Sources */,
 				16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */,
+				1604AFA52D29A676008EA1DE /* SeaSaltPaperSettingsView.swift in Sources */,
 				163F867C2C88C65D0057B639 /* Utils.swift in Sources */,
 				163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */,
 				168382F12CDBA9A300B286E2 /* YamView.swift in Sources */,
