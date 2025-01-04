@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1604AFA52D29A676008EA1DE /* SeaSaltPaperSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1604AFA42D29A676008EA1DE /* SeaSaltPaperSettingsView.swift */; };
+		1604AFA72D29AF01008EA1DE /* SeaSaltPaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1604AFA62D29AF01008EA1DE /* SeaSaltPaperView.swift */; };
 		163F867A2C88C5C50057B639 /* SkyjoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */; };
 		163F867C2C88C65D0057B639 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867B2C88C65D0057B639 /* Utils.swift */; };
 		163F867E2C88C6A20057B639 /* UnoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867D2C88C6A20057B639 /* UnoSettingsView.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		1604AFA42D29A676008EA1DE /* SeaSaltPaperSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaSaltPaperSettingsView.swift; sourceTree = "<group>"; };
+		1604AFA62D29AF01008EA1DE /* SeaSaltPaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaSaltPaperView.swift; sourceTree = "<group>"; };
 		163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyjoSettingsView.swift; sourceTree = "<group>"; };
 		163F867B2C88C65D0057B639 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		163F867D2C88C6A20057B639 /* UnoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoSettingsView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				1604AFA42D29A676008EA1DE /* SeaSaltPaperSettingsView.swift */,
+				1604AFA62D29AF01008EA1DE /* SeaSaltPaperView.swift */,
 			);
 			path = SeaSaltPaper;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				16DE323A2C9AFEB5000678AC /* SkyjoView.swift in Sources */,
 				164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */,
 				163F867E2C88C6A20057B639 /* UnoSettingsView.swift in Sources */,
+				1604AFA72D29AF01008EA1DE /* SeaSaltPaperView.swift in Sources */,
 				16C700B52CAFF284005C6752 /* UnoView.swift in Sources */,
 				16F381712C84DA8400569DF1 /* CustomSettingsView.swift in Sources */,
 				164F37B82C84D45500650152 /* ContentView.swift in Sources */,
