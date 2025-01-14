@@ -197,7 +197,11 @@ struct CustomGamesView: View {
     }
     
     func sortedNameAndScore() -> [(key: String, value: Int)] {
-        nameAndScore.sorted { $0.value > $1.value }
+        if isScoreToWin {
+            nameAndScore.sorted { $0.value > $1.value }
+        } else {
+            nameAndScore.sorted { $0.value < $1.value }
+        }
     }
     
     func getLeaderName() -> String? {
