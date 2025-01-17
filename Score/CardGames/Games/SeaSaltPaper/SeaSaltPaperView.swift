@@ -92,7 +92,7 @@ struct SeaSaltPaperView: View {
             
             loadButtons()
         }
-        .navigationTitle("Uno")
+        .navigationTitle("Sea, Salt & Paper")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             setupInitialScore()
