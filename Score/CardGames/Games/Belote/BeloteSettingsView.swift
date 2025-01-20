@@ -32,7 +32,7 @@ struct BeloteSettingsView: View {
                     }
                     
                     Section(getText(forKey: "rules", forLanguage: data.languages)) {
-                        RulesText(text: getRules(forKey: "uno", forLanguage: data.languages), language: data.languages)
+                        RulesText(text: getRules(forKey: "belote", forLanguage: data.languages), language: data.languages)
                     }
                 }
                 
@@ -49,7 +49,7 @@ struct BeloteSettingsView: View {
                 )
             }
         }
-        .navigationTitle(getText(forKey: "settings", forLanguage: data.languages) + "Uno")
+        .navigationTitle(getText(forKey: "settings", forLanguage: data.languages) + "Belote")
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -117,7 +117,7 @@ struct BeloteSettingsView: View {
     func resetData() {
         isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBeloteOngoing")
         numberOfPlayer = 2
-        maxScore = 500
+        maxScore = 1000
         names = Array(repeating: "", count: 2)
     }
 }

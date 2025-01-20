@@ -111,6 +111,14 @@ let texts: [String: [Languages: String]] = [
     ],
     
     // GameSettingsView
+    "players": [
+        .fr: "Joueurs",
+        .en: "Players",
+        .es: "Jugadores",
+        .pt: "Jogadores",
+        .it: "Giocatori",
+        .de: "Spieler"
+    ],
     "rules": [
         .fr: "Règles",
         .en: "Rules",
