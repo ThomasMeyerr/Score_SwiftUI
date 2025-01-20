@@ -385,7 +385,7 @@ let texts: [String: [Languages: String]] = [
 
 
 // All games handle in app
-let cardGames = ["Skyjo", "Uno", "SeaSaltPaper"].sorted()
+let cardGames = ["Skyjo", "Uno", "SeaSaltPaper", "Take6"].sorted()
 let diceGames = ["Yam"].sorted()
 
 
