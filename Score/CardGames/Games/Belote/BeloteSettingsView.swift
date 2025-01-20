@@ -117,7 +117,7 @@ struct BeloteSettingsView: View {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    UnoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: false)
+                    BeloteView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: false)
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -127,7 +127,7 @@ struct BeloteSettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                UnoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: true)
+                BeloteView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: true)
             }
             .padding()
             .foregroundStyle(.white)
