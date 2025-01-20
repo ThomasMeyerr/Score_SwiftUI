@@ -13,6 +13,7 @@
 		163F867C2C88C65D0057B639 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867B2C88C65D0057B639 /* Utils.swift */; };
 		163F867E2C88C6A20057B639 /* UnoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867D2C88C6A20057B639 /* UnoSettingsView.swift */; };
 		163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F86812C88C75A0057B639 /* YamSettingsView.swift */; };
+		164910F52D3E5556006589CA /* CardSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164910F42D3E5556006589CA /* CardSettingsViewModel.swift */; };
 		164F37B62C84D45500650152 /* ScoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37B52C84D45500650152 /* ScoreApp.swift */; };
 		164F37B82C84D45500650152 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37B72C84D45500650152 /* ContentView.swift */; };
 		164F37BA2C84D45700650152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37B92C84D45700650152 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		163F867B2C88C65D0057B639 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		163F867D2C88C6A20057B639 /* UnoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoSettingsView.swift; sourceTree = "<group>"; };
 		163F86812C88C75A0057B639 /* YamSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamSettingsView.swift; sourceTree = "<group>"; };
+		164910F42D3E5556006589CA /* CardSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSettingsViewModel.swift; sourceTree = "<group>"; };
 		164F37B22C84D45500650152 /* Score.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Score.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		164F37B52C84D45500650152 /* ScoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreApp.swift; sourceTree = "<group>"; };
 		164F37B72C84D45500650152 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				164F37C32C84D8CF00650152 /* CardGamesView.swift */,
+				164910F42D3E5556006589CA /* CardSettingsViewModel.swift */,
 				163F86762C8890DF0057B639 /* Games */,
 			);
 			path = CardGames;
@@ -301,6 +304,7 @@
 				163F867C2C88C65D0057B639 /* Utils.swift in Sources */,
 				163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */,
 				168382F12CDBA9A300B286E2 /* YamView.swift in Sources */,
+				164910F52D3E5556006589CA /* CardSettingsViewModel.swift in Sources */,
 				163F867A2C88C5C50057B639 /* SkyjoSettingsView.swift in Sources */,
 				16F3816F2C84DA7600569DF1 /* DiceGamesView.swift in Sources */,
 			);
