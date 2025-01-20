@@ -57,7 +57,7 @@ struct Take6SettingsView: View {
     func loadPlayersList() -> some View {
         Section {
             Picker(getText(forKey: "numberOfPlayers", forLanguage: data.languages), selection: $numberOfPlayer) {
-                ForEach(2..<9, id: \.self) {
+                ForEach(2..<11, id: \.self) {
                     Text(String($0))
                 }
             }
