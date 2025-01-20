@@ -13,6 +13,8 @@
 		163F867C2C88C65D0057B639 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867B2C88C65D0057B639 /* Utils.swift */; };
 		163F867E2C88C6A20057B639 /* UnoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867D2C88C6A20057B639 /* UnoSettingsView.swift */; };
 		163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F86812C88C75A0057B639 /* YamSettingsView.swift */; };
+		164910F82D3E64D1006589CA /* Take6SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164910F72D3E64D1006589CA /* Take6SettingsView.swift */; };
+		164910FA2D3E64DC006589CA /* Take6View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164910F92D3E64DC006589CA /* Take6View.swift */; };
 		164F37B62C84D45500650152 /* ScoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37B52C84D45500650152 /* ScoreApp.swift */; };
 		164F37B82C84D45500650152 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37B72C84D45500650152 /* ContentView.swift */; };
 		164F37BA2C84D45700650152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37B92C84D45700650152 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 		163F867B2C88C65D0057B639 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		163F867D2C88C6A20057B639 /* UnoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoSettingsView.swift; sourceTree = "<group>"; };
 		163F86812C88C75A0057B639 /* YamSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamSettingsView.swift; sourceTree = "<group>"; };
+		164910F72D3E64D1006589CA /* Take6SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Take6SettingsView.swift; sourceTree = "<group>"; };
+		164910F92D3E64DC006589CA /* Take6View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Take6View.swift; sourceTree = "<group>"; };
 		164F37B22C84D45500650152 /* Score.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Score.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		164F37B52C84D45500650152 /* ScoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreApp.swift; sourceTree = "<group>"; };
 		164F37B72C84D45500650152 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 		163F86762C8890DF0057B639 /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				164910F62D3E6478006589CA /* 6 qui prend ! */,
 				1604AFA32D29A65C008EA1DE /* SeaSaltPaper */,
 				163F867F2C88C6C00057B639 /* Skyjo */,
 				163F86802C88C6C80057B639 /* Uno */,
@@ -126,6 +131,15 @@
 				168382F02CDBA9A300B286E2 /* YamView.swift */,
 			);
 			path = Yam;
+			sourceTree = "<group>";
+		};
+		164910F62D3E6478006589CA /* 6 qui prend ! */ = {
+			isa = PBXGroup;
+			children = (
+				164910F72D3E64D1006589CA /* Take6SettingsView.swift */,
+				164910F92D3E64DC006589CA /* Take6View.swift */,
+			);
+			path = "6 qui prend !";
 			sourceTree = "<group>";
 		};
 		164F37A92C84D45500650152 = {
@@ -297,11 +311,13 @@
 				16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */,
 				164F37B62C84D45500650152 /* ScoreApp.swift in Sources */,
 				16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */,
+				164910F82D3E64D1006589CA /* Take6SettingsView.swift in Sources */,
 				1604AFA52D29A676008EA1DE /* SeaSaltPaperSettingsView.swift in Sources */,
 				163F867C2C88C65D0057B639 /* Utils.swift in Sources */,
 				163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */,
 				168382F12CDBA9A300B286E2 /* YamView.swift in Sources */,
 				163F867A2C88C5C50057B639 /* SkyjoSettingsView.swift in Sources */,
+				164910FA2D3E64DC006589CA /* Take6View.swift in Sources */,
 				16F3816F2C84DA7600569DF1 /* DiceGamesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
