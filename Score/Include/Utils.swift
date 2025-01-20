@@ -22,6 +22,8 @@ func getGameView(for game: String) -> some View {
         SeaSaltPaperSettingsView()
     case "Take6":
         Take6SettingsView()
+    case "Belote":
+        BeloteSettingsView()
     default:
         Text("View not available")
     }
