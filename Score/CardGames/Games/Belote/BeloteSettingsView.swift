@@ -11,10 +11,10 @@ struct BeloteSettingsView: View {
     @Environment(Data.self) var data
     
     @State private var numberOfPlayer = 2
-    @State private var maxScore: Double = 500
+    @State private var maxScore: Double = 1000
     @State private var names: [String] = Array(repeating: "", count: 2)
     @State private var isShowingAlert = false
-    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyUnoOngoing")
+    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBeloteOngoing")
     
     var body: some View {
         NavigationStack {
@@ -27,7 +27,7 @@ struct BeloteSettingsView: View {
                     Section(getText(forKey: "maxScore", forLanguage: data.languages)) {
                         HStack {
                             Text(String(Int(maxScore)))
-                            Slider(value: $maxScore, in: 400...600, step: 10)
+                            Slider(value: $maxScore, in: 500...1500, step: 100)
                         }
                     }
                     
@@ -56,8 +56,8 @@ struct BeloteSettingsView: View {
     func loadPlayersList() -> some View {
         Section {
             Picker(getText(forKey: "numberOfPlayers", forLanguage: data.languages), selection: $numberOfPlayer) {
-                ForEach(2..<11, id: \.self) {
-                    Text(String($0))
+                ForEach([2, 4], id: \.self) { number in
+                    Text("\(number)")
                 }
             }
             .onChange(of: numberOfPlayer) { oldValue, newValue in
@@ -115,7 +115,7 @@ struct BeloteSettingsView: View {
     }
     
     func resetData() {
-        isPartyOngoing = UserDefaults.standard.bool(forKey: "partyUnoOngoing")
+        isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBeloteOngoing")
         numberOfPlayer = 2
         maxScore = 500
         names = Array(repeating: "", count: 2)
