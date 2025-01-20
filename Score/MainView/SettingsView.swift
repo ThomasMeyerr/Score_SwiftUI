@@ -9,14 +9,19 @@ import SwiftUI
 import StoreKit
 
 
-struct SettingsView: View {
+@MainActor class SettingsViewModel: ObservableObject {
+    @Published var languageSelected = "English"
+    @Published var isAlert = false
+    
     let languages: [String: Languages] = ["English": .en, "Français": .fr, "Español": .es, "Português": .pt, "Italiano": .it, "Deutsch": .de]
     let flags: [String: String] = ["English": " 🇬🇧", "Français": " 🇫🇷", "Español": " 🇪🇸", "Português": " 🇵🇹", "Italiano": " 🇮🇹", "Deutsch": " 🇩🇪"]
+}
 
+
+struct SettingsView: View {
     @Environment(Data.self) var data
     @Environment(\.requestReview) var requestReview
-    @State private var languageSelected = "English"
-    @State private var isAlert = false
+    @StateObject var vm = SettingsViewModel()
 
     var body: some View {
         Form {
@@ -42,14 +47,14 @@ struct SettingsView: View {
             }
             
             Section {
-                Picker(getText(forKey: "settingsPicker", forLanguage: data.languages), selection: $languageSelected) {
-                    ForEach(Array(languages.keys), id: \.self) { key in
-                        Text(key + (flags[key] ?? ""))
+                Picker(getText(forKey: "settingsPicker", forLanguage: data.languages), selection: $vm.languageSelected) {
+                    ForEach(Array(vm.languages.keys), id: \.self) { key in
+                        Text(key + (vm.flags[key] ?? ""))
                             .tag(key)
                     }
                 }
-                .onChange(of: languageSelected) { oldValue, newValue in
-                    if let selectedLanguage = languages[newValue] {
+                .onChange(of: vm.languageSelected) { oldValue, newValue in
+                    if let selectedLanguage = vm.languages[newValue] {
                         data.languages = selectedLanguage
                     }
                 }
@@ -57,29 +62,29 @@ struct SettingsView: View {
             
             Section {
                 Button(getText(forKey: "settingsReset", forLanguage: data.languages), role: .destructive) {
-                    isAlert = true
+                    vm.isAlert = true
                 }
             }
         }
-        .alert(getText(forKey: "settingsAlert", forLanguage: data.languages), isPresented: $isAlert) {
+        .alert(getText(forKey: "settingsAlert", forLanguage: data.languages), isPresented: $vm.isAlert) {
             Button("Ok", action: resetData)
             Button(getText(forKey: "settingsButtonCancel", forLanguage: data.languages), role: .cancel) {}
         }
         .onAppear {
             switch data.languages {
-            case .en: languageSelected = "English"
-            case .es: languageSelected = "Español"
-            case .pt: languageSelected = "Português"
-            case .it: languageSelected = "Italiano"
-            case .de: languageSelected = "Deutsch"
-            default: languageSelected = "Français"
+            case .en: vm.languageSelected = "English"
+            case .es: vm.languageSelected = "Español"
+            case .pt: vm.languageSelected = "Português"
+            case .it: vm.languageSelected = "Italiano"
+            case .de: vm.languageSelected = "Deutsch"
+            default: vm.languageSelected = "Français"
             }
         }
     }
     
     func resetData() {
         data.languages = .en
-        languageSelected = "English"
+        vm.languageSelected = "English"
     }
 }
 

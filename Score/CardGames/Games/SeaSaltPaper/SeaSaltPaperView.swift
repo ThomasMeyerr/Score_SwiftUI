@@ -91,8 +91,8 @@ struct SeaSaltPaperView: View {
             }
             
             loadButtons()
+                .navigationTitle("Sea, Salt & Paper")
         }
-        .navigationTitle("Sea, Salt & Paper")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             setupInitialScore()
