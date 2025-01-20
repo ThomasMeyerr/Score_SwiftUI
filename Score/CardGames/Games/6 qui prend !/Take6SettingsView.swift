@@ -87,7 +87,7 @@ struct Take6SettingsView: View {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: false)
+                    Take6View(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: false)
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -97,7 +97,7 @@ struct Take6SettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: true)
+                Take6View(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: true)
             }
             .padding()
             .foregroundStyle(.white)

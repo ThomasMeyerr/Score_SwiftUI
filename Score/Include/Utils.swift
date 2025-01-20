@@ -20,6 +20,8 @@ func getGameView(for game: String) -> some View {
         YamSettingsView()
     case "SeaSaltPaper":
         SeaSaltPaperSettingsView()
+    case "Take6":
+        Take6SettingsView()
     default:
         Text("View not available")
     }
