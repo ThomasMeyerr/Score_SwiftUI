@@ -111,6 +111,14 @@ let texts: [String: [Languages: String]] = [
     ],
     
     // GameSettingsView
+    "team": [
+        .fr: "Équipe",
+        .en: "Team",
+        .es: "Equipo",
+        .pt: "Equipe",
+        .it: "Squadra",
+        .de: "Mannschaft"
+    ],
     "players": [
         .fr: "Joueurs",
         .en: "Players",
