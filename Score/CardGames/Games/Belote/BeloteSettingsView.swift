@@ -27,7 +27,7 @@ struct BeloteSettingsView: View {
                     Section(getText(forKey: "maxScore", forLanguage: data.languages)) {
                         HStack {
                             Text(String(Int(maxScore)))
-                            Slider(value: $maxScore, in: 500...1500, step: 100)
+                            Slider(value: $maxScore, in: 200...1800, step: 100)
                         }
                     }
                     
@@ -117,7 +117,7 @@ struct BeloteSettingsView: View {
             if isPartyOngoing {
                 Spacer()
                 NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    BeloteView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: false)
+                    BeloteView(numberOfPlayer: 2, maxScore: maxScore, names: numberOfPlayer == 2 ? names : ["\(names[0]) & \(names[1])", "\(names[2]) & \(names[3])"], isNewGame: false)
                 }
                 .padding()
                 .foregroundStyle(.white)
@@ -127,7 +127,7 @@ struct BeloteSettingsView: View {
             }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                BeloteView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: true)
+                BeloteView(numberOfPlayer: 2, maxScore: maxScore, names: numberOfPlayer == 2 ? names : ["\(names[0]) & \(names[1])", "\(names[2]) & \(names[3])"], isNewGame: true)
             }
             .padding()
             .foregroundStyle(.white)

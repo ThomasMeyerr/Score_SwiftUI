@@ -244,6 +244,6 @@ struct BeloteView: View {
 }
 
 #Preview {
-    BeloteView(numberOfPlayer: 4, maxScore: 1000, names: ["Thomas", "Zoé", "Troy", "Brigitte"], isNewGame: true)
+    BeloteView(numberOfPlayer: 2, maxScore: 1000, names: ["Thomas & Zoé", "Troy & Brigitte"], isNewGame: true)
         .environment(Data())
 }
