@@ -226,6 +226,7 @@ struct CustomGamesView: View {
         if possibleWinner! >= Int(maxScore) {
             countdownTimer.stopCountdown()
             isPartyFinished = true
+            UserDefaults.standard.set(false, forKey: "partyCustomOngoing")
         } else {
             countdownTimer.resetCountdown(to: countdown)
             roundNumber += 1

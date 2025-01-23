@@ -185,6 +185,7 @@ struct SeaSaltPaperView: View {
         let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
         if possibleLooser! >= Int(maxScore) {
             isPartyFinished = true
+            UserDefaults.standard.set(false, forKey: "partySeaSaltPaperOngoing")
         } else {
             roundNumber += 1
         }

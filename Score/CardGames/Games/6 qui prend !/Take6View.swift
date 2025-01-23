@@ -186,6 +186,7 @@ struct Take6View: View {
         let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
         if possibleLooser! >= Int(maxScore) {
             isPartyFinished = true
+            UserDefaults.standard.set(false, forKey: "partyTake6Ongoing")
         } else {
             roundNumber += 1
         }
