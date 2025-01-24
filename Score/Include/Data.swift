@@ -111,6 +111,14 @@ let texts: [String: [Languages: String]] = [
     ],
     
     // GameSettingsView
+    "history": [
+        .fr: "Historique de partie",
+        .en: "Game History",
+        .es: "Historial de partida",
+        .pt: "Histórico de partida",
+        .it: "Storico della partita",
+        .de: "Spielverlauf"
+    ],
     "team": [
         .fr: "Équipe",
         .en: "Team",

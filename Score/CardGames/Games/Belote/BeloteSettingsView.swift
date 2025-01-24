@@ -34,6 +34,15 @@ struct BeloteSettingsView: View {
                     Section(getText(forKey: "rules", forLanguage: data.languages)) {
                         RulesText(text: getRules(forKey: "belote", forLanguage: data.languages), language: data.languages)
                     }
+                    
+                    Section(getText(forKey: "history", forLanguage: data.languages)) {
+                        List {
+                            ForEach(["toto", "zozo"], id: \.self) { name in
+                                Text(name)
+                            }
+                            .onDelete(perform: removeRows)
+                        }
+                    }
                 }
                 
                 loadButtons()
@@ -152,6 +161,10 @@ struct BeloteSettingsView: View {
         numberOfPlayer = 2
         maxScore = 1000
         names = Array(repeating: "", count: 2)
+    }
+    
+    func removeRows(at offsets: IndexSet) {
+//        ??.remove(atOffsets: offsets)
     }
 }
 
