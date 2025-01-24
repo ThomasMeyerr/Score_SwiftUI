@@ -180,16 +180,21 @@ class CardGameData: Codable {
     let nameAndScore: [String: Int]
     let roundScores: [String: Int]
     let roundNumber: Int
+    var gameHistory: String = ""
+    var isPartyFinished: Bool = false
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int) {
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, gameHistory: String = "", isPartyFinished: Bool = false) {
         self.numberOfPlayer = numberOfPlayer
         self.maxScore = maxScore
         self.names = names
         self.nameAndScore = nameAndScore
         self.roundScores = roundScores
         self.roundNumber = roundNumber
+        self.gameHistory = gameHistory
+        self.isPartyFinished = isPartyFinished
     }
 }
+typealias cardGameDataSave = [CardGameData]
 
 
 class YamGameData: Codable {

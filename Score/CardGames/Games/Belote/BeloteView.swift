@@ -25,12 +25,16 @@ struct BeloteView: View {
     @State private var isDisabled = false
     @State private var isNewGame: Bool
     @State private var isFinished = false
+    @State private var isHistory: Bool = false
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool) {
+    init(numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool, isHistory: Bool = false, nameAndScore: [String: Int] = [:], roundNumber: Int = 1) {
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
         self._isNewGame = State(initialValue: isNewGame)
+        self._isHistory = State(initialValue: isHistory)
+        self._nameAndScore = State(initialValue: nameAndScore)
+        self._roundNumber = State(initialValue: roundNumber)
     }
     
     var body: some View {
@@ -190,6 +194,17 @@ struct BeloteView: View {
         } else {
             roundNumber += 1
         }
+        
+        if let cardDataSave = UserDefaults.standard.data(forKey: "CardDataSave") {
+            if var decodedCardDataSave = try? JSONDecoder().decode(cardGameDataSave.self, from: cardDataSave) {
+                let data = CardGameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, gameHistory: "belote", isPartyFinished: isPartyFinished)
+                decodedCardDataSave.append(data)
+                
+                if let encodedCardDataSave = try? JSONEncoder().encode(decodedCardDataSave) {
+                    UserDefaults.standard.set(encodedCardDataSave, forKey: "CardDataSave")
+                }
+            }
+        }
     }
     
     func setupInitialScore() {
@@ -203,7 +218,9 @@ struct BeloteView: View {
                 combinedDict[name] = scores[index]
             }
             
-            nameAndScore = combinedDict
+            if !isHistory {
+                nameAndScore = combinedDict
+            }
             roundScores = combinedDict
         }
     }

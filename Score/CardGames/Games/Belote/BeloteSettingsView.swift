@@ -38,7 +38,11 @@ struct BeloteSettingsView: View {
                     Section(getText(forKey: "history", forLanguage: data.languages)) {
                         List {
                             ForEach(["toto", "zozo"], id: \.self) { name in
-                                Text(name)
+                                NavigationLink {
+                                    BeloteView(numberOfPlayer: 1, maxScore: 1, names: ["t"], isNewGame: true, isHistory: true)
+                                } label: {
+                                    Text(name)
+                                }
                             }
                             .onDelete(perform: removeRows)
                         }
