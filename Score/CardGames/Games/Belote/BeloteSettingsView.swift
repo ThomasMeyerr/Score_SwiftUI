@@ -36,17 +36,21 @@ struct BeloteSettingsView: View {
                     }
                     
                     Section(getText(forKey: "history", forLanguage: data.languages)) {
+                        let test = true
                         List {
-                            if let cardDataSave = UserDefaults.standard.data(forKey: "CardDataSave") {
-                                if var decodedCardDataSave = try? JSONDecoder().decode(cardGameDataSave.self, from: cardDataSave) {
-                                    ForEach(["toto", "zozo"], id: \.self) { name in
-                                        NavigationLink {
-                                            BeloteView(numberOfPlayer: 1, maxScore: 1, names: ["t"], isNewGame: true, isHistory: true)
-                                        } label: {
-                                            Text(name)
-                                        }
+                            if test {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text("Thomas, Zoé")
+                                        Text("Last update: 02-07-2025 00h04")
+                                            .italic()
+                                            .foregroundStyle(.secondary.opacity(0.8))
                                     }
-                                    .onDelete(perform: removeRows)
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: "clock")
+                                        .foregroundStyle(.orange)
                                 }
                             } else {
                                 Text(getText(forKey: "gameRecorded", forLanguage: data.languages))
