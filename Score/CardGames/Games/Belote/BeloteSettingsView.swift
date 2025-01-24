@@ -51,6 +51,7 @@ struct BeloteSettingsView: View {
                             } else {
                                 Text(getText(forKey: "gameRecorded", forLanguage: data.languages))
                                     .italic()
+                                    .foregroundStyle(.secondary.opacity(0.8))
                             }
                         }
                     }
