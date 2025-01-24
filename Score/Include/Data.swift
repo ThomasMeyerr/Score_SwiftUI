@@ -111,6 +111,14 @@ let texts: [String: [Languages: String]] = [
     ],
     
     // GameSettingsView
+    "gameRecorded": [
+        .fr: "Aucune partie enregistrée",
+        .en: "No games recorded",
+        .es: "No se han registrado partidas",
+        .pt: "Nenhuma partida registrada",
+        .it: "Nessuna partita registrata",
+        .de: "Keine Spiele gespeichert"
+    ],
     "history": [
         .fr: "Historique des parties",
         .en: "Game Histories",

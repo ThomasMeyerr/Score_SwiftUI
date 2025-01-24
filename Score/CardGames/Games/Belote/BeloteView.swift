@@ -195,11 +195,11 @@ struct BeloteView: View {
             roundNumber += 1
         }
         
+        // Download all cardGame saved in device to append the current game, with the right card name, in array, to finally save it.
         if let cardDataSave = UserDefaults.standard.data(forKey: "CardDataSave") {
             if var decodedCardDataSave = try? JSONDecoder().decode(cardGameDataSave.self, from: cardDataSave) {
                 let data = CardGameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, gameHistory: "belote", isPartyFinished: isPartyFinished)
                 decodedCardDataSave.append(data)
-                
                 if let encodedCardDataSave = try? JSONEncoder().encode(decodedCardDataSave) {
                     UserDefaults.standard.set(encodedCardDataSave, forKey: "CardDataSave")
                 }

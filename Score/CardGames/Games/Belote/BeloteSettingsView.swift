@@ -37,14 +37,21 @@ struct BeloteSettingsView: View {
                     
                     Section(getText(forKey: "history", forLanguage: data.languages)) {
                         List {
-                            ForEach(["toto", "zozo"], id: \.self) { name in
-                                NavigationLink {
-                                    BeloteView(numberOfPlayer: 1, maxScore: 1, names: ["t"], isNewGame: true, isHistory: true)
-                                } label: {
-                                    Text(name)
+                            if let cardDataSave = UserDefaults.standard.data(forKey: "CardDataSave") {
+                                if var decodedCardDataSave = try? JSONDecoder().decode(cardGameDataSave.self, from: cardDataSave) {
+                                    ForEach(["toto", "zozo"], id: \.self) { name in
+                                        NavigationLink {
+                                            BeloteView(numberOfPlayer: 1, maxScore: 1, names: ["t"], isNewGame: true, isHistory: true)
+                                        } label: {
+                                            Text(name)
+                                        }
+                                    }
+                                    .onDelete(perform: removeRows)
                                 }
+                            } else {
+                                Text(getText(forKey: "gameRecorded", forLanguage: data.languages))
+                                    .italic()
                             }
-                            .onDelete(perform: removeRows)
                         }
                     }
                 }
