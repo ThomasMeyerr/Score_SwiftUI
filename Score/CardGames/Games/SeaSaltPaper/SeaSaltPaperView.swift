@@ -209,7 +209,7 @@ struct SeaSaltPaperView: View {
     
     func saveData() {
         UserDefaults.standard.set(true, forKey: "partySeaSaltPaperOngoing")
-        let data = CardGameData(id: UUID(), numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
+        let data = CardGameData(id: UUID(), numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, isFinished: isFinished)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "SeaSaltPaperGameData")

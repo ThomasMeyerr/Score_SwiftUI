@@ -141,7 +141,7 @@ struct BeloteSettingsView: View {
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
                 let teamNames = names.count == 2 ? names : ["\(names[0]) & \(names[1])", "\(names[2]) & \(names[3])"]
-                BeloteView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: teamNames, isNewGame: true)
+                BeloteView(id: nil, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: teamNames, isNewGame: true)
             }
             .padding()
             .foregroundStyle(.white)

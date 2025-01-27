@@ -181,9 +181,11 @@ class CardGameData: Codable, Identifiable {
     let nameAndScore: [String: Int]
     let roundScores: [String: Int]
     let roundNumber: Int
+    let isFinished: Bool
+    
     var lastUpdated = Date()
     
-    init(id: UUID, numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int) {
+    init(id: UUID, numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, isFinished: Bool) {
         self.id = id
         self.numberOfPlayer = numberOfPlayer
         self.maxScore = maxScore
@@ -191,8 +193,10 @@ class CardGameData: Codable, Identifiable {
         self.nameAndScore = nameAndScore
         self.roundScores = roundScores
         self.roundNumber = roundNumber
+        self.isFinished = isFinished
     }
 }
+typealias GameCardHistory = [CardGameData]
 
 
 class YamGameData: Codable {

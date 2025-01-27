@@ -198,7 +198,8 @@ struct BeloteView: View {
     }
     
     func saveData() {
-        let data = CardGameData(id: id, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
+        let data = CardGameData(id: id, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, isFinished: isFinished)
+        data.lastUpdated = Date()
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "BeloteGameData")
