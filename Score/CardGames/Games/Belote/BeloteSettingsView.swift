@@ -37,7 +37,7 @@ struct BeloteSettingsView: View {
                     
                     Section(getText(forKey: "history", forLanguage: data.languages)) {
                         if !history.isEmpty {
-                            List(history) { game in
+                            List(history.sorted(by: { $0.lastUpdated > $1.lastUpdated })) { game in
                                 HStack {
                                     VStack(alignment: .leading) {
                                         Text(game.names.joined(separator: ", "))
