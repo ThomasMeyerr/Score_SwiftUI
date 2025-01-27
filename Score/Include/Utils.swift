@@ -173,13 +173,15 @@ struct CustomKeyboard: View {
 }
 
 
-class CardGameData: Codable {
+class CardGameData: Codable, Identifiable {
+    var id = UUID()
     let numberOfPlayer: Int
     let maxScore: Double
     let names: [String]
     let nameAndScore: [String: Int]
     let roundScores: [String: Int]
     let roundNumber: Int
+    var lastUpdated = Date()
     
     init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int) {
         self.numberOfPlayer = numberOfPlayer
