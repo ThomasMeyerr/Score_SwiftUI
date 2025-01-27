@@ -27,7 +27,7 @@ struct BeloteView: View {
     
     var id: UUID
     
-    init(id: UUID?, numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool) {
+    init(id: UUID?, numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool = false) {
         if id != nil {
             self.id = id!
         } else {
@@ -211,7 +211,7 @@ struct BeloteView: View {
                 }
                 
                 if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
-                    UserDefaults.standard.data(forKey: "BeloteHistory")
+                    UserDefaults.standard.setValue(encodedHistory, forKey: "BeloteHistory")
                 }
             }
         } else {
@@ -219,26 +219,29 @@ struct BeloteView: View {
             let newHistory: GameCardHistory = [data]
             
             if let encodedHistory = try? JSONEncoder().encode(newHistory) {
-                UserDefaults.standard.data(forKey: "BeloteHistory")
+                UserDefaults.standard.setValue(encodedHistory, forKey: "BeloteHistory")
             }
         }
     }
     
     func loadData() {
-        if let data = UserDefaults.standard.data(forKey: "BeloteGameData") {
-            if let decodedGameData = try? JSONDecoder().decode(CardGameData.self, from: data) {
-                numberOfPlayer = decodedGameData.numberOfPlayer
-                maxScore = decodedGameData.maxScore
-                names = decodedGameData.names
-                nameAndScore = decodedGameData.nameAndScore
-                roundScores = decodedGameData.roundScores
-                roundNumber = decodedGameData.roundNumber
-                
-                for name in nameAndScore.keys {
-                    if let roundScore = roundScores[name] {
-                        nameAndScore[name, default: 0] += roundScore
+        if let beloteHistory = UserDefaults.standard.data(forKey: "BeloteHistory") {
+            if let decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: beloteHistory) {
+                // Check if a same CardGameData exists with the same id
+                if let index = decodedHistory.firstIndex(where: { $0.id == id }) {
+                    numberOfPlayer = decodedHistory[index].numberOfPlayer
+                    maxScore = decodedHistory[index].maxScore
+                    names = decodedHistory[index].names
+                    nameAndScore = decodedHistory[index].nameAndScore
+                    roundScores = decodedHistory[index].roundScores
+                    roundNumber = decodedHistory[index].roundNumber
+                    
+                    for name in nameAndScore.keys {
+                        if let roundScore = roundScores[name] {
+                            nameAndScore[name, default: 0] += roundScore
+                        }
+                        roundScores[name] = 0
                     }
-                    roundScores[name] = 0
                 }
             }
         }
