@@ -37,30 +37,38 @@ struct BeloteSettingsView: View {
                     
                     Section(getText(forKey: "history", forLanguage: data.languages)) {
                         if !history.isEmpty {
-                            List(history.sorted(by: { $0.lastUpdated > $1.lastUpdated })) { game in
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        Text(game.names.joined(separator: ", "))
-                                        
-                                        Text("\(getText(forKey: "lastUpdate", forLanguage: data.languages)): \(formattedDate(date: game.lastUpdated))")
-                                            .font(.caption.italic())
-                                            .foregroundStyle(.secondary.opacity(0.8))
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    if game.winner.isEmpty {
-                                        Image(systemName: "clock")
-                                            .foregroundStyle(.orange)
-                                    } else {
+                            List {
+                                ForEach(history.sorted(by: { $0.lastUpdated > $1.lastUpdated })) { game in
+                                    NavigationLink {
+                                        BeloteView(id: game.id, numberOfPlayer: game.numberOfPlayer, maxScore: game.maxScore, names: game.names)
+                                    } label: {
                                         HStack {
-                                            Image(systemName: "crown.fill")
-                                                .foregroundStyle(.yellow)
+                                            VStack(alignment: .leading) {
+                                                Text(game.names.joined(separator: ", "))
+                                                
+                                                Text("\(getText(forKey: "lastUpdate", forLanguage: data.languages)): \(formattedDate(date: game.lastUpdated))")
+                                                    .font(.caption.italic())
+                                                    .foregroundStyle(.secondary.opacity(0.8))
+                                            }
                                             
-                                            Text(game.winner)
+                                            Spacer()
+                                            
+                                            if game.winner.isEmpty {
+                                                Image(systemName: "clock")
+                                                    .foregroundStyle(.orange)
+                                            } else {
+                                                HStack {
+                                                    Image(systemName: "crown.fill")
+                                                        .foregroundStyle(.yellow)
+                                                    
+                                                    Text(game.winner)
+                                                }
+                                                .font(.subheadline)
+                                            }
                                         }
                                     }
                                 }
+                                .onDelete(perform: removeRows)
                             }
                         } else {
                             Text(getText(forKey: "gameRecorded", forLanguage: data.languages))
@@ -77,6 +85,7 @@ struct BeloteSettingsView: View {
             }
             .alert(isPresented: $isShowingAlert) {
                 Alert(
+                    
                     title: Text(getText(forKey: "alertTitle", forLanguage: data.languages)),
                     message: Text(getText(forKey: "alertMessage", forLanguage: data.languages)),
                     dismissButton: .default(Text("OK"))
@@ -176,14 +185,20 @@ struct BeloteSettingsView: View {
     }
     
     func resetData() {
+        loadHistory()
         numberOfPlayer = 2
         maxScore = 1000
         names = Array(repeating: "", count: 2)
-        loadHistory()
     }
     
     func removeRows(at offsets: IndexSet) {
-//        ??.remove(atOffsets: offsets)
+        if let beloteHistory = UserDefaults.standard.data(forKey: "BeloteHistory"), var decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: beloteHistory) {
+            decodedHistory.remove(atOffsets: offsets)
+            
+            if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
+                UserDefaults.standard.setValue(encodedHistory, forKey: "BeloteHistory")
+            }
+        }
     }
 }
 
