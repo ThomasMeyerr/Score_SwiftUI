@@ -210,7 +210,7 @@ struct Take6View: View {
     
     func saveData() {
         UserDefaults.standard.set(true, forKey: "partyTake6Ongoing")
-        let data = CardGameData(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
+        let data = CardGameData(id: UUID(), numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "Take6GameData")
