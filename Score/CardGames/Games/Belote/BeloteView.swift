@@ -23,11 +23,11 @@ struct BeloteView: View {
     @State private var isShowingKeyboard: Bool = false
     @State private var isDisabled: Bool = false
     @State private var isNewGame: Bool
-    @State private var winner: String = ""
+    @State private var winner: String
     
     var id: UUID
     
-    init(id: UUID?, numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool = false) {
+    init(id: UUID?, numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool = false, winner: String = "") {
         if id != nil {
             self.id = id!
         } else {
@@ -37,6 +37,7 @@ struct BeloteView: View {
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
         self._isNewGame = State(initialValue: isNewGame)
+        self._winner = State(initialValue: winner)
     }
     
     var body: some View {
@@ -107,7 +108,9 @@ struct BeloteView: View {
         .alert(isPresented: $isPartyFinished) {
             Alert(
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
-                dismissButton: .default(Text("OK")) {}
+                dismissButton: .default(Text("OK")) {
+                    saveData()
+                }
             )
         }
         .sheet(isPresented: $isShowingKeyboard) {

@@ -40,7 +40,7 @@ struct BeloteSettingsView: View {
                             List {
                                 ForEach(history.sorted(by: { $0.lastUpdated > $1.lastUpdated })) { game in
                                     NavigationLink {
-                                        BeloteView(id: game.id, numberOfPlayer: game.numberOfPlayer, maxScore: game.maxScore, names: game.names)
+                                        BeloteView(id: game.id, numberOfPlayer: game.numberOfPlayer, maxScore: game.maxScore, names: game.names, winner: game.winner)
                                     } label: {
                                         HStack {
                                             VStack(alignment: .leading) {
