@@ -201,8 +201,26 @@ struct BeloteView: View {
         let data = CardGameData(id: id, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, isFinished: isFinished)
         data.lastUpdated = Date()
         
-        if let encodedGameData = try? JSONEncoder().encode(data) {
-            UserDefaults.standard.set(encodedGameData, forKey: "BeloteGameData")
+        if let beloteHistory = UserDefaults.standard.data(forKey: "BeloteHistory") {
+            if var decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: beloteHistory) {
+                // Check if a same CardGameData exists with the same id
+                if let index = decodedHistory.firstIndex(where: { $0.id == data.id }) {
+                    decodedHistory[index] = data
+                } else {
+                    decodedHistory.append(data)
+                }
+                
+                if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
+                    UserDefaults.standard.data(forKey: "BeloteHistory")
+                }
+            }
+        } else {
+            // Create a new history if none exists
+            let newHistory: GameCardHistory = [data]
+            
+            if let encodedHistory = try? JSONEncoder().encode(newHistory) {
+                UserDefaults.standard.data(forKey: "BeloteHistory")
+            }
         }
     }
     
