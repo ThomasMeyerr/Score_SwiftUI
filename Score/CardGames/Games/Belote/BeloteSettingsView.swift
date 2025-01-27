@@ -14,6 +14,7 @@ struct BeloteSettingsView: View {
     @State private var maxScore: Double = 1000
     @State private var names: [String] = Array(repeating: "", count: 2)
     @State private var isShowingAlert = false
+    @State private var history: GameCardHistory = []
     
     var body: some View {
         NavigationStack {
@@ -35,12 +36,11 @@ struct BeloteSettingsView: View {
                     }
                     
                     Section(getText(forKey: "history", forLanguage: data.languages)) {
-                        let test = true
-                        List {
-                            if test {
+                        if !history.isEmpty {
+                            List(history) { game in
                                 HStack {
                                     VStack(alignment: .leading) {
-                                        Text("Thomas, Zoé")
+                                        Text(game.names.joined(separator: ", "))
                                         Text("Last update: 02-07-2025 00h04")
                                             .italic()
                                             .foregroundStyle(.secondary.opacity(0.8))
@@ -51,11 +51,11 @@ struct BeloteSettingsView: View {
                                     Image(systemName: "clock")
                                         .foregroundStyle(.orange)
                                 }
-                            } else {
-                                Text(getText(forKey: "gameRecorded", forLanguage: data.languages))
-                                    .italic()
-                                    .foregroundStyle(.secondary.opacity(0.8))
                             }
+                        } else {
+                            Text(getText(forKey: "gameRecorded", forLanguage: data.languages))
+                                .italic()
+                                .foregroundStyle(.secondary.opacity(0.8))
                         }
                     }
                 }
@@ -159,10 +159,17 @@ struct BeloteSettingsView: View {
         .padding()
     }
     
+    func loadHistory() {
+        if let beloteHistory = UserDefaults.standard.data(forKey: "BeloteHistory"), let decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: beloteHistory) {
+            history = decodedHistory
+        }
+    }
+    
     func resetData() {
         numberOfPlayer = 2
         maxScore = 1000
         names = Array(repeating: "", count: 2)
+        loadHistory()
     }
     
     func removeRows(at offsets: IndexSet) {
