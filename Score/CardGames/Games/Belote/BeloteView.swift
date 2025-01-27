@@ -17,17 +17,22 @@ struct BeloteView: View {
     @State private var names: [String]
     @State private var nameAndScore: [String: Int] = [:]
     @State private var roundScores: [String: Int] = [:]
-    @State private var isPartyFinished = false
-    @State private var isCancelSure = false
-    @State private var roundNumber = 1
-    @State private var nameForCustomKeyboard = ""
-    @State private var isShowingKeyboard = false
-    @State private var isDisabled = false
+    @State private var isPartyFinished: Bool = false
+    @State private var roundNumber: Int = 1
+    @State private var nameForCustomKeyboard: String = ""
+    @State private var isShowingKeyboard: Bool = false
+    @State private var isDisabled: Bool = false
     @State private var isNewGame: Bool
-    @State private var isFinished = false
-    @State private var isHistory: Bool = false
+    @State private var isFinished: Bool = false
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool) {
+    var id: UUID
+    
+    init(id: UUID?, numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool) {
+        if id != nil {
+            self.id = id!
+        } else {
+            self.id = UUID()
+        }
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
@@ -131,26 +136,11 @@ struct BeloteView: View {
                     .background(.green)
                     .cornerRadius(10)
                     .frame(height: 30)
-                
-                Spacer()
             }
-            
-            Button(getText(forKey: "cancelGame", forLanguage: data.languages)) {
-                isCancelSure = true
-            }
-            .padding()
-            .foregroundStyle(.white)
-            .background(.red)
-            .cornerRadius(10)
-            .frame(height: 30)
             
             Spacer()
         }
         .padding()
-        .alert(getText(forKey: "cancelSure", forLanguage: data.languages), isPresented: $isCancelSure) {
-            Button(getText(forKey: "yes", forLanguage: data.languages), role: .destructive, action: cleanData)
-            Button(getText(forKey: "no", forLanguage: data.languages), role: .cancel) {}
-        }
     }
     
     func cellView(text: String, isLeader: Bool = false) -> some View {
@@ -187,7 +177,6 @@ struct BeloteView: View {
         let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
         if possibleLooser! >= Int(maxScore) {
             isPartyFinished = true
-            UserDefaults.standard.set(false, forKey: "partyBeloteOngoing")
         } else {
             roundNumber += 1
         }
@@ -197,7 +186,6 @@ struct BeloteView: View {
         if !isNewGame {
             loadData()
         } else {
-            UserDefaults.standard.set(false, forKey: "partyBeloteOngoing")
             let scores = [Int](repeating: 0, count: numberOfPlayer)
             var combinedDict: [String: Int] = [:]
             for (index, name) in names.enumerated() {
@@ -210,8 +198,7 @@ struct BeloteView: View {
     }
     
     func saveData() {
-        UserDefaults.standard.set(true, forKey: "partyBeloteOngoing")
-        let data = CardGameData(id: UUID(), numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
+        let data = CardGameData(id: id, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "BeloteGameData")
@@ -239,13 +226,12 @@ struct BeloteView: View {
     }
     
     func cleanData() {
-        UserDefaults.standard.set(false, forKey: "partyBeloteOngoing")
         isFinished = true
         dismiss()
     }
 }
 
 #Preview {
-    BeloteView(numberOfPlayer: 2, maxScore: 1000, names: ["Thomas & Zoé", "Troy & Brigitte"], isNewGame: true)
+    BeloteView(id: UUID(), numberOfPlayer: 2, maxScore: 1000, names: ["Thomas & Zoé", "Troy & Brigitte"], isNewGame: true)
         .environment(Data())
 }

@@ -14,7 +14,6 @@ struct BeloteSettingsView: View {
     @State private var maxScore: Double = 1000
     @State private var names: [String] = Array(repeating: "", count: 2)
     @State private var isShowingAlert = false
-//    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBeloteOngoing")
     
     var body: some View {
         NavigationStack {
@@ -139,18 +138,6 @@ struct BeloteSettingsView: View {
     
     func loadButtons() -> some View {
         HStack {
-//            if isPartyOngoing {
-//                Spacer()
-//                NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-//                    let teamNames = names.count == 2 ? names : ["\(names[0]) & \(names[1])", "\(names[2]) & \(names[3])"]
-//                    BeloteView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: teamNames, isNewGame: false)
-//                }
-//                .padding()
-//                .foregroundStyle(.white)
-//                .background(.green)
-//                .cornerRadius(10)
-//                .frame(height: 30)
-//            }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
                 let teamNames = names.count == 2 ? names : ["\(names[0]) & \(names[1])", "\(names[2]) & \(names[3])"]
@@ -173,7 +160,6 @@ struct BeloteSettingsView: View {
     }
     
     func resetData() {
-//        isPartyOngoing = UserDefaults.standard.bool(forKey: "partyBeloteOngoing")
         numberOfPlayer = 2
         maxScore = 1000
         names = Array(repeating: "", count: 2)
