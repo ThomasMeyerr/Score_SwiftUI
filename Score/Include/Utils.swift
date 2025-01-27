@@ -188,12 +188,11 @@ class CardGameData: Codable, Identifiable {
     let nameAndScore: [String: Int]
     let roundScores: [String: Int]
     let roundNumber: Int
-    let isFinished: Bool
     let winner: String
     
     var lastUpdated = Date()
     
-    init(id: UUID, numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, isFinished: Bool, winner: String = "" ) {
+    init(id: UUID, numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, winner: String = "" ) {
         self.id = id
         self.numberOfPlayer = numberOfPlayer
         self.maxScore = maxScore
@@ -201,7 +200,6 @@ class CardGameData: Codable, Identifiable {
         self.nameAndScore = nameAndScore
         self.roundScores = roundScores
         self.roundNumber = roundNumber
-        self.isFinished = isFinished
         self.winner = winner
     }
 }

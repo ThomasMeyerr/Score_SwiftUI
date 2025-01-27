@@ -23,7 +23,6 @@ struct BeloteView: View {
     @State private var isShowingKeyboard: Bool = false
     @State private var isDisabled: Bool = false
     @State private var isNewGame: Bool
-    @State private var isFinished: Bool = false
     @State private var winner: String = ""
     
     var id: UUID
@@ -108,9 +107,7 @@ struct BeloteView: View {
         .alert(isPresented: $isPartyFinished) {
             Alert(
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
-                dismissButton: .default(Text("OK")) {
-                    isFinished = true
-                }
+                dismissButton: .default(Text("OK")) {}
             )
         }
         .sheet(isPresented: $isShowingKeyboard) {
@@ -130,7 +127,7 @@ struct BeloteView: View {
         HStack {
             Spacer()
             
-            if !isFinished {
+            if winner.isEmpty {
                 Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
                     .padding()
                     .foregroundStyle(.white)
@@ -200,7 +197,7 @@ struct BeloteView: View {
     }
     
     func saveData() {
-        let data = CardGameData(id: id, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, isFinished: isFinished, winner: winner)
+        let data = CardGameData(id: id, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, winner: winner)
         data.lastUpdated = Date()
         
         if let beloteHistory = UserDefaults.standard.data(forKey: "BeloteHistory") {

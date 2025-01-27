@@ -181,6 +181,8 @@ struct BeloteSettingsView: View {
     func loadHistory() {
         if let beloteHistory = UserDefaults.standard.data(forKey: "BeloteHistory"), let decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: beloteHistory) {
             history = decodedHistory
+        } else {
+            history = []
         }
     }
     
