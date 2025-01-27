@@ -119,6 +119,14 @@ let texts: [String: [Languages: String]] = [
         .it: "Nessuna partita registrata",
         .de: "Keine Spiele gespeichert"
     ],
+    "lastUpdate": [
+        .fr: "Dernière mise à jour",
+        .en: "Last update",
+        .es: "Última actualización",
+        .pt: "Última atualização",
+        .it: "Ultimo aggiornamento",
+        .de: "Letztes Update"
+    ],
     "history": [
         .fr: "Historique des parties",
         .en: "Game Histories",

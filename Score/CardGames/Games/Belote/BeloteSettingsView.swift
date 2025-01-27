@@ -41,8 +41,8 @@ struct BeloteSettingsView: View {
                                 HStack {
                                     VStack(alignment: .leading) {
                                         Text(game.names.joined(separator: ", "))
-                                        Text("Last update: 02-07-2025 00h04")
-                                            .italic()
+                                        Text("\(getText(forKey: "lastUpdate", forLanguage: data.languages)): \(formattedDate(date: game.lastUpdated))")
+                                            .font(.caption.italic())
                                             .foregroundStyle(.secondary.opacity(0.8))
                                     }
                                     

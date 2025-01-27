@@ -45,6 +45,13 @@ func getYamScoresString(forLanguage language: Languages) -> [String] {
 }
 
 
+func formattedDate(date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd/MM/yy HH'h'mm"
+    return formatter.string(from: date)
+}
+
+
 struct RulesText: View {
     let text: String
     let language: Languages
