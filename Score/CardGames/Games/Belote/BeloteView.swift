@@ -24,6 +24,7 @@ struct BeloteView: View {
     @State private var isDisabled: Bool = false
     @State private var isNewGame: Bool
     @State private var isFinished: Bool = false
+    @State private var winner: String = ""
     
     var id: UUID
     
@@ -174,9 +175,10 @@ struct BeloteView: View {
             roundScores[name] = 0
         }
         
-        let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
-        if possibleLooser! >= Int(maxScore) {
+        let headScore = nameAndScore.max(by: { $0.value < $1.value })?.value
+        if headScore! >= Int(maxScore) {
             isPartyFinished = true
+            winner = getLeaderName() ?? ""
         } else {
             roundNumber += 1
         }
@@ -198,7 +200,7 @@ struct BeloteView: View {
     }
     
     func saveData() {
-        let data = CardGameData(id: id, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, isFinished: isFinished)
+        let data = CardGameData(id: id, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, isFinished: isFinished, winner: winner)
         data.lastUpdated = Date()
         
         if let beloteHistory = UserDefaults.standard.data(forKey: "BeloteHistory") {
@@ -235,6 +237,7 @@ struct BeloteView: View {
                     nameAndScore = decodedHistory[index].nameAndScore
                     roundScores = decodedHistory[index].roundScores
                     roundNumber = decodedHistory[index].roundNumber
+                    winner = decodedHistory[index].winner
                     
                     for name in nameAndScore.keys {
                         if let roundScore = roundScores[name] {
@@ -245,11 +248,6 @@ struct BeloteView: View {
                 }
             }
         }
-    }
-    
-    func cleanData() {
-        isFinished = true
-        dismiss()
     }
 }
 

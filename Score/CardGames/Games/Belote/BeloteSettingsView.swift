@@ -41,6 +41,7 @@ struct BeloteSettingsView: View {
                                 HStack {
                                     VStack(alignment: .leading) {
                                         Text(game.names.joined(separator: ", "))
+                                        
                                         Text("\(getText(forKey: "lastUpdate", forLanguage: data.languages)): \(formattedDate(date: game.lastUpdated))")
                                             .font(.caption.italic())
                                             .foregroundStyle(.secondary.opacity(0.8))
@@ -48,8 +49,17 @@ struct BeloteSettingsView: View {
                                     
                                     Spacer()
                                     
-                                    Image(systemName: "clock")
-                                        .foregroundStyle(.orange)
+                                    if game.winner.isEmpty {
+                                        Image(systemName: "clock")
+                                            .foregroundStyle(.orange)
+                                    } else {
+                                        HStack {
+                                            Image(systemName: "crown.fill")
+                                                .foregroundStyle(.yellow)
+                                            
+                                            Text(game.winner)
+                                        }
+                                    }
                                 }
                             }
                         } else {
