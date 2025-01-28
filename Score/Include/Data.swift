@@ -341,6 +341,14 @@ let texts: [String: [Languages: String]] = [
         .it: "Giochi di Carte",
         .de: "Kartenspiele"
     ],
+    "take6": [
+        .fr: "6 qui prend!",
+        .en: "Take 6!",
+        .es: "¡Toma 6!",
+        .pt: "Pega 6!",
+        .it: "6... Prendi!",
+        .de: "6 nimmt!"
+    ],
     
     // DiceGamesView
     "diceGamesTitle": [

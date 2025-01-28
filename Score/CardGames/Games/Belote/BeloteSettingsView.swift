@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct BeloteSettingsView: View {
     @EnvironmentObject var data: Data
     
