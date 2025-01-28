@@ -107,9 +107,7 @@ struct SeaSaltPaperView: View {
         .alert(isPresented: $isPartyFinished) {
             Alert(
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
-                dismissButton: .default(Text("OK")) {
-                    saveData()
-                }
+                dismissButton: .default(Text("OK")) {}
             )
         }
         .sheet(isPresented: $isShowingKeyboard) {
@@ -166,8 +164,6 @@ struct SeaSaltPaperView: View {
     }
     
     func endRound() {
-        saveData()
-        
         for name in nameAndScore.keys {
             if let roundScore = roundScores[name] {
                 nameAndScore[name, default: 0] += roundScore
@@ -183,6 +179,7 @@ struct SeaSaltPaperView: View {
         } else {
             roundNumber += 1
         }
+        saveData()
     }
     
     func setupInitialScore() {

@@ -108,9 +108,7 @@ struct SkyjoView: View {
         .alert(isPresented: $isPartyFinished) {
             Alert(
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
-                dismissButton: .default(Text("OK")) {
-                    saveData()
-                }
+                dismissButton: .default(Text("OK")) {}
             )
         }
         .sheet(isPresented: $isShowingKeyboard) {
