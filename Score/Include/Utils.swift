@@ -192,7 +192,7 @@ class CardGameData: Codable, Identifiable {
     
     var lastUpdated = Date()
     
-    init(id: UUID, numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, winner: String = "" ) {
+    init(id: UUID, numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, winner: String = "") {
         self.id = id
         self.numberOfPlayer = numberOfPlayer
         self.maxScore = maxScore
@@ -206,20 +206,24 @@ class CardGameData: Codable, Identifiable {
 typealias GameCardHistory = [CardGameData]
 
 
-class YamGameData: Codable {
+class YamGameData: Codable, Identifiable {
+    let id: UUID
     let numberOfPlayer: Int
     let names: [String]
     let playerScores: [String: [Int]]
     
-    init(numberOfPlayer: Int, names: [String], playerScores: [String: [Int]]) {
+    init(id: UUID, numberOfPlayer: Int, names: [String], playerScores: [String: [Int]]) {
+        self.id = id
         self.numberOfPlayer = numberOfPlayer
         self.names = names
         self.playerScores = playerScores
     }
 }
+typealias YamGameHistory = [YamGameData]
 
 
-class CustomGameData: Codable {
+class CustomGameData: Codable, Identifiable {
+    let id: UUID
     let numberOfPlayer: Int
     let maxScore: Double
     let names: [String]
@@ -228,8 +232,12 @@ class CustomGameData: Codable {
     let roundNumber: Int
     let countdown: Int
     let isScoreToWin: Bool
+    let winner: String
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, countdown: Int, isScoreToWin: Bool) {
+    var lastUpdated = Date()
+    
+    init(id: UUID, numberOfPlayer: Int, maxScore: Double, names: [String], nameAndScore: [String : Int], roundScores: [String : Int], roundNumber: Int, countdown: Int, isScoreToWin: Bool, winner: String = "") {
+        self.id = id
         self.numberOfPlayer = numberOfPlayer
         self.maxScore = maxScore
         self.names = names
@@ -238,8 +246,10 @@ class CustomGameData: Codable {
         self.roundNumber = roundNumber
         self.countdown = countdown
         self.isScoreToWin = isScoreToWin
+        self.winner = winner
     }
 }
+typealias CustomGameHistory = [CustomGameData]
 
 
 class CountdownTimer: ObservableObject {

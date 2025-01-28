@@ -264,7 +264,7 @@ struct YamView: View {
     
     func saveData() {
         UserDefaults.standard.set(true, forKey: "partyYamOngoing")
-        let data = YamGameData(numberOfPlayer: numberOfPlayer, names: names, playerScores: playerScores)
+        let data = YamGameData(id: UUID(), numberOfPlayer: numberOfPlayer, names: names, playerScores: playerScores)
         
         if let encodedGameData = try? JSONEncoder().encode(data) {
             UserDefaults.standard.set(encodedGameData, forKey: "YamGameData")

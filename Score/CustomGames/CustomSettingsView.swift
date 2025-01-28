@@ -14,7 +14,7 @@ struct CustomSettingsView: View {
     @State private var maxScore: Double = 100
     @State private var names: [String] = Array(repeating: "", count: 1)
     @State private var isShowingAlert = false
-    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyCustomOngoing")
+    @State private var history: CustomGameHistory = []
     @State private var isToggleTimer = false
     @State private var isScoreToWin = true
     @State private var countdown: Double = 120
@@ -55,6 +55,50 @@ struct CustomSettingsView: View {
                     
                     Section(getText(forKey: "rules", forLanguage: data.languages)) {
                         RulesText(text: getRules(forKey: "customGames", forLanguage: data.languages), language: data.languages)
+                    }
+                    
+                    Section(getText(forKey: "history", forLanguage: data.languages)) {
+                        if !history.isEmpty {
+                            List {
+                                ForEach(history) { game in
+                                    NavigationLink {
+                                        CustomGamesView(id: game.id, numberOfPlayer: game.numberOfPlayer, maxScore: game.maxScore, names: game.names, countdown: Int(game.countdown), winner: game.winner, isScoreToWin: game.isScoreToWin)
+                                    } label: {
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                Text(game.names.joined(separator: ", "))
+                                                
+                                                Text("\(getText(forKey: "lastUpdate", forLanguage: data.languages)): \(formattedDate(date: game.lastUpdated))")
+                                                    .font(.caption.italic())
+                                                    .foregroundStyle(.secondary.opacity(0.8))
+                                            }
+                                            
+                                            Spacer()
+                                            
+                                            if game.winner.isEmpty {
+                                                Image(systemName: "clock")
+                                                    .foregroundStyle(.orange)
+                                            } else {
+                                                HStack {
+                                                    VStack {
+                                                        Image(systemName: "crown.fill")
+                                                            .foregroundStyle(.yellow)
+                                                        
+                                                        Text(game.winner)
+                                                    }
+                                                }
+                                                .font(.subheadline)
+                                            }
+                                        }
+                                    }
+                                }
+                                .onDelete(perform: removeRows)
+                            }
+                        } else {
+                            Text(getText(forKey: "gameRecorded", forLanguage: data.languages))
+                                .italic()
+                                .foregroundStyle(.secondary.opacity(0.8))
+                        }
                     }
                 }
                 
@@ -105,23 +149,12 @@ struct CustomSettingsView: View {
     
     func loadButtons() -> some View {
         HStack {
-            if isPartyOngoing {
-                Spacer()
-                NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, countdown: Int(countdown), isNewGame: false, isScoreToWin: isScoreToWin)
-                }
-                .padding()
-                .foregroundStyle(.white)
-                .background(.green)
-                .cornerRadius(10)
-                .frame(height: 30)
-            }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
                 if isToggleTimer {
-                    CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, countdown: Int(countdown), isNewGame: true, isScoreToWin: isScoreToWin)
+                    CustomGamesView(id: nil, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, countdown: Int(countdown), isNewGame: true, isScoreToWin: isScoreToWin)
                 } else {
-                    CustomGamesView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, countdown: -1, isNewGame: true, isScoreToWin: isScoreToWin)
+                    CustomGamesView(id: nil, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, countdown: -1, isNewGame: true, isScoreToWin: isScoreToWin)
                 }
             }
             .padding()
@@ -140,11 +173,27 @@ struct CustomSettingsView: View {
         .padding()
     }
     
+    func loadHistory() {
+        if let customHistory = UserDefaults.standard.data(forKey: "CustomHistory"), let decodedHistory = try? JSONDecoder().decode(CustomGameHistory.self, from: customHistory) {
+            history = decodedHistory.sorted(by: { $0.lastUpdated > $1.lastUpdated })
+        } else {
+            history = []
+        }
+    }
+    
     func resetData() {
-        isPartyOngoing = UserDefaults.standard.bool(forKey: "partyCustomOngoing")
+        loadHistory()
         numberOfPlayer = 1
         maxScore = 100
         names = Array(repeating: "", count: 1)
+    }
+    
+    func removeRows(at offsets: IndexSet) {
+        history.remove(atOffsets: offsets)
+            
+        if let encodedHistory = try? JSONEncoder().encode(history) {
+            UserDefaults.standard.setValue(encodedHistory, forKey: "CustomHistory")
+        }
     }
 }
 
