@@ -16,20 +16,27 @@ struct SeaSaltPaperView: View {
     @State private var names: [String]
     @State private var nameAndScore: [String: Int] = [:]
     @State private var roundScores: [String: Int] = [:]
-    @State private var isPartyFinished = false
-    @State private var isCancelSure = false
-    @State private var roundNumber = 1
-    @State private var nameForCustomKeyboard = ""
-    @State private var isShowingKeyboard = false
-    @State private var isDisabled = false
+    @State private var isPartyFinished: Bool = false
+    @State private var roundNumber: Int = 1
+    @State private var nameForCustomKeyboard: String = ""
+    @State private var isShowingKeyboard: Bool = false
+    @State private var isDisabled: Bool = false
     @State private var isNewGame: Bool
-    @State private var isFinished = false
+    @State private var winner: String
     
-    init(numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool) {
+    var id: UUID
+    
+    init(id: UUID?, numberOfPlayer: Int, maxScore: Double, names: [String], isNewGame: Bool = false, winner: String = "") {
+        if id != nil {
+            self.id = id!
+        } else {
+            self.id = UUID()
+        }
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._maxScore = State(initialValue: maxScore)
         self._names = State(initialValue: names)
         self._isNewGame = State(initialValue: isNewGame)
+        self._winner = State(initialValue: winner)
     }
     
     var body: some View {
@@ -72,7 +79,7 @@ struct SeaSaltPaperView: View {
                                     },
                                     set: { newValue in
                                         roundScores[name] = newValue
-                                        isDisabled = true
+                                        isDisabled = true // Avoid to open keyboard
                                     }
                                 ), formatter: NumberFormatter())
                                 .onTapGesture {
@@ -91,8 +98,8 @@ struct SeaSaltPaperView: View {
             }
             
             loadButtons()
-                .navigationTitle("Sea, Salt & Paper")
         }
+        .navigationTitle("Sea, Salt & Paper")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             setupInitialScore()
@@ -101,7 +108,7 @@ struct SeaSaltPaperView: View {
             Alert(
                 title: Text(getText(forKey: "alertWinner", forLanguage: data.languages)) + Text(getLeaderName()!),
                 dismissButton: .default(Text("OK")) {
-                    isFinished = true
+                    saveData()
                 }
             )
         }
@@ -122,38 +129,24 @@ struct SeaSaltPaperView: View {
         HStack {
             Spacer()
             
-            if !isFinished {
+            if winner.isEmpty {
                 Button(getText(forKey: "finishRound", forLanguage: data.languages), action: endRound)
                     .padding()
                     .foregroundStyle(.white)
                     .background(.green)
                     .cornerRadius(10)
                     .frame(height: 30)
-                
-                Spacer()
             }
-            
-            Button(getText(forKey: "cancelGame", forLanguage: data.languages)) {
-                isCancelSure = true
-            }
-            .padding()
-            .foregroundStyle(.white)
-            .background(.red)
-            .cornerRadius(10)
-            .frame(height: 30)
             
             Spacer()
         }
         .padding()
-        .alert(getText(forKey: "cancelSure", forLanguage: data.languages), isPresented: $isCancelSure) {
-            Button(getText(forKey: "yes", forLanguage: data.languages), role: .destructive, action: cleanData)
-            Button(getText(forKey: "no", forLanguage: data.languages), role: .cancel) {}
-        }
     }
     
     func cellView(text: String, isLeader: Bool = false) -> some View {
         HStack {
             if isLeader {
+                // Icon for leader
                 Image(systemName: "crown.fill")
                     .foregroundStyle(.yellow)
             }
@@ -182,10 +175,11 @@ struct SeaSaltPaperView: View {
             roundScores[name] = 0
         }
         
-        let possibleLooser = nameAndScore.max(by: { $0.value < $1.value })?.value
-        if possibleLooser! >= Int(maxScore) {
+        let headScore = nameAndScore.max(by: { $0.value < $1.value })?.value
+        if headScore! >= Int(maxScore) {
             isPartyFinished = true
-            UserDefaults.standard.set(false, forKey: "partySeaSaltPaperOngoing")
+            winner = getLeaderName() ?? ""
+            data.reviewCount += 1
         } else {
             roundNumber += 1
         }
@@ -195,7 +189,6 @@ struct SeaSaltPaperView: View {
         if !isNewGame {
             loadData()
         } else {
-            UserDefaults.standard.set(false, forKey: "partySeaSaltPaperOngoing")
             let scores = [Int](repeating: 0, count: numberOfPlayer)
             var combinedDict: [String: Int] = [:]
             for (index, name) in names.enumerated() {
@@ -208,42 +201,58 @@ struct SeaSaltPaperView: View {
     }
     
     func saveData() {
-        UserDefaults.standard.set(true, forKey: "partySeaSaltPaperOngoing")
-        let data = CardGameData(id: UUID(), numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber)
+        let data = CardGameData(id: id, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, nameAndScore: nameAndScore, roundScores: roundScores, roundNumber: roundNumber, winner: winner)
+        data.lastUpdated = Date()
         
-        if let encodedGameData = try? JSONEncoder().encode(data) {
-            UserDefaults.standard.set(encodedGameData, forKey: "SeaSaltPaperGameData")
-        }
-    }
-    
-    func loadData() {
-        if let data = UserDefaults.standard.data(forKey: "SeaSaltPaperGameData") {
-            if let decodedGameData = try? JSONDecoder().decode(CardGameData.self, from: data) {
-                numberOfPlayer = decodedGameData.numberOfPlayer
-                maxScore = decodedGameData.maxScore
-                names = decodedGameData.names
-                nameAndScore = decodedGameData.nameAndScore
-                roundScores = decodedGameData.roundScores
-                roundNumber = decodedGameData.roundNumber
-                
-                for name in nameAndScore.keys {
-                    if let roundScore = roundScores[name] {
-                        nameAndScore[name, default: 0] += roundScore
-                    }
-                    roundScores[name] = 0
+        if let seaSaltPaperHistory = UserDefaults.standard.data(forKey: "SeaSaltPaperHistory") {
+            if var decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: seaSaltPaperHistory) {
+                // Check if a same CardGameData exists with the same id
+                if let index = decodedHistory.firstIndex(where: { $0.id == data.id }) {
+                    decodedHistory[index] = data
+                } else {
+                    decodedHistory.append(data)
                 }
+                
+                if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
+                    UserDefaults.standard.setValue(encodedHistory, forKey: "SeaSaltPaperHistory")
+                }
+            }
+        } else {
+            // Create a new history if none exists
+            let newHistory: GameCardHistory = [data]
+            
+            if let encodedHistory = try? JSONEncoder().encode(newHistory) {
+                UserDefaults.standard.setValue(encodedHistory, forKey: "SeaSaltPaperHistory")
             }
         }
     }
     
-    func cleanData() {
-        UserDefaults.standard.set(false, forKey: "partySeaSaltPaperOngoing")
-        isFinished = true
-        dismiss()
+    func loadData() {
+        if let seaSaltPaperHistory = UserDefaults.standard.data(forKey: "SeaSaltPaperHistory") {
+            if let decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: seaSaltPaperHistory) {
+                // Check if a same CardGameData exists with the same id
+                if let index = decodedHistory.firstIndex(where: { $0.id == id }) {
+                    numberOfPlayer = decodedHistory[index].numberOfPlayer
+                    maxScore = decodedHistory[index].maxScore
+                    names = decodedHistory[index].names
+                    nameAndScore = decodedHistory[index].nameAndScore
+                    roundScores = decodedHistory[index].roundScores
+                    roundNumber = decodedHistory[index].roundNumber
+                    winner = decodedHistory[index].winner
+                    
+                    for name in nameAndScore.keys {
+                        if let roundScore = roundScores[name] {
+                            nameAndScore[name, default: 0] += roundScore
+                        }
+                        roundScores[name] = 0
+                    }
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    SeaSaltPaperView(numberOfPlayer: 2, maxScore: 40, names: ["Thomas", "Zoé"], isNewGame: true)
+    SeaSaltPaperView(id: UUID(), numberOfPlayer: 2, maxScore: 40, names: ["Thomas", "Zoé"], isNewGame: true)
         .environmentObject(Data())
 }

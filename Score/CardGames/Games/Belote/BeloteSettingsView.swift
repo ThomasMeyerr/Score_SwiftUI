@@ -88,7 +88,6 @@ struct BeloteSettingsView: View {
             }
             .alert(isPresented: $isShowingAlert) {
                 Alert(
-                    
                     title: Text(getText(forKey: "alertTitle", forLanguage: data.languages)),
                     message: Text(getText(forKey: "alertMessage", forLanguage: data.languages)),
                     dismissButton: .default(Text("OK"))
