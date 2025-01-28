@@ -39,7 +39,7 @@ struct BeloteSettingsView: View {
                     Section(getText(forKey: "history", forLanguage: data.languages)) {
                         if !history.isEmpty {
                             List {
-                                ForEach(history.sorted(by: { $0.lastUpdated > $1.lastUpdated })) { game in
+                                ForEach(history) { game in
                                     NavigationLink {
                                         BeloteView(id: game.id, numberOfPlayer: game.numberOfPlayer, maxScore: game.maxScore, names: game.names, winner: game.winner)
                                     } label: {
@@ -182,7 +182,7 @@ struct BeloteSettingsView: View {
     
     func loadHistory() {
         if let beloteHistory = UserDefaults.standard.data(forKey: "BeloteHistory"), let decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: beloteHistory) {
-            history = decodedHistory
+            history = decodedHistory.sorted(by: { $0.lastUpdated > $1.lastUpdated })
         } else {
             history = []
         }
@@ -196,14 +196,10 @@ struct BeloteSettingsView: View {
     }
     
     func removeRows(at offsets: IndexSet) {
-        if let beloteHistory = UserDefaults.standard.data(forKey: "BeloteHistory"), var decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: beloteHistory) {
-            decodedHistory.remove(atOffsets: offsets)
+        history.remove(atOffsets: offsets)
             
-            if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
-                UserDefaults.standard.setValue(encodedHistory, forKey: "BeloteHistory")
-            }
-            
-            history = decodedHistory
+        if let encodedHistory = try? JSONEncoder().encode(history) {
+            UserDefaults.standard.setValue(encodedHistory, forKey: "BeloteHistory")
         }
     }
 }

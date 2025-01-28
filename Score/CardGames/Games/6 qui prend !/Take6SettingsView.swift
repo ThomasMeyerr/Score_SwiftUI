@@ -39,7 +39,7 @@ struct Take6SettingsView: View {
                     Section(getText(forKey: "history", forLanguage: data.languages)) {
                         if !history.isEmpty {
                             List {
-                                ForEach(history.sorted(by: { $0.lastUpdated > $1.lastUpdated })) { game in
+                                ForEach(history) { game in
                                     NavigationLink {
                                         Take6View(id: game.id, numberOfPlayer: game.numberOfPlayer, maxScore: game.maxScore, names: game.names, winner: game.winner)
                                     } label: {
@@ -150,7 +150,7 @@ struct Take6SettingsView: View {
     
     func loadHistory() {
         if let take6History = UserDefaults.standard.data(forKey: "Take6History"), let decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: take6History) {
-            history = decodedHistory
+            history = decodedHistory.sorted(by: { $0.lastUpdated > $1.lastUpdated })
         } else {
             history = []
         }
@@ -164,14 +164,10 @@ struct Take6SettingsView: View {
     }
     
     func removeRows(at offsets: IndexSet) {
-        if let take6History = UserDefaults.standard.data(forKey: "Take6History"), var decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: take6History) {
-            decodedHistory.remove(atOffsets: offsets)
+        history.remove(atOffsets: offsets)
             
-            if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
-                UserDefaults.standard.setValue(encodedHistory, forKey: "Take6History")
-            }
-            
-            history = decodedHistory
+        if let encodedHistory = try? JSONEncoder().encode(history) {
+            UserDefaults.standard.setValue(encodedHistory, forKey: "Take6History")
         }
     }
 }

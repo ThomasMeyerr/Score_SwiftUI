@@ -39,7 +39,7 @@ struct SeaSaltPaperSettingsView: View {
                     Section(getText(forKey: "history", forLanguage: data.languages)) {
                         if !history.isEmpty {
                             List {
-                                ForEach(history.sorted(by: { $0.lastUpdated > $1.lastUpdated })) { game in
+                                ForEach(history) { game in
                                     NavigationLink {
                                         SeaSaltPaperView(id: game.id, numberOfPlayer: game.numberOfPlayer, maxScore: game.maxScore, names: game.names, winner: game.winner)
                                     } label: {
@@ -155,7 +155,7 @@ struct SeaSaltPaperSettingsView: View {
     
     func loadHistory() {
         if let seaSaltPaperHistory = UserDefaults.standard.data(forKey: "SeaSaltPaperHistory"), let decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: seaSaltPaperHistory) {
-            history = decodedHistory
+            history = decodedHistory.sorted(by: { $0.lastUpdated > $1.lastUpdated })
         } else {
             history = []
         }
@@ -169,14 +169,10 @@ struct SeaSaltPaperSettingsView: View {
     }
     
     func removeRows(at offsets: IndexSet) {
-        if let seaSaltPaperHistory = UserDefaults.standard.data(forKey: "SeaSaltPaperHistory"), var decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: seaSaltPaperHistory) {
-            decodedHistory.remove(atOffsets: offsets)
+        history.remove(atOffsets: offsets)
             
-            if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
-                UserDefaults.standard.setValue(encodedHistory, forKey: "SeaSaltPaperHistory")
-            }
-            
-            history = decodedHistory
+        if let encodedHistory = try? JSONEncoder().encode(history) {
+            UserDefaults.standard.setValue(encodedHistory, forKey: "SeaSaltPaperHistory")
         }
     }
 }
