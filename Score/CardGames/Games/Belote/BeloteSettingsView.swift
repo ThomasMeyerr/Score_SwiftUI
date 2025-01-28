@@ -58,10 +58,12 @@ struct BeloteSettingsView: View {
                                                     .foregroundStyle(.orange)
                                             } else {
                                                 HStack {
-                                                    Image(systemName: "crown.fill")
-                                                        .foregroundStyle(.yellow)
-                                                    
-                                                    Text(game.winner)
+                                                    VStack {
+                                                        Image(systemName: "crown.fill")
+                                                            .foregroundStyle(.yellow)
+                                                        
+                                                        Text(game.winner)
+                                                    }
                                                 }
                                                 .font(.subheadline)
                                             }
