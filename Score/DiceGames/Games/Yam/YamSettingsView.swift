@@ -12,11 +12,11 @@ import SwiftUI
 struct YamSettingsView: View {
     @EnvironmentObject var data: Data
     
-    @State private var numberOfPlayer = 2
+    @State private var numberOfPlayer = 1
     @State private var names: [String] = Array(repeating: "", count: 1)
     @State private var isShowingAlert = false
-    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partyYamOngoing")
-    
+    @State private var history: YamGameHistory = []
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -27,6 +27,33 @@ struct YamSettingsView: View {
                     
                     Section(getText(forKey: "rules", forLanguage: data.languages)) {
                         RulesText(text: getRules(forKey: "yam", forLanguage: data.languages), language: data.languages)
+                    }
+                    
+                    Section(getText(forKey: "history", forLanguage: data.languages)) {
+                        if !history.isEmpty {
+                            List {
+                                ForEach(history) { game in
+                                    NavigationLink {
+                                        YamView(id: game.id, numberOfPlayer: game.numberOfPlayer, names: game.names, language: data.languages)
+                                    } label: {
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                Text(game.names.joined(separator: ", "))
+                                                
+                                                Text("\(getText(forKey: "lastUpdate", forLanguage: data.languages)): \(formattedDate(date: game.lastUpdated))")
+                                                    .font(.caption.italic())
+                                                    .foregroundStyle(.secondary.opacity(0.8))
+                                            }
+                                        }
+                                    }
+                                }
+                                .onDelete(perform: removeRows)
+                            }
+                        } else {
+                            Text(getText(forKey: "gameRecorded", forLanguage: data.languages))
+                                .italic()
+                                .foregroundStyle(.secondary.opacity(0.8))
+                        }
                     }
                 }
                 
@@ -77,20 +104,9 @@ struct YamSettingsView: View {
     
     func loadButtons() -> some View {
         HStack {
-            if isPartyOngoing {
-                Spacer()
-                NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    YamView(numberOfPlayer: numberOfPlayer, names: names, language: data.languages, isNewGame: false)
-                }
-                .padding()
-                .foregroundStyle(.white)
-                .background(.green)
-                .cornerRadius(10)
-                .frame(height: 30)
-            }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                YamView(numberOfPlayer: numberOfPlayer, names: names, language: data.languages, isNewGame: true)
+                YamView(id: nil, numberOfPlayer: numberOfPlayer, names: names, language: data.languages, isNewGame: true)
             }
             .padding()
             .foregroundStyle(.white)
@@ -108,10 +124,26 @@ struct YamSettingsView: View {
         .padding()
     }
     
+    func loadHistory() {
+        if let yamHistory = UserDefaults.standard.data(forKey: "YamHistory"), let decodedHistory = try? JSONDecoder().decode(YamGameHistory.self, from: yamHistory) {
+            history = decodedHistory.sorted(by: { $0.lastUpdated > $1.lastUpdated })
+        } else {
+            history = []
+        }
+    }
+    
     func resetData() {
-        isPartyOngoing = UserDefaults.standard.bool(forKey: "partyYamOngoing")
+        loadHistory()
         numberOfPlayer = 1
         names = Array(repeating: "", count: 1)
+    }
+    
+    func removeRows(at offsets: IndexSet) {
+        history.remove(atOffsets: offsets)
+            
+        if let encodedHistory = try? JSONEncoder().encode(history) {
+            UserDefaults.standard.setValue(encodedHistory, forKey: "YamHistory")
+        }
     }
 }
 

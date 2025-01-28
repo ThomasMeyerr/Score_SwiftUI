@@ -17,18 +17,25 @@ struct YamView: View {
     @State private var rules: [String]
     @State private var scores: [String]
     @State private var playerScores: [String: [Int]]
-    @State private var isCancelSure = false
-    @State private var isShowingKeyboard = false
-    @State private var isDisabled = false
+    @State private var isCancelSure: Bool = false
+    @State private var isShowingKeyboard: Bool = false
+    @State private var isDisabled: Bool = false
     @State private var isNewGame: Bool
     @State private var activePlayer: String? = nil
     @State private var activeRuleIndex: Int? = nil
     
+    var id: UUID
+    
     let totalsAndBonuses: [Int] = [7, 8, 9, 12, 17, 18]
     let totalThreeScores: [Int: Int] = [13: 20, 14: 30, 15: 40, 16: 50]
-    let combiScore : [Int] = [13, 14, 15, 16]
+    let combiScore: [Int] = [13, 14, 15, 16]
     
-    init(numberOfPlayer: Int, names: [String], language: Languages, isNewGame: Bool) {
+    init(id: UUID?, numberOfPlayer: Int, names: [String], language: Languages, isNewGame: Bool = false) {
+        if id != nil {
+            self.id = id!
+        } else {
+            self.id = UUID()
+        }
         self._numberOfPlayer = State(initialValue: numberOfPlayer)
         self._names = State(initialValue: names)
         self._rules = State(initialValue: getYamScoresString(forLanguage: language))
@@ -98,30 +105,15 @@ struct YamView: View {
             Spacer()
             
             Button(getText(forKey: "saveGame", forLanguage: data.languages), action: saveData)
-            .padding()
-            .foregroundStyle(.white)
-            .background(.green)
-            .cornerRadius(10)
-            .frame(height: 30)
-            
-            Spacer()
-            
-            Button(getText(forKey: "cancelGame", forLanguage: data.languages)) {
-                isCancelSure = true
-            }
-            .padding()
-            .foregroundStyle(.white)
-            .background(.red)
-            .cornerRadius(10)
-            .frame(height: 30)
-            
+                .padding()
+                .foregroundStyle(.white)
+                .background(.green)
+                .cornerRadius(10)
+                .frame(height: 30)
+
             Spacer()
         }
         .padding()
-        .alert(getText(forKey: "cancelSure", forLanguage: data.languages), isPresented: $isCancelSure) {
-            Button(getText(forKey: "yes", forLanguage: data.languages), role: .destructive, action: cleanData)
-            Button(getText(forKey: "no", forLanguage: data.languages), role: .cancel) {}
-        }
     }
     
     func checkingTitle(title: String) -> Bool {
@@ -257,39 +249,53 @@ struct YamView: View {
     func setupInitialScore() {
         if !isNewGame {
             loadData()
-        } else {
-            UserDefaults.standard.set(false, forKey: "partyYamOngoing")
         }
     }
     
     func saveData() {
-        UserDefaults.standard.set(true, forKey: "partyYamOngoing")
-        let data = YamGameData(id: UUID(), numberOfPlayer: numberOfPlayer, names: names, playerScores: playerScores)
-        
-        if let encodedGameData = try? JSONEncoder().encode(data) {
-            UserDefaults.standard.set(encodedGameData, forKey: "YamGameData")
+        let data = YamGameData(id: id, numberOfPlayer: numberOfPlayer, names: names, playerScores: playerScores)
+        data.lastUpdated = Date()
+                
+        if let yamHistory = UserDefaults.standard.data(forKey: "YamHistory") {
+            if var decodedHistory = try? JSONDecoder().decode(YamGameHistory.self, from: yamHistory) {
+                // Check if a same CardGameData exists with the same id
+                if let index = decodedHistory.firstIndex(where: { $0.id == data.id }) {
+                    decodedHistory[index] = data
+                } else {
+                    decodedHistory.append(data)
+                }
+                
+                if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
+                    UserDefaults.standard.setValue(encodedHistory, forKey: "YamHistory")
+                }
+            }
+        } else {
+            // Create a new history if none exists
+            let newHistory: YamGameHistory = [data]
+            
+            if let encodedHistory = try? JSONEncoder().encode(newHistory) {
+                UserDefaults.standard.setValue(encodedHistory, forKey: "YamHistory")
+            }
         }
     }
     
     func loadData() {
-        if let data = UserDefaults.standard.data(forKey: "YamGameData") {
-            if let decodedGameData = try? JSONDecoder().decode(YamGameData.self, from: data) {
-                numberOfPlayer = decodedGameData.numberOfPlayer
-                names = decodedGameData.names
-                playerScores = decodedGameData.playerScores
+        if let yamHistory = UserDefaults.standard.data(forKey: "YamHistory") {
+            if let decodedHistory = try? JSONDecoder().decode(YamGameHistory.self, from: yamHistory) {
+                // Check if a same CardGameData exists with the same id
+                if let index = decodedHistory.firstIndex(where: { $0.id == id }) {
+                    numberOfPlayer = decodedHistory[index].numberOfPlayer
+                    names = decodedHistory[index].names
+                    playerScores = decodedHistory[index].playerScores
+                    
+                    updateScore()
+                }
             }
         }
-        
-        updateScore()
-    }
-    
-    func cleanData() {
-        UserDefaults.standard.set(false, forKey: "partyYamOngoing")
-        dismiss()
     }
 }
 
 #Preview {
-    YamView(numberOfPlayer: 2, names: ["Thomas", "Zoé"], language: .fr, isNewGame: true)
+    YamView(id: UUID(), numberOfPlayer: 2, names: ["Thomas", "Zoé"], language: .fr, isNewGame: true)
         .environmentObject(Data())
 }

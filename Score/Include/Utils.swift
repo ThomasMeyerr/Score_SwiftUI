@@ -212,6 +212,8 @@ class YamGameData: Codable, Identifiable {
     let names: [String]
     let playerScores: [String: [Int]]
     
+    var lastUpdated = Date()
+    
     init(id: UUID, numberOfPlayer: Int, names: [String], playerScores: [String: [Int]]) {
         self.id = id
         self.numberOfPlayer = numberOfPlayer
