@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomSettingsView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     
     @State private var numberOfPlayer = 1
     @State private var maxScore: Double = 100
@@ -150,5 +150,5 @@ struct CustomSettingsView: View {
 
 #Preview {
     CustomSettingsView()
-        .environment(Data())
+        .environmentObject(Data())
 }

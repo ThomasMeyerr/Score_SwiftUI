@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct BeloteView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     @Environment(\.dismiss) var dismiss
     
     @State private var numberOfPlayer: Int
@@ -80,7 +80,7 @@ struct BeloteView: View {
                                     },
                                     set: { newValue in
                                         roundScores[name] = newValue
-                                        isDisabled = true
+                                        isDisabled = true // Avoid to open keyboard
                                     }
                                 ), formatter: NumberFormatter())
                                 .onTapGesture {
@@ -147,6 +147,7 @@ struct BeloteView: View {
     func cellView(text: String, isLeader: Bool = false) -> some View {
         HStack {
             if isLeader {
+                // Icon for leader
                 Image(systemName: "crown.fill")
                     .foregroundStyle(.yellow)
             }
@@ -253,5 +254,5 @@ struct BeloteView: View {
 
 #Preview {
     BeloteView(id: UUID(), numberOfPlayer: 2, maxScore: 1000, names: ["Thomas & Zoé", "Troy & Brigitte"], isNewGame: true)
-        .environment(Data())
+        .environmentObject(Data())
 }

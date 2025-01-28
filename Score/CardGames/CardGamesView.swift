@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct CardGamesView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
 
     var body: some View {
         NavigationStack {
@@ -46,5 +46,5 @@ struct CardGamesView: View {
 
 #Preview {
     CardGamesView()
-        .environment(Data())
+        .environmentObject(Data())
 }

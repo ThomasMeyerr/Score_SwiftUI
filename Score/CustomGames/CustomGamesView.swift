@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct CustomGamesView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     @Environment(\.dismiss) var dismiss
     
     @StateObject private var countdownTimer = CountdownTimer(seconds: 120)
@@ -289,5 +289,5 @@ struct CustomGamesView: View {
 
 #Preview {
     CustomGamesView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"], countdown: 120, isNewGame: true, isScoreToWin: true)
-        .environment(Data())
+        .environmentObject(Data())
 }

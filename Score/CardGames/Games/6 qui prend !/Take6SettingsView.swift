@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct Take6SettingsView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     
     @State private var numberOfPlayer = 2
     @State private var maxScore: Double = 66
@@ -125,5 +125,5 @@ struct Take6SettingsView: View {
 
 #Preview {
     Take6SettingsView()
-        .environment(Data())
+        .environmentObject(Data())
 }

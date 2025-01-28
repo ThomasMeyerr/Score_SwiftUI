@@ -19,7 +19,7 @@ import StoreKit
 
 
 struct SettingsView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     @Environment(\.requestReview) var requestReview
     @StateObject var vm = SettingsViewModel()
 
@@ -90,5 +90,5 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView()
-        .environment(Data())
+        .environmentObject(Data())
 }

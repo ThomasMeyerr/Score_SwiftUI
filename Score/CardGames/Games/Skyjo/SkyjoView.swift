@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct SkyjoView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     @Environment(\.dismiss) var dismiss
     
     @State private var numberOfPlayer: Int
@@ -246,5 +246,5 @@ struct SkyjoView: View {
 
 #Preview {
     SkyjoView(numberOfPlayer: 2, maxScore: 100, names: ["Thomas", "Zoé"], isNewGame: true)
-        .environment(Data())
+        .environmentObject(Data())
 }

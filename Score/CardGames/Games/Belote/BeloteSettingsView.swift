@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BeloteSettingsView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     
     @State private var numberOfPlayer = 2
     @State private var maxScore: Double = 1000
@@ -208,5 +208,5 @@ struct BeloteSettingsView: View {
 
 #Preview {
     BeloteSettingsView()
-        .environment(Data())
+        .environmentObject(Data())
 }

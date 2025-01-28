@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UnoView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     @Environment(\.dismiss) var dismiss
     
     @State private var numberOfPlayer: Int
@@ -245,6 +245,6 @@ struct UnoView: View {
 
 #Preview {
     UnoView(numberOfPlayer: 2, maxScore: 500, names: ["Thomas", "Zoé"], isNewGame: true)
-        .environment(Data())
+        .environmentObject(Data())
 }
 

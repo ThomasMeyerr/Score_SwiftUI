@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct UnoSettingsView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     
     @State private var numberOfPlayer = 2
     @State private var maxScore: Double = 500
@@ -125,5 +125,5 @@ struct UnoSettingsView: View {
 
 #Preview {
     UnoSettingsView()
-        .environment(Data())
+        .environmentObject(Data())
 }

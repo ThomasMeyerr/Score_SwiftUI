@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct YamView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     @Environment(\.dismiss) var dismiss
     
     @State private var numberOfPlayer: Int
@@ -291,5 +291,5 @@ struct YamView: View {
 
 #Preview {
     YamView(numberOfPlayer: 2, names: ["Thomas", "Zoé"], language: .fr, isNewGame: true)
-        .environment(Data())
+        .environmentObject(Data())
 }

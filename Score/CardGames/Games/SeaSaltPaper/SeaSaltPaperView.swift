@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SeaSaltPaperView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     @Environment(\.dismiss) var dismiss
     
     @State private var numberOfPlayer: Int
@@ -245,5 +245,5 @@ struct SeaSaltPaperView: View {
 
 #Preview {
     SeaSaltPaperView(numberOfPlayer: 2, maxScore: 40, names: ["Thomas", "Zoé"], isNewGame: true)
-        .environment(Data())
+        .environmentObject(Data())
 }

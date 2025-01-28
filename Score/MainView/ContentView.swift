@@ -10,7 +10,7 @@ import AppTrackingTransparency
 
 
 struct ContentView: View {
-    @State private var data = Data()
+    @StateObject private var data = Data()
 
     var body: some View {
         TabView {
@@ -35,7 +35,7 @@ struct ContentView: View {
                 }
         }
         .tint(.white)
-        .environment(data)
+        .environmentObject(data)
         .preferredColorScheme(.dark)
     }
 }

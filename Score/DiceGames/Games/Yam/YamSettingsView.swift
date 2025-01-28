@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct YamSettingsView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
     
     @State private var numberOfPlayer = 2
     @State private var names: [String] = Array(repeating: "", count: 1)
@@ -117,5 +117,5 @@ struct YamSettingsView: View {
 
 #Preview {
     YamSettingsView()
-        .environment(Data())
+        .environmentObject(Data())
 }

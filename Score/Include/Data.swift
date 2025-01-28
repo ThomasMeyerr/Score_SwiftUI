@@ -13,9 +13,8 @@ enum Languages: Codable {
 }
 
 
-@Observable
-class Data {
-    var languages: Languages {
+class Data: ObservableObject {
+    @Published var languages: Languages {
         didSet {
             if let encodedLanguages = try? JSONEncoder().encode(languages) {
                 UserDefaults.standard.set(encodedLanguages, forKey: "Languages")

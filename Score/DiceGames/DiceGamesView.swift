@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct DiceGamesView: View {
-    @Environment(Data.self) var data
+    @EnvironmentObject var data: Data
 
     var body: some View {
         NavigationStack {
@@ -46,5 +46,5 @@ struct DiceGamesView: View {
 
 #Preview {
     DiceGamesView()
-        .environment(Data())
+        .environmentObject(Data())
 }
