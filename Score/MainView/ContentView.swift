@@ -10,6 +10,7 @@ import AppTrackingTransparency
 
 
 struct ContentView: View {
+    @Environment(\.requestReview) var requestReview
     @StateObject private var data = Data()
 
     var body: some View {
@@ -33,6 +34,11 @@ struct ContentView: View {
                 .tabItem {
                     Label(getText(forKey: "settingsTitle", forLanguage: data.languages), systemImage: "gearshape.fill")
                 }
+        }
+        .onChange(of: data.reviewCount) {
+            if data.reviewCount % 9 == 1 {
+                requestReview()
+            }
         }
         .tint(.white)
         .environmentObject(data)

@@ -21,13 +21,26 @@ class Data: ObservableObject {
             }
         }
     }
+    @Published var reviewCount: Int {
+        didSet {
+            if let encodedReviewCount = try? JSONEncoder().encode(reviewCount) {
+                UserDefaults.standard.set(encodedReviewCount, forKey: "ReviewCount")
+            }
+        }
+    }
     
     init() {
         self.languages = .en
-
         if let data = UserDefaults.standard.data(forKey: "Languages") {
             if let decodedLanguages = try? JSONDecoder().decode(Languages.self, from: data) {
                 self.languages = decodedLanguages
+            }
+        }
+        
+        self.reviewCount = 0
+        if let data = UserDefaults.standard.data(forKey: "ReviewCount") {
+            if let decodedReviewCount = try? JSONDecoder().decode(Int.self, from: data) {
+                self.reviewCount = decodedReviewCount
             }
         }
     }

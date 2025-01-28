@@ -180,6 +180,7 @@ struct BeloteView: View {
         if headScore! >= Int(maxScore) {
             isPartyFinished = true
             winner = getLeaderName() ?? ""
+            data.reviewCount += 1
         } else {
             roundNumber += 1
         }
