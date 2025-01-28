@@ -170,6 +170,8 @@ struct Take6SettingsView: View {
             if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
                 UserDefaults.standard.setValue(encodedHistory, forKey: "Take6History")
             }
+            
+            history = decodedHistory
         }
     }
 }

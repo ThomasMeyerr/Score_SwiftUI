@@ -175,6 +175,8 @@ struct SeaSaltPaperSettingsView: View {
             if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
                 UserDefaults.standard.setValue(encodedHistory, forKey: "SeaSaltPaperHistory")
             }
+            
+            history = decodedHistory
         }
     }
 }

@@ -202,6 +202,8 @@ struct BeloteSettingsView: View {
             if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
                 UserDefaults.standard.setValue(encodedHistory, forKey: "BeloteHistory")
             }
+            
+            history = decodedHistory
         }
     }
 }

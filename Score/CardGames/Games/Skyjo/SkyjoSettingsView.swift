@@ -15,7 +15,7 @@ struct SkyjoSettingsView: View {
     @State private var maxScore: Double = 100
     @State private var names: [String] = Array(repeating: "", count: 2)
     @State private var isShowingAlert = false
-    @State private var isPartyOngoing = UserDefaults.standard.bool(forKey: "partySkyjoOngoing")
+    @State private var history: GameCardHistory = []
     
     var body: some View {
         NavigationStack {
@@ -34,6 +34,50 @@ struct SkyjoSettingsView: View {
                     
                     Section(getText(forKey: "rules", forLanguage: data.languages)) {
                         RulesText(text: getRules(forKey: "skyjo", forLanguage: data.languages), language: data.languages)
+                    }
+                    
+                    Section(getText(forKey: "history", forLanguage: data.languages)) {
+                        if !history.isEmpty {
+                            List {
+                                ForEach(history.sorted(by: { $0.lastUpdated > $1.lastUpdated })) { game in
+                                    NavigationLink {
+                                        SkyjoView(id: game.id, numberOfPlayer: game.numberOfPlayer, maxScore: game.maxScore, names: game.names, winner: game.winner)
+                                    } label: {
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                Text(game.names.joined(separator: ", "))
+                                                
+                                                Text("\(getText(forKey: "lastUpdate", forLanguage: data.languages)): \(formattedDate(date: game.lastUpdated))")
+                                                    .font(.caption.italic())
+                                                    .foregroundStyle(.secondary.opacity(0.8))
+                                            }
+                                            
+                                            Spacer()
+                                            
+                                            if game.winner.isEmpty {
+                                                Image(systemName: "clock")
+                                                    .foregroundStyle(.orange)
+                                            } else {
+                                                HStack {
+                                                    VStack {
+                                                        Image(systemName: "crown.fill")
+                                                            .foregroundStyle(.yellow)
+                                                        
+                                                        Text(game.winner)
+                                                    }
+                                                }
+                                                .font(.subheadline)
+                                            }
+                                        }
+                                    }
+                                }
+                                .onDelete(perform: removeRows)
+                            }
+                        } else {
+                            Text(getText(forKey: "gameRecorded", forLanguage: data.languages))
+                                .italic()
+                                .foregroundStyle(.secondary.opacity(0.8))
+                        }
                     }
                 }
                 
@@ -84,20 +128,9 @@ struct SkyjoSettingsView: View {
     
     func loadButtons() -> some View {
         HStack {
-            if isPartyOngoing {
-                Spacer()
-                NavigationLink(getText(forKey: "continue", forLanguage: data.languages)) {
-                    SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: false)
-                }
-                .padding()
-                .foregroundStyle(.white)
-                .background(.green)
-                .cornerRadius(10)
-                .frame(height: 30)
-            }
             Spacer()
             NavigationLink(getText(forKey: "launch", forLanguage: data.languages)) {
-                SkyjoView(numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: true)
+                SkyjoView(id: nil, numberOfPlayer: numberOfPlayer, maxScore: maxScore, names: names, isNewGame: true)
             }
             .padding()
             .foregroundStyle(.white)
@@ -115,11 +148,31 @@ struct SkyjoSettingsView: View {
         .padding()
     }
     
+    func loadHistory() {
+        if let skyjoHistory = UserDefaults.standard.data(forKey: "SkyjoHistory"), let decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: skyjoHistory) {
+            history = decodedHistory
+        } else {
+            history = []
+        }
+    }
+    
     func resetData() {
-        isPartyOngoing = UserDefaults.standard.bool(forKey: "partySkyjoOngoing")
+        loadHistory()
         numberOfPlayer = 2
         maxScore = 100
         names = Array(repeating: "", count: 2)
+    }
+    
+    func removeRows(at offsets: IndexSet) {
+        if let skyjoHistory = UserDefaults.standard.data(forKey: "SkyjoHistory"), var decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: skyjoHistory) {
+            decodedHistory.remove(atOffsets: offsets)
+            
+            if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
+                UserDefaults.standard.setValue(encodedHistory, forKey: "SkyjoHistory")
+            }
+            
+            history = decodedHistory
+        }
     }
 }
 
