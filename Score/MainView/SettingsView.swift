@@ -12,6 +12,7 @@ import StoreKit
 @MainActor class SettingsViewModel: ObservableObject {
     @Published var languageSelected = "English"
     @Published var isAlert = false
+    @Published var isAlertHistory = false
     
     let languages: [String: Languages] = ["English": .en, "Français": .fr, "Español": .es, "Português": .pt, "Italiano": .it, "Deutsch": .de]
     let flags: [String: String] = ["English": " 🇬🇧", "Français": " 🇫🇷", "Español": " 🇪🇸", "Português": " 🇵🇹", "Italiano": " 🇮🇹", "Deutsch": " 🇩🇪"]
@@ -64,10 +65,17 @@ struct SettingsView: View {
                 Button(getText(forKey: "settingsReset", forLanguage: data.languages), role: .destructive) {
                     vm.isAlert = true
                 }
+                Button(getText(forKey: "historyReset", forLanguage: data.languages), role: .destructive) {
+                    vm.isAlertHistory = true
+                }
             }
         }
         .alert(getText(forKey: "settingsAlert", forLanguage: data.languages), isPresented: $vm.isAlert) {
             Button("Ok", action: resetData)
+            Button(getText(forKey: "settingsButtonCancel", forLanguage: data.languages), role: .cancel) {}
+        }
+        .alert(getText(forKey: "settingsAlert", forLanguage: data.languages), isPresented: $vm.isAlertHistory) {
+            Button("Ok", action: resetHistory)
             Button(getText(forKey: "settingsButtonCancel", forLanguage: data.languages), role: .cancel) {}
         }
         .onAppear {
@@ -85,6 +93,29 @@ struct SettingsView: View {
     func resetData() {
         data.languages = .en
         vm.languageSelected = "English"
+    }
+    
+    func resetHistory() {
+        for history in gamesHistory {
+            if let gameHistory = UserDefaults.standard.data(forKey: "\(history)History") {
+                if var decodedHistory = try? JSONDecoder().decode(GameCardHistory.self, from: gameHistory) {
+                    decodedHistory.removeAll()
+                    if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
+                        UserDefaults.standard.set(encodedHistory, forKey: "\(history)History")
+                    }
+                } else if var decodedHistory = try? JSONDecoder().decode(YamGameHistory.self, from: gameHistory) {
+                    decodedHistory.removeAll()
+                    if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
+                        UserDefaults.standard.set(encodedHistory, forKey: "\(history)History")
+                    }
+                } else if var decodedHistory = try? JSONDecoder().decode(CustomGameHistory.self, from: gameHistory) {
+                    decodedHistory.removeAll()
+                    if let encodedHistory = try? JSONEncoder().encode(decodedHistory) {
+                        UserDefaults.standard.set(encodedHistory, forKey: "\(history)History")
+                    }
+                }
+            }
+        }
     }
 }
 

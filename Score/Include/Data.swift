@@ -73,6 +73,14 @@ let texts: [String: [Languages: String]] = [
         .it: "Ripristina le impostazioni",
         .de: "Einstellungen zurücksetzen"
     ],
+    "historyReset": [
+        .fr: "Réinitialiser l'historique des parties",
+        .en: "Reset game history",
+        .es: "Restablecer el historial de partidas",
+        .pt: "Redefinir o histórico de jogos",
+        .it: "Reimpostare la cronologia delle partite",
+        .de: "Spielverlauf zurücksetzen"
+    ],
     "settingsAlert": [
         .fr: "Êtes-vous sûr ?",
         .en: "Are you sure?",
@@ -447,6 +455,7 @@ let texts: [String: [Languages: String]] = [
 // All games handle in app
 let cardGames = ["Skyjo", "Uno", "SeaSaltPaper", "Take6", "Belote"].sorted()
 let diceGames = ["Yam"].sorted()
+let gamesHistory = cardGames + diceGames + ["Custom"]
 
 
 // List of rules
