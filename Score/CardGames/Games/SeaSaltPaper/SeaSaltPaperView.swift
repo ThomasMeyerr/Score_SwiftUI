@@ -195,6 +195,7 @@ struct SeaSaltPaperView: View {
             nameAndScore = combinedDict
             roundScores = combinedDict
         }
+        saveData()
     }
     
     func saveData() {

@@ -250,6 +250,7 @@ struct YamView: View {
         if !isNewGame {
             loadData()
         }
+        saveData()
     }
     
     func saveData() {

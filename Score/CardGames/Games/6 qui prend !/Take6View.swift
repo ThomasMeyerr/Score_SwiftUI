@@ -197,6 +197,7 @@ struct Take6View: View {
             nameAndScore = combinedDict
             roundScores = combinedDict
         }
+        saveData()
     }
     
     func saveData() {

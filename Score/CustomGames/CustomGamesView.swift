@@ -237,6 +237,7 @@ struct CustomGamesView: View {
             nameAndScore = combinedDict
             roundScores = combinedDict
         }
+        saveData()
     }
     
     func saveData() {
