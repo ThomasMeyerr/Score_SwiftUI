@@ -123,7 +123,7 @@ struct SeaSaltPaperSettingsView: View {
                     get: { names.indices.contains(index) ? names[index] : "" },
                     set: { newValue in
                         if names.indices.contains(index) {
-                            names[index] = newValue
+                            names[index] = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
                         }
                     }
                 ))
