@@ -36,7 +36,7 @@ struct ContentView: View {
                 }
         }
         .onChange(of: data.reviewCount) {
-            if data.reviewCount % 9 == 1 {
+            if data.reviewCount % 5 == 1 {
                 requestReview()
             }
         }
