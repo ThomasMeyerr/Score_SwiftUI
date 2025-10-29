@@ -24,6 +24,7 @@
 		959738EA2EB2370900C0FEFE /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 		9597391B2EB238BB00C0FEFE /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		959739222EB239CE00C0FEFE /* Core */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Core; sourceTree = "<group>"; };
+		9597395E2EB2466800C0FEFE /* LaunchScreen */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LaunchScreen; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +64,7 @@
 				164F37B52C84D45500650152 /* ScoreApp.swift */,
 				164F37B92C84D45700650152 /* Assets.xcassets */,
 				164F37BB2C84D45700650152 /* Preview Content */,
+				9597395E2EB2466800C0FEFE /* LaunchScreen */,
 			);
 			path = Score;
 			sourceTree = "<group>";
@@ -102,6 +104,7 @@
 				959738EA2EB2370900C0FEFE /* Views */,
 				9597391B2EB238BB00C0FEFE /* Services */,
 				959739222EB239CE00C0FEFE /* Core */,
+				9597395E2EB2466800C0FEFE /* LaunchScreen */,
 			);
 			name = Score;
 			packageProductDependencies = (
@@ -302,12 +305,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Score/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Score;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.board-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2025 Thomas Meyer. Tous droits réservés.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -337,12 +341,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Score/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Score;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.board-games";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2025 Thomas Meyer. Tous droits réservés.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
