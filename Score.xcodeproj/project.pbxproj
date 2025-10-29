@@ -10,8 +10,6 @@
 		164F37B62C84D45500650152 /* ScoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37B52C84D45500650152 /* ScoreApp.swift */; };
 		164F37BA2C84D45700650152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37B92C84D45700650152 /* Assets.xcassets */; };
 		164F37BD2C84D45700650152 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37BC2C84D45700650152 /* Preview Assets.xcassets */; };
-		169139932D0641E10007FB8D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169139922D0641E10007FB8D /* StoreKit.framework */; };
-		956547C22D99CD9300E56970 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 956547C12D99CD9300E56970 /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +31,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				956547C22D99CD9300E56970 /* GoogleMobileAds in Frameworks */,
-				169139932D0641E10007FB8D /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +105,6 @@
 			);
 			name = Score;
 			packageProductDependencies = (
-				956547C12D99CD9300E56970 /* GoogleMobileAds */,
 			);
 			productName = Score;
 			productReference = 164F37B22C84D45500650152 /* Score.app */;
@@ -140,7 +135,6 @@
 			);
 			mainGroup = 164F37A92C84D45500650152;
 			packageReferences = (
-				956547C02D99CD9300E56970 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 164F37B32C84D45500650152 /* Products */;
 			projectDirPath = "";
@@ -299,27 +293,27 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Score/Preview Content\"";
-				DEVELOPMENT_TEAM = Q854D8XGKU;
+				DEVELOPMENT_TEAM = S437WGPM53;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Score/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Score;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2024 Thomas Meyer. Tous droits réservés.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2025 Thomas Meyer. Tous droits réservés.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.3;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.modzie.Score;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -334,27 +328,27 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Score/Preview Content\"";
-				DEVELOPMENT_TEAM = Q854D8XGKU;
+				DEVELOPMENT_TEAM = S437WGPM53;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Score/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Score;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2024 Thomas Meyer. Tous droits réservés.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2025 Thomas Meyer. Tous droits réservés.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.3;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.modzie.Score;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -386,25 +380,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		956547C02D99CD9300E56970 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.2.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		956547C12D99CD9300E56970 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 956547C02D99CD9300E56970 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 164F37AA2C84D45500650152 /* Project object */;
 }
