@@ -3,64 +3,30 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1604AFA52D29A676008EA1DE /* SeaSaltPaperSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1604AFA42D29A676008EA1DE /* SeaSaltPaperSettingsView.swift */; };
-		1604AFA72D29AF01008EA1DE /* SeaSaltPaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1604AFA62D29AF01008EA1DE /* SeaSaltPaperView.swift */; };
-		163F867A2C88C5C50057B639 /* SkyjoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */; };
-		163F867C2C88C65D0057B639 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867B2C88C65D0057B639 /* Utils.swift */; };
-		163F867E2C88C6A20057B639 /* UnoSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F867D2C88C6A20057B639 /* UnoSettingsView.swift */; };
-		163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163F86812C88C75A0057B639 /* YamSettingsView.swift */; };
-		164910F82D3E64D1006589CA /* Take6SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164910F72D3E64D1006589CA /* Take6SettingsView.swift */; };
-		164910FA2D3E64DC006589CA /* Take6View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164910F92D3E64DC006589CA /* Take6View.swift */; };
-		164910FC2D3E89E5006589CA /* BeloteSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164910FB2D3E89E5006589CA /* BeloteSettingsView.swift */; };
-		164910FF2D3E8A03006589CA /* BeloteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164910FE2D3E8A03006589CA /* BeloteView.swift */; };
 		164F37B62C84D45500650152 /* ScoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37B52C84D45500650152 /* ScoreApp.swift */; };
-		164F37B82C84D45500650152 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37B72C84D45500650152 /* ContentView.swift */; };
 		164F37BA2C84D45700650152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37B92C84D45700650152 /* Assets.xcassets */; };
 		164F37BD2C84D45700650152 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 164F37BC2C84D45700650152 /* Preview Assets.xcassets */; };
-		164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F37C32C84D8CF00650152 /* CardGamesView.swift */; };
-		168382F12CDBA9A300B286E2 /* YamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168382F02CDBA9A300B286E2 /* YamView.swift */; };
 		169139932D0641E10007FB8D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169139922D0641E10007FB8D /* StoreKit.framework */; };
-		16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */; };
-		16C700B52CAFF284005C6752 /* UnoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C700B42CAFF284005C6752 /* UnoView.swift */; };
-		16DE323A2C9AFEB5000678AC /* SkyjoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE32392C9AFEB5000678AC /* SkyjoView.swift */; };
-		16F3816F2C84DA7600569DF1 /* DiceGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3816E2C84DA7600569DF1 /* DiceGamesView.swift */; };
-		16F381712C84DA8400569DF1 /* CustomSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381702C84DA8400569DF1 /* CustomSettingsView.swift */; };
-		16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381762C84DD6700569DF1 /* SettingsView.swift */; };
-		16F381792C84E0B000569DF1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F381782C84E0B000569DF1 /* Data.swift */; };
 		956547C22D99CD9300E56970 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 956547C12D99CD9300E56970 /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1604AFA42D29A676008EA1DE /* SeaSaltPaperSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaSaltPaperSettingsView.swift; sourceTree = "<group>"; };
-		1604AFA62D29AF01008EA1DE /* SeaSaltPaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaSaltPaperView.swift; sourceTree = "<group>"; };
-		163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyjoSettingsView.swift; sourceTree = "<group>"; };
-		163F867B2C88C65D0057B639 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		163F867D2C88C6A20057B639 /* UnoSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoSettingsView.swift; sourceTree = "<group>"; };
-		163F86812C88C75A0057B639 /* YamSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamSettingsView.swift; sourceTree = "<group>"; };
-		164910F72D3E64D1006589CA /* Take6SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Take6SettingsView.swift; sourceTree = "<group>"; };
-		164910F92D3E64DC006589CA /* Take6View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Take6View.swift; sourceTree = "<group>"; };
-		164910FB2D3E89E5006589CA /* BeloteSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeloteSettingsView.swift; sourceTree = "<group>"; };
-		164910FE2D3E8A03006589CA /* BeloteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeloteView.swift; sourceTree = "<group>"; };
 		164F37B22C84D45500650152 /* Score.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Score.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		164F37B52C84D45500650152 /* ScoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreApp.swift; sourceTree = "<group>"; };
-		164F37B72C84D45500650152 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		164F37B92C84D45700650152 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		164F37BC2C84D45700650152 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		164F37C32C84D8CF00650152 /* CardGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGamesView.swift; sourceTree = "<group>"; };
-		168382F02CDBA9A300B286E2 /* YamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamView.swift; sourceTree = "<group>"; };
 		169139922D0641E10007FB8D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGamesView.swift; sourceTree = "<group>"; };
-		16C700B42CAFF284005C6752 /* UnoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnoView.swift; sourceTree = "<group>"; };
-		16DE32392C9AFEB5000678AC /* SkyjoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyjoView.swift; sourceTree = "<group>"; };
-		16F3816E2C84DA7600569DF1 /* DiceGamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceGamesView.swift; sourceTree = "<group>"; };
-		16F381702C84DA8400569DF1 /* CustomSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSettingsView.swift; sourceTree = "<group>"; };
-		16F381762C84DD6700569DF1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		16F381782C84E0B000569DF1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		959738EA2EB2370900C0FEFE /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		9597391B2EB238BB00C0FEFE /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
+		959739222EB239CE00C0FEFE /* Core */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Core; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		164F37AF2C84D45500650152 /* Frameworks */ = {
@@ -75,89 +41,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1604AFA32D29A65C008EA1DE /* SeaSaltPaper */ = {
-			isa = PBXGroup;
-			children = (
-				1604AFA42D29A676008EA1DE /* SeaSaltPaperSettingsView.swift */,
-				1604AFA62D29AF01008EA1DE /* SeaSaltPaperView.swift */,
-			);
-			path = SeaSaltPaper;
-			sourceTree = "<group>";
-		};
-		163F86762C8890DF0057B639 /* Games */ = {
-			isa = PBXGroup;
-			children = (
-				164910FD2D3E89EC006589CA /* Belote */,
-				164910F62D3E6478006589CA /* 6 qui prend ! */,
-				1604AFA32D29A65C008EA1DE /* SeaSaltPaper */,
-				163F867F2C88C6C00057B639 /* Skyjo */,
-				163F86802C88C6C80057B639 /* Uno */,
-			);
-			path = Games;
-			sourceTree = "<group>";
-		};
-		163F86772C88C4AD0057B639 /* Games */ = {
-			isa = PBXGroup;
-			children = (
-				163F86832C88C7650057B639 /* Yam */,
-			);
-			path = Games;
-			sourceTree = "<group>";
-		};
-		163F86782C88C57D0057B639 /* Include */ = {
-			isa = PBXGroup;
-			children = (
-				16F381782C84E0B000569DF1 /* Data.swift */,
-				163F867B2C88C65D0057B639 /* Utils.swift */,
-			);
-			path = Include;
-			sourceTree = "<group>";
-		};
-		163F867F2C88C6C00057B639 /* Skyjo */ = {
-			isa = PBXGroup;
-			children = (
-				163F86792C88C5C50057B639 /* SkyjoSettingsView.swift */,
-				16DE32392C9AFEB5000678AC /* SkyjoView.swift */,
-			);
-			path = Skyjo;
-			sourceTree = "<group>";
-		};
-		163F86802C88C6C80057B639 /* Uno */ = {
-			isa = PBXGroup;
-			children = (
-				163F867D2C88C6A20057B639 /* UnoSettingsView.swift */,
-				16C700B42CAFF284005C6752 /* UnoView.swift */,
-			);
-			path = Uno;
-			sourceTree = "<group>";
-		};
-		163F86832C88C7650057B639 /* Yam */ = {
-			isa = PBXGroup;
-			children = (
-				163F86812C88C75A0057B639 /* YamSettingsView.swift */,
-				168382F02CDBA9A300B286E2 /* YamView.swift */,
-			);
-			path = Yam;
-			sourceTree = "<group>";
-		};
-		164910F62D3E6478006589CA /* 6 qui prend ! */ = {
-			isa = PBXGroup;
-			children = (
-				164910F72D3E64D1006589CA /* Take6SettingsView.swift */,
-				164910F92D3E64DC006589CA /* Take6View.swift */,
-			);
-			path = "6 qui prend !";
-			sourceTree = "<group>";
-		};
-		164910FD2D3E89EC006589CA /* Belote */ = {
-			isa = PBXGroup;
-			children = (
-				164910FB2D3E89E5006589CA /* BeloteSettingsView.swift */,
-				164910FE2D3E8A03006589CA /* BeloteView.swift */,
-			);
-			path = Belote;
-			sourceTree = "<group>";
-		};
 		164F37A92C84D45500650152 = {
 			isa = PBXGroup;
 			children = (
@@ -178,12 +61,10 @@
 		164F37B42C84D45500650152 /* Score */ = {
 			isa = PBXGroup;
 			children = (
+				959739222EB239CE00C0FEFE /* Core */,
+				9597391B2EB238BB00C0FEFE /* Services */,
+				959738EA2EB2370900C0FEFE /* Views */,
 				164F37B52C84D45500650152 /* ScoreApp.swift */,
-				163F86782C88C57D0057B639 /* Include */,
-				16F381752C84DD3A00569DF1 /* MainView */,
-				16F381722C84DCB700569DF1 /* CardGames */,
-				16F381732C84DCC300569DF1 /* DiceGames */,
-				16F381742C84DCD100569DF1 /* CustomGames */,
 				164F37B92C84D45700650152 /* Assets.xcassets */,
 				164F37BB2C84D45700650152 /* Preview Content */,
 			);
@@ -206,42 +87,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		16F381722C84DCB700569DF1 /* CardGames */ = {
-			isa = PBXGroup;
-			children = (
-				164F37C32C84D8CF00650152 /* CardGamesView.swift */,
-				163F86762C8890DF0057B639 /* Games */,
-			);
-			path = CardGames;
-			sourceTree = "<group>";
-		};
-		16F381732C84DCC300569DF1 /* DiceGames */ = {
-			isa = PBXGroup;
-			children = (
-				16F3816E2C84DA7600569DF1 /* DiceGamesView.swift */,
-				163F86772C88C4AD0057B639 /* Games */,
-			);
-			path = DiceGames;
-			sourceTree = "<group>";
-		};
-		16F381742C84DCD100569DF1 /* CustomGames */ = {
-			isa = PBXGroup;
-			children = (
-				16F381702C84DA8400569DF1 /* CustomSettingsView.swift */,
-				16B511F32CB68B1E00EBFE3B /* CustomGamesView.swift */,
-			);
-			path = CustomGames;
-			sourceTree = "<group>";
-		};
-		16F381752C84DD3A00569DF1 /* MainView */ = {
-			isa = PBXGroup;
-			children = (
-				164F37B72C84D45500650152 /* ContentView.swift */,
-				16F381762C84DD6700569DF1 /* SettingsView.swift */,
-			);
-			path = MainView;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -256,6 +101,11 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				959738EA2EB2370900C0FEFE /* Views */,
+				9597391B2EB238BB00C0FEFE /* Services */,
+				959739222EB239CE00C0FEFE /* Core */,
 			);
 			name = Score;
 			packageProductDependencies = (
@@ -318,27 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16F381792C84E0B000569DF1 /* Data.swift in Sources */,
-				16DE323A2C9AFEB5000678AC /* SkyjoView.swift in Sources */,
-				164F37C42C84D8CF00650152 /* CardGamesView.swift in Sources */,
-				163F867E2C88C6A20057B639 /* UnoSettingsView.swift in Sources */,
-				1604AFA72D29AF01008EA1DE /* SeaSaltPaperView.swift in Sources */,
-				16C700B52CAFF284005C6752 /* UnoView.swift in Sources */,
-				16F381712C84DA8400569DF1 /* CustomSettingsView.swift in Sources */,
-				164F37B82C84D45500650152 /* ContentView.swift in Sources */,
-				16F381772C84DD6700569DF1 /* SettingsView.swift in Sources */,
 				164F37B62C84D45500650152 /* ScoreApp.swift in Sources */,
-				164910FC2D3E89E5006589CA /* BeloteSettingsView.swift in Sources */,
-				16B511F42CB68B1E00EBFE3B /* CustomGamesView.swift in Sources */,
-				164910F82D3E64D1006589CA /* Take6SettingsView.swift in Sources */,
-				1604AFA52D29A676008EA1DE /* SeaSaltPaperSettingsView.swift in Sources */,
-				163F867C2C88C65D0057B639 /* Utils.swift in Sources */,
-				164910FF2D3E8A03006589CA /* BeloteView.swift in Sources */,
-				163F86822C88C75A0057B639 /* YamSettingsView.swift in Sources */,
-				168382F12CDBA9A300B286E2 /* YamView.swift in Sources */,
-				163F867A2C88C5C50057B639 /* SkyjoSettingsView.swift in Sources */,
-				164910FA2D3E64DC006589CA /* Take6View.swift in Sources */,
-				16F3816F2C84DA7600569DF1 /* DiceGamesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
